@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
 const items = ["Hardware.", "Mechanics.", "Software."];
@@ -46,6 +46,14 @@ const HomeTransition = ({ style }) => {
     setCurrent(next);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent(current + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [current]);
+
+  // TODO: add a rotation like transition between utems
   return (
     <Container style={style}>
       <SmallText onClick={handleUp}>{items[currentRelative(0)]}</SmallText>
