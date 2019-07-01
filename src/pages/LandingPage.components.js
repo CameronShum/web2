@@ -43,19 +43,30 @@ export const Circle = styled.div`
 // prettier-ignore
 export const Contact = styled.div`
   position: absolute;
-  top: 0; right:0;
-  background: none;
-
-  border: 2px solid #e57373;
-  border-radius: 5px;
+  top: 0; right: 0;
 
   padding: 3px 8px;
   margin: 5px;
 
+  background: none;
+  border: 2px solid #e57373;
+  border-radius: 5px;
+  cursor: pointer;
+
   p {
     font-family: "Reem Kufi";
     font-size: 14px;
-
     color: #ffcdd2;
+  }
+`;
+
+// prettier-ignore
+export const TopGradient = styled.div`
+  position: absolute;
+  top: 0; right: 0;
+  background: none;
+
+  img {
+    width: 300px;
   }
 `;

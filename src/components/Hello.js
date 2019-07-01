@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 
 const HelloText = styled.p`
+  width: 100%;
   padding-left: 20px;
   font-family: "Reem Kufi";
   font-weight: normal;

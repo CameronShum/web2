@@ -6,17 +6,22 @@ import {
   TextDiv,
   ComponentContainer,
   Circle,
-  Contact
+  Contact,
+  TopGradient
 } from "./LandingPage.components";
 import { HomeTransition, Hello } from "../components/index";
+import gradient from "./assets/coverImg.svg";
 
 const LandingPage = () => (
   <div style={{ backgroundColor: "#FFF8E1" }}>
     <Container>
+      <TopGradient>
+        <img src={gradient} alt="top gradient" />
+      </TopGradient>
       <Contact>
         <p>Contact</p>
       </Contact>
-      <ComponentContainer height="250px" align>
+      <ComponentContainer height="250px" align style={{ marginTop: 50 }}>
         <Hello />
       </ComponentContainer>
       <ComponentContainer height="250px" align justify>

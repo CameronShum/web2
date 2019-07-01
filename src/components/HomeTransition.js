@@ -49,7 +49,7 @@ const HomeTransition = ({ style }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(current + 1);
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [current]);
 
