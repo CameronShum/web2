@@ -2,4 +2,4 @@
 
 _Personal Website V2.0.0_
 
-v2.cameronshum.com
+<a href="v2.cameronshum.com">v2.cameronshum.com</a>
