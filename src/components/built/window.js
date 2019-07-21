@@ -32,7 +32,14 @@ const images = [
 const Window = ({ handleClick }) => {
   const renderImages = (img, index) => (
     <BuildImages>
-      <img src={img} key={img} onClick={handleClick(index)} alt="build icon" />
+      <object
+        data={img}
+        type="image/svg+xml"
+        // key={img}
+        onClick={handleClick(index)}
+        aria-label="build icon"
+      />
+      {/* <img src={img} /> */}
     </BuildImages>
   );
   return (
@@ -90,7 +97,7 @@ const BuildImages = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  img {
+  object {
     margin-bottom: -10px;
     cursor: pointer;
     height: 80px;
