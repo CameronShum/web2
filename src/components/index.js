@@ -1,4 +1,4 @@
-import HomeTransition from "./HomeTransition";
-import Hello from "./Hello";
+import { HomeTransition, Hello } from "./home";
+import { Window } from "./built";
 
-export { HomeTransition, Hello };
+export { HomeTransition, Hello, Window };

@@ -1,32 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import Typist from "react-typist";
 
 const items = ["Hardware.", "Mechanics.", "Software."];
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const BigText = styled.h1`
-  margin: -10px 0;
-  font-family: "Reem Kufi";
-  font-weight: normal;
-  font-size: 40px;
-  color: #3949ab;
-`;
-
-const SmallText = styled.p`
-  font-family: "Reem Kufi";
-  font-weight: normal;
-  font-size: 20px;
-  color: #3949ab;
-  cursor: pointer;
-`;
 
 const mod = (x, n) => ((x % n) + n) % n;
 
@@ -47,20 +23,56 @@ const HomeTransition = ({ style }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setCurrent(current + 1);
-    }, 2000);
-    return () => clearInterval(interval);
+    }, 2500);
+    return () => clearTimeout(timeout);
   }, [current]);
 
-  // TODO: add a rotation like transition between utems
+  const renderText = string => (
+    <Typist avgTypingDelay={40} key={string}>
+      {string}
+      <Typist.Backspace count={items[currentRelative(1)].length} delay={1000} />
+    </Typist>
+  );
+
+  // TODO: add a rotation like transition between items
   return (
     <Container style={style}>
       <SmallText onClick={handleUp}>{items[currentRelative(0)]}</SmallText>
-      <BigText>{items[currentRelative(1)]}</BigText>
+      <BigText>{renderText(items[currentRelative(1)])}</BigText>
       <SmallText onClick={handleDown}>{items[currentRelative(2)]}</SmallText>
     </Container>
   );
 };
+
+//
+//  Begin Styling
+//
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const BigText = styled.h1`
+  font-family: "Reem Kufi";
+  font-weight: normal;
+  font-size: 40px;
+  color: #3949ab;
+`;
+
+const SmallText = styled.p`
+  font-family: "Reem Kufi";
+  font-weight: normal;
+  font-size: 20px;
+  color: #3949ab;
+  cursor: pointer;
+`;
 
 export default HomeTransition;
