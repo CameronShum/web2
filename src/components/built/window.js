@@ -31,15 +31,13 @@ const images = [
 
 const Window = ({ handleClick }) => {
   const renderImages = (img, index) => (
-    <BuildImages>
+    <BuildImages key={img}>
       <object
         data={img}
         type="image/svg+xml"
-        // key={img}
         onClick={handleClick(index)}
         aria-label="build icon"
       />
-      {/* <img src={img} /> */}
     </BuildImages>
   );
   return (
@@ -89,20 +87,22 @@ const Container = styled.div`
 const BuildImages = styled.div`
   flex: 1;
   padding-left: 2px;
-  margin-bottom: 60px;
-
+  margin: 0 -4px 60px 0;
   border-bottom: 15px solid #a1887f;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
+  z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
   object {
-    margin-bottom: -10px;
-    cursor: pointer;
+    padding: 0 5px;
     height: 80px;
+    margin-bottom: -10px;
+
+    cursor: pointer;
     :hover {
-      transform: scale(1.25);
+      transform: scale(1.1);
     }
   }
 `;
