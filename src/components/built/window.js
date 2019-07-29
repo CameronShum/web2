@@ -86,11 +86,11 @@ const Container = styled.div`
 
 const BuildImages = styled.div`
   flex: 1;
-  padding-left: 2px;
   margin: 0 -4px 60px 0;
   border-bottom: 15px solid #a1887f;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
   z-index: 1;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
@@ -100,7 +100,6 @@ const BuildImages = styled.div`
     height: 80px;
     margin-bottom: -10px;
 
-    cursor: pointer;
     :hover {
       transform: scale(1.1);
     }
