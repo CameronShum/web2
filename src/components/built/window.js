@@ -1,24 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import BumbleB from "./assets/BumbleB.svg";
-import Laptop from "./assets/Laptop.svg";
-import Phone from "./assets/Phone.svg";
-import Rover from "./assets/Rover.svg";
-import Skateboard1 from "./assets/Skateboard.svg";
-import Skateboard2 from "./assets/Skateboard1.svg";
-import Sticker from "./assets/Sticker.svg";
-
-const images = [
-  BumbleB,
-  Laptop,
-  Phone,
-  Rover,
-  Skateboard1,
-  Skateboard2,
-  Sticker
-];
-
 // const Shelf = () => (
 //   <div>
 //     <ShelfBar />
@@ -29,15 +11,10 @@ const images = [
 //   </div>
 // );
 
-const Window = ({ handleClick }) => {
+const Window = ({ onClick, images, current }) => {
   const renderImages = (img, index) => (
-    <BuildImages key={img}>
-      <object
-        data={img}
-        type="image/svg+xml"
-        onClick={handleClick(index)}
-        aria-label="build icon"
-      />
+    <BuildImages key={img} active={current === index}>
+      <img src={img} alt={"icon"} onClick={onClick(index)} />
     </BuildImages>
   );
   return (
@@ -52,13 +29,13 @@ const Window = ({ handleClick }) => {
   );
 };
 
-//
+//<Text>built</Text>
 //  Begin Styling
 //
 
 const Container = styled.div`
   height: auto;
-  width: 85%;
+  width: 100%;
   margin: auto;
   padding: 30px;
   box-sizing: border-box;
@@ -95,10 +72,11 @@ const BuildImages = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  object {
+  img {
     padding: 0 5px;
     height: 80px;
     margin-bottom: -10px;
+    transform: ${props => (props.active ? "scale(1.1)" : "")};
 
     :hover {
       transform: scale(1.1);

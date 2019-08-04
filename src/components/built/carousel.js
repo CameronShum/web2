@@ -1,107 +1,115 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import BumbleB from "./assets/BumbleB.svg";
-import Laptop from "./assets/Laptop.svg";
-import Phone from "./assets/Phone.svg";
-import Rover from "./assets/Rover.svg";
-import Skateboard1 from "./assets/Skateboard.svg";
-import Skateboard2 from "./assets/Skateboard1.svg";
-import Sticker from "./assets/Sticker.svg";
+import CarouselBubbles from "./carouselBubbles";
 
-const CardInfo = [
-  {
-    title: "BumbleB.",
-    img: BumbleB,
-    date: "Jan. 19 - Mar. 19",
-    desc: "A fitness robot that tracks and rewards physical activity.",
-    link: "./bumbleb"
-  },
-  {
-    title: "some Code.",
-    img: Laptop,
-    date: "Jan. 19 - Now",
-    desc:
-      "A collection of code, from Python text parsers to front-end web apps to backend servers.",
-    link: "https://github.com/cameronshum"
-  },
-  {
-    title: "an Automated Text Message sender.",
-    img: Phone,
-    date: "Feb. 19",
-    desc: "A program that sends text messages from a file",
-    link: "https://github.com/CameronShum/Automated-Text-Message-Sending"
-  },
-  {
-    title: "a Lunar Rover design.",
-    img: Rover,
-    date: "Jan. 19",
-    desc:
-      "A design for a lunar rover to survive the harsh conditions of the moon",
-    link: "./rover"
-  },
-  {
-    title: "an Electric Skateboard.",
-    img: Skateboard1,
-    date: "Sep. 16 - Apr. 17",
-    desc: "Electric skateboard built and programmed from scratch",
-    link: "./skateboard/v1"
-  },
-  {
-    title: "an Electric Skateboard.",
-    img: Skateboard1,
-    date: "May 19 - Now",
-    desc:
-      "A second electric skateboard, built to perform better than version 1",
-    link: "./skateboard/v2"
-  },
-  {
-    title: "Sticker Factory.",
-    img: Skateboard1,
-    date: "Sep. 18 - Dec. 18",
-    desc: "A children's toy that creates stickers from a drawing",
-    link: "./stickerfactory"
-  }
-];
+import leftIcon from "./assets/chevron-left.svg";
+import rightIcon from "./assets/chevron-right.svg";
 
-const Card = (title, img, date, desc, link) => (
-  <div>
-    <Title>{title}</Title>
+const Card = ({ img, date, desc, link }) => (
+  <div style={{ width: 275, margin: "0 5px" }}>
     <CardContainer>
       <object data={img} type="image/svg+xml" aria-label="build icon" />
-      <Text>Date: {date}</Text>
-      <Text>About: {desc} </Text>
+      <Text>{date}</Text>
+      <Text style={{ padding: "10px 0" }}>{desc}</Text>
       <LearnMore href={link}>Learn More</LearnMore>
     </CardContainer>
   </div>
 );
 
-const Carousel = ({ index }) => {};
+const Carousel = ({ index, setCurrent, cardInfo }) => (
+  <FlexCol>
+    <Title>{cardInfo[index].title}</Title>
+    <CarouselContainer>
+      <ArrowIcon
+        src={leftIcon}
+        alt="left-icon"
+        onClick={setCurrent(index - 1)}
+        hide={index === 0}
+      />
+      {Card(cardInfo[index])}
+      <ArrowIcon
+        src={rightIcon}
+        alt="right-icon"
+        onClick={setCurrent(index + 1)}
+        hide={index === cardInfo.length - 1}
+      />
+    </CarouselContainer>
+    <CarouselBubbles
+      current={index}
+      length={cardInfo.length}
+      setCurrent={setCurrent}
+    />
+  </FlexCol>
+);
 
-//
+export default Carousel;
+
+//    {console.log`}
 //  Begin Styling
 //
+
+const ArrowIcon = styled.img`
+  height: 24px;
+  width: 24px;
+  visibility: ${props => (props.hide ? "hidden" : "visible")};
+  cursor: pointer;
+`;
 
 const CardContainer = styled.div`
   min-height: 200px;
   height: auto;
+  width: 275px;
   padding: 10px;
+  box-sizing: border-box;
+
+  background: #ffecb3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+
+  display: flex;
+  background: #ffecb3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
-const Title = styled.p`
-  font-family: "Reem Kufi";
-  font-size: 48px;
-  color: #ffca28;
+const CarouselContainer = styled.div`
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-const Text = styled.p`
-  font-family: "Reem Kufi";
-  font-size: 18px;
-  color: #37474e;
+const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const LearnMore = styled.a`
   font-family: "Reem Kufi";
   font-size: 14px;
+  color: #37474e;
+`;
+
+const Title = styled.div`
+  width: 275px;
+  height: 80px;
+  margin-bottom: -5px;
+  font-family: "Reem Kufi";
+  font-size: 30px;
+  color: #ffca28;
+
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Text = styled.p`
+  font-family: "Reem Kufi";
+  font-size: 18px;
   color: #37474e;
 `;
