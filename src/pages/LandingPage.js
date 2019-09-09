@@ -1,16 +1,25 @@
 import React from "react";
 
 import {
-  Container,
-  FlexRow,
-  TextDiv,
-  ComponentContainer,
   Circle,
-  Contact,
+  ComponentContainer,
+  Container,
+  FlexCol,
+  FlexRow,
+  SectionTitle,
+  TextDiv,
   TopGradient
 } from "./LandingPage.components";
 import { HomeTransition, Hello } from "../components/index";
-import gradient from "./assets/coverImg.svg";
+import gradient from "../images/coverImg.svg";
+import sections from "../constants/sections";
+
+const RenderSections = ({ name, color }) => (
+  <FlexRow>
+    <Circle color={color} size={50} style={{ marginTop: -10 }} />
+    <SectionTitle color={color}>{name}</SectionTitle>
+  </FlexRow>
+);
 
 const LandingPage = () => (
   <div style={{ backgroundColor: "#FFF8E1" }}>
@@ -18,28 +27,18 @@ const LandingPage = () => (
       <TopGradient>
         <img src={gradient} alt="top gradient" />
       </TopGradient>
-      <Contact>
-        <p>Contact</p>
-      </Contact>
       <ComponentContainer height="250px" align style={{ marginTop: 50 }}>
         <Hello />
       </ComponentContainer>
       <ComponentContainer height="250px" align justify>
-        <FlexRow>
-          <TextDiv>Design</TextDiv>
-          <TextDiv style={{ padding: "0px 10px" }}>+</TextDiv>
-          <HomeTransition style={{ width: 180 }} />
-        </FlexRow>
+        <TextDiv>Design</TextDiv>
+        <TextDiv style={{ padding: "0px 10px", color: "#EF9A9A" }}>+</TextDiv>
+        <HomeTransition style={{ width: 180 }} />
       </ComponentContainer>
-      <ComponentContainer align justify style={{ flex: 1 }}>
-        <TextDiv>I...</TextDiv>
-      </ComponentContainer>
+      <FlexCol style={{ paddingLeft: 20 }}>
+        {sections.map(RenderSections)}
+      </FlexCol>
     </Container>
-    <ComponentContainer align justify style={{ flexDirection: "column" }}>
-      <Circle size="50px" marginTop="-20px" />
-      <Circle size="30px" marginTop="-5px" />
-      <Circle size="20px" />
-    </ComponentContainer>
   </div>
 );
 

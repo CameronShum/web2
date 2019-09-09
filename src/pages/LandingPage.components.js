@@ -1,27 +1,13 @@
 import styled from "@emotion/styled";
 
-// prettier-ignore
-export const Container = styled.div`
-  width: 100%;
-  height: auto;
-  background: white;
-  border-radius: 0 0 35px 35px;
-  padding-bottom: 20px;
-`;
+export const Circle = styled.div`
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  border-radius: 100%;
+  background-color: ${props => props.color};
 
-export const FlexRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  cursor: pointer;
 `;
-
-export const TextDiv = styled.div`
-  font-family: Reem Kufi;
-  font-size: 40px;
-  color: #3949ab;
-`;
-
 export const ComponentContainer = styled.div`
   width: 100%;
   min-height: ${props => props.height};
@@ -32,32 +18,33 @@ export const ComponentContainer = styled.div`
   justify-content: ${props => (props.justify ? "center" : "flex-start")};
 `;
 
-export const Circle = styled.div`
+// prettier-ignore
+export const Container = styled.div`
+  width: 100%;
+  height: auto;
   background: white;
-  width: ${props => props.size};
-  height: ${props => props.size};
-  border-radius: ${props => props.size};
-  margin-top: ${props => props.marginTop};
+  padding-bottom: 20px;
 `;
 
-// prettier-ignore
-export const Contact = styled.div`
-  position: absolute;
-  top: 0; right: 0;
+export const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  padding: 3px 8px;
-  margin: 5px;
+export const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-  background: none;
-  border: 2px solid #e57373;
-  border-radius: 5px;
-  cursor: pointer;
+export const SectionTitle = styled.p`
+  padding-left: 10px;
+  color: ${props => props.color};
+  font-size: 35px;
+`;
 
-  p {
-    font-family: "Reem Kufi";
-    font-size: 14px;
-    color: #ffcdd2;
-  }
+export const TextDiv = styled.div`
+  font-size: 40px;
+  color: #e53935;
 `;
 
 // prettier-ignore

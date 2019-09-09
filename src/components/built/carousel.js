@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 
 import CarouselBubbles from "./carouselBubbles";
 
+import cardInfo from "../../constants/cardInfo";
+
 import leftIcon from "./assets/chevron-left.svg";
 import rightIcon from "./assets/chevron-right.svg";
 
@@ -17,7 +19,7 @@ const Card = ({ img, date, desc, link }) => (
   </div>
 );
 
-const Carousel = ({ index, setCurrent, cardInfo }) => (
+const Carousel = ({ index, setCurrent }) => (
   <FlexCol>
     <Title>{cardInfo[index].title}</Title>
     <CarouselContainer>
@@ -91,7 +93,6 @@ const FlexCol = styled.div`
 `;
 
 const LearnMore = styled.a`
-  font-family: "Reem Kufi";
   font-size: 14px;
   color: #37474e;
 `;
@@ -100,7 +101,6 @@ const Title = styled.div`
   width: 275px;
   height: 80px;
   margin-bottom: -5px;
-  font-family: "Reem Kufi";
   font-size: 30px;
   color: #ffca28;
 
@@ -109,7 +109,6 @@ const Title = styled.div`
 `;
 
 const Text = styled.p`
-  font-family: "Reem Kufi";
   font-size: 18px;
   color: #37474e;
 `;

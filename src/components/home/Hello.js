@@ -5,7 +5,7 @@ const Hello = () => (
   <Container>
     <HelloText>Hello, I'm</HelloText>
     <Name>Cameron</Name>
-    <Name>Shum</Name>
+    <Name>Shum.</Name>
   </Container>
 );
 
@@ -25,14 +25,12 @@ const Container = styled.div`
 
 const HelloText = styled.p`
   width: 100%;
-  font-family: "Reem Kufi";
   font-size: 35px;
 
-  color: #f4511e;
+  color: #ef9a9a;
 `;
 
 const Name = styled.p`
-  font-family: "Reem Kufi";
   font-size: 50px;
 
   color: #f4511e;

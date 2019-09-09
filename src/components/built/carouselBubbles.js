@@ -24,15 +24,14 @@ export default CarouselBubbles;
 //
 
 const Bubble = styled.div`
-  width: ${props => (props.active ? 15 : 10)}px;
-  height: ${props => (props.active ? 15 : 10)}px;
+  width: ${props => (props.active ? 13 : 10)}px;
+  height: ${props => (props.active ? 13 : 10)}px;
   margin: 0 5px;
 
   border-radius: 100%;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
-  background: ${props => (props.active ? "white" : "#CFD8DC")};
+  background: ${props => (props.active ? "white" : "#C5CED1")};
 `;
 
 const Container = styled.div`
@@ -40,7 +39,7 @@ const Container = styled.div`
   width: auto;
   height: 25px;
   margin-top: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 
   display: flex;

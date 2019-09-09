@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Typist from "react-typist";
-
-const items = ["Hardware.", "Mechanics.", "Software."];
+import { items } from "../../constants/skills";
 
 const mod = (x, n) => ((x % n) + n) % n;
 
 const HomeTransition = ({ style }) => {
   const [current, setCurrent] = useState(0);
   const currentRelative = offset => mod(current + offset, items.length);
-
-  const handleUp = () => {
-    let next = current - 1;
-    if (next === -1) next = items.length - 1;
-    setCurrent(next);
-  };
-
-  const handleDown = () => {
-    let next = current + 1;
-    if (next === items.length) next = 0;
-    setCurrent(next);
-  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -39,9 +26,9 @@ const HomeTransition = ({ style }) => {
   // TODO: add a rotation like transition between items
   return (
     <Container style={style}>
-      <SmallText onClick={handleUp}>{items[currentRelative(0)]}</SmallText>
+      <SmallText>{items[currentRelative(0)]}</SmallText>
       <BigText>{renderText(items[currentRelative(1)])}</BigText>
-      <SmallText onClick={handleDown}>{items[currentRelative(2)]}</SmallText>
+      <SmallText>{items[currentRelative(2)]}</SmallText>
     </Container>
   );
 };
@@ -61,17 +48,15 @@ const Container = styled.div`
 `;
 
 const BigText = styled.h1`
-  font-family: "Reem Kufi";
   font-weight: normal;
   font-size: 40px;
-  color: #3949ab;
+  color: #e53935;
 `;
 
 const SmallText = styled.p`
-  font-family: "Reem Kufi";
   font-weight: normal;
   font-size: 20px;
-  color: #3949ab;
+  color: #ef9a9a;
   cursor: pointer;
 `;
 
