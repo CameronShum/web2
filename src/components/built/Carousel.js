@@ -14,7 +14,7 @@ const Card = ({ img, date, desc, link }) => (
       <object data={img} type="image/svg+xml" aria-label="build icon" />
       <Text>{date}</Text>
       <Text style={{ padding: "10px 0" }}>{desc}</Text>
-      <LearnMore href={link}>Learn More</LearnMore>
+      {/* <LearnMore href={link}>Learn More</LearnMore> */}
     </CardContainer>
   </div>
 );
@@ -89,10 +89,10 @@ const FlexCol = styled.div`
   align-items: center;
 `;
 
-const LearnMore = styled.a`
-  font-size: 14px;
-  color: #37474e;
-`;
+// const LearnMore = styled.a`
+//   font-size: 14px;
+//   color: #37474e;
+// `;
 
 const Title = styled.div`
   width: 275px;

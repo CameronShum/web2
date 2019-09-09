@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
 import LandingPage from "./LandingPage";
-import BuildPage from "./BuildPage";
+import ProjectsPage from "./ProjectsPage";
+import ExperiencePage from "./ExperiencePage";
 
 const App = () => (
   <Global>
     <LandingPage />
-    <BuildPage />
+    <ProjectsPage />
+    <ExperiencePage />
   </Global>
 );
 

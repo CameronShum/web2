@@ -21,7 +21,7 @@ const images = [
   Sticker
 ];
 
-const BuildPage = () => {
+const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
   const handleClick = num => () => {
@@ -31,14 +31,14 @@ const BuildPage = () => {
   return (
     <Container>
       <SectionDivider sectionName={"Projects"} />
-      <Text style={{ fontSize: 54 }}>Projects</Text>
+      <Text style={{ fontSize: 54, marginLeft: 10 }}>Projects</Text>
       <Window onClick={handleClick} images={images} current={current} />
       <Carousel index={current} setCurrent={handleClick} />
     </Container>
   );
 };
 
-export default BuildPage;
+export default ProjectsPage;
 
 //
 //  Begin Styling
