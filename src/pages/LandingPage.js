@@ -15,7 +15,7 @@ import gradient from "../images/coverImg.svg";
 import sections from "../constants/sections";
 
 const RenderSections = ({ name, color }) => (
-  <FlexRow>
+  <FlexRow style={{ cursor: "pointer" }}>
     <Circle color={color} size={50} style={{ marginTop: -10 }} />
     <SectionTitle color={color}>{name}</SectionTitle>
   </FlexRow>

@@ -5,9 +5,8 @@ export const Circle = styled.div`
   height: ${props => props.size}px;
   border-radius: 100%;
   background-color: ${props => props.color};
-
-  cursor: pointer;
 `;
+
 export const ComponentContainer = styled.div`
   width: 100%;
   min-height: ${props => props.height};

@@ -40,7 +40,7 @@ const Container = styled.div`
   padding: 30px;
   box-sizing: border-box;
 
-  background: #ffecb3;
+  background: #fffae8;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

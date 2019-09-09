@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import { Window, Carousel } from "../components";
+import { Carousel, Window, SectionDivider } from "../components";
 
 import BumbleB from "../images/BumbleB.svg";
 import Laptop from "../images/Laptop.svg";
@@ -30,6 +30,7 @@ const BuildPage = () => {
 
   return (
     <Container>
+      <SectionDivider sectionName={"Projects"} />
       <Text style={{ fontSize: 54 }}>Projects</Text>
       <Window onClick={handleClick} images={images} current={current} />
       <Carousel index={current} setCurrent={handleClick} />

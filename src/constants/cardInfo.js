@@ -8,14 +8,14 @@ import Sticker from "../images/Sticker.svg";
 
 const cardInfo = [
   {
-    title: "BumbleB.",
+    title: "BumbleB",
     img: BumbleB,
     date: "Jan. 19 - Mar. 19",
     desc: "A fitness robot that tracks and rewards physical activity.",
     link: "./bumbleb"
   },
   {
-    title: "some Code.",
+    title: "Code",
     img: Laptop,
     date: "Jan. 19 - Now",
     desc:
@@ -23,14 +23,14 @@ const cardInfo = [
     link: "https://github.com/cameronshum"
   },
   {
-    title: "an Automated Text Message sender.",
+    title: "Automated Text Message sender",
     img: Phone,
     date: "Feb. 19",
     desc: "A program that sends text messages from a file",
     link: "https://github.com/CameronShum/Automated-Text-Message-Sending"
   },
   {
-    title: "a Lunar Rover design.",
+    title: "Lunar Rover design",
     img: Rover,
     date: "Jan. 19",
     desc:
@@ -38,14 +38,14 @@ const cardInfo = [
     link: "./rover"
   },
   {
-    title: "an Electric Skateboard.",
+    title: "Electric Skateboard v1",
     img: Skateboard1,
     date: "Sep. 16 - Apr. 17",
     desc: "Electric skateboard built and programmed from scratch",
     link: "./skateboard/v1"
   },
   {
-    title: "an Electric Skateboard.",
+    title: "Electric Skateboard v2",
     img: Skateboard2,
     date: "May 19 - Now",
     desc:
@@ -53,7 +53,7 @@ const cardInfo = [
     link: "./skateboard/v2"
   },
   {
-    title: "Sticker Factory.",
+    title: "Sticker Factory",
     img: Sticker,
     date: "Sep. 18 - Dec. 18",
     desc: "A children's toy that creates stickers from a drawing",
