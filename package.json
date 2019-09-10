@@ -38,8 +38,10 @@
     "harmony-reflect": "^1.6.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-inlinesvg": "^1.1.6",
     "react-scripts": "3.0.1",
-    "react-typist": "^2.0.5"
+    "react-typist": "^2.0.5",
+    "svg-inline-loader": "^0.8.0"
   },
   "devDependencies": {
     "husky": "^2.4.0",

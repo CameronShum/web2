@@ -15,7 +15,9 @@ const SectionDivider = ({ sectionName }) => {
   const color = FindSection(sectionName);
 
   const renderCircle = ({ color, name }) => (
-    <Circle color={color} active={name === sectionName} />
+    <a href={`#${name}`} key={name}>
+      <Circle color={color} active={name === sectionName} />
+    </a>
   );
 
   return (

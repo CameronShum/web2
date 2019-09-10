@@ -35,10 +35,12 @@ export const FlexRow = styled.div`
   align-items: center;
 `;
 
-export const SectionTitle = styled.p`
+export const SectionTitle = styled.a`
   padding-left: 10px;
-  color: ${props => props.color};
+
   font-size: 35px;
+  color: ${props => props.color};
+  text-decoration: none;
 `;
 
 export const TextDiv = styled.div`

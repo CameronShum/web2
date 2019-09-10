@@ -11,7 +11,11 @@ const CarouselBubbles = ({ current, length, setCurrent }) => {
   };
 
   const renderBubble = index => (
-    <Bubble active={current === index} onClick={setCurrent(index)} />
+    <Bubble
+      active={current === index}
+      onClick={setCurrent(index)}
+      key={index}
+    />
   );
 
   return <Container>{generateAmount().map(renderBubble)}</Container>;
