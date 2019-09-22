@@ -11,10 +11,10 @@ import styled from "@emotion/styled";
 //   </div>
 // );
 
-const Window = ({ onClick, images, current }) => {
+const Window = ({ onClick, images, current, offset = 0 }) => {
   const renderImages = (img, index) => (
     <BuildImages key={img} active={current === index}>
-      <img src={img} alt={"icon"} onClick={onClick(index)} />
+      <img src={img} alt={"icon"} onClick={onClick(index + offset)} />
     </BuildImages>
   );
   return (

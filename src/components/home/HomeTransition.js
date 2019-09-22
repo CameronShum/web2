@@ -57,7 +57,6 @@ const SmallText = styled.p`
   font-weight: normal;
   font-size: 20px;
   color: #ef9a9a;
-  cursor: pointer;
 `;
 
 export default HomeTransition;

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import { Carousel, Window, SectionDivider } from "../components";
+import { Card, Carousel, Window, SectionDivider } from "../components";
+
+import cardInfo from "../constants/cardInfo";
 
 import BumbleB from "../images/BumbleB.svg";
 import Laptop from "../images/Laptop.svg";
@@ -10,6 +12,8 @@ import Rover from "../images/Rover.svg";
 import Skateboard2 from "../images/Skateboard2.svg";
 import Skateboard1 from "../images/Skateboard1.svg";
 import Sticker from "../images/Sticker.svg";
+import left from "../images/projectsLeft.svg";
+import right from "../images/projectsRight.svg";
 
 const images = [Laptop, BumbleB, Phone, Rover, Sticker];
 
@@ -27,8 +31,20 @@ const ProjectsPage = () => {
       <SectionDivider sectionName={"Projects"} />
       <Title>Projects</Title>
       <Window onClick={handleClick} images={images} current={current} />
-      <Carousel index={current} setCurrent={handleClick} />
-      <Window onClick={handleClick} images={images2} current={current} />
+      <Carousel
+        items={cardInfo}
+        card={Card}
+        index={current}
+        setCurrent={handleClick}
+        leftIcon={left}
+        rightIcon={right}
+      />
+      <Window
+        onClick={handleClick}
+        images={images2}
+        current={current - 5}
+        offset={5}
+      />
     </Container>
   );
 };
@@ -49,6 +65,6 @@ const Text = styled.p`
 `;
 
 const Title = styled(Text)`
-  font-size: 54px;
+  font-size: 60px;
   margin-left: 10px;
 `;

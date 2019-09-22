@@ -1,4 +1,4 @@
 import Window from "./window";
-import Carousel from "./Carousel";
+import Card from "./Card";
 
-export { Window, Carousel };
+export { Window, Card };

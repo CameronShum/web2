@@ -19,11 +19,11 @@ const cardInfo = [
     title: "BumbleB",
     img: BumbleB,
     date: "Jan. 19 - Mar. 19",
-    desc: "A fitness robot that tracks and rewards physical activity.",
-    link: "./bumbleb"
+    desc: "A fitness robot that tracks and rewards physical activity."
+    // link: "./bumbleb"
   },
   {
-    title: "Automated Text Message sender",
+    title: "Text service",
     img: Phone,
     date: "Feb. 19",
     desc: "A program that sends text messages from a file",
@@ -34,30 +34,29 @@ const cardInfo = [
     img: Rover,
     date: "Jan. 19",
     desc:
-      "A design for a lunar rover to survive the harsh conditions of the moon",
-    link: "./rover"
+      "A design for a lunar rover to survive the harsh conditions of the moon"
+    // link: "./rover"
   },
   {
     title: "Sticker Factory",
     img: Sticker,
     date: "Sep. 18 - Dec. 18",
-    desc: "A children's toy that creates stickers from a drawing",
-    link: "./stickerfactory"
+    desc: "A children's toy that creates stickers from a drawing"
+    // link: "./stickerfactory"
   },
   {
     title: "Electric Skateboard v1",
     img: Skateboard1,
     date: "Sep. 16 - Apr. 17",
-    desc: "Electric skateboard built and programmed from scratch",
-    link: "./skateboard/v1"
+    desc: "Electric skateboard built and programmed from scratch"
+    // link: "./skateboard/v1"
   },
   {
     title: "Electric Skateboard v2",
     img: Skateboard2,
     date: "May 19 - Now",
-    desc:
-      "A second electric skateboard, built to perform better than version 1",
-    link: "./skateboard/v2"
+    desc: "A second electric skateboard, built to perform better than version 1"
+    // link: "./skateboard/v2"
   }
 ];
 

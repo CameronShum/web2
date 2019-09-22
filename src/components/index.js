@@ -1,5 +1,6 @@
 import { HomeTransition, Hello } from "./home";
-import { Window, Carousel } from "./built";
+import { Window, Card } from "./built";
 import SectionDivider from "./SectionDivider";
+import Carousel from "./Carousel";
 
-export { Carousel, HomeTransition, Hello, Window, SectionDivider };
+export { Carousel, Card, HomeTransition, Hello, Window, SectionDivider };
