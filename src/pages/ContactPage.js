@@ -26,7 +26,7 @@ const renderContact = ({ type, name, link }) => {
   }
 
   return (
-    <ContactLink href={link}>
+    <ContactLink href={link} key={link}>
       <ContactContainer>
         {img && <img src={img} alt={type} style={{ flex: 1 }} />}
         <ContactText>{name}</ContactText>

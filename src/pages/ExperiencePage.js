@@ -10,7 +10,10 @@ import right from "../images/experienceRight.svg";
 
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
   const renderDescription = description => (
-    <FlexRow style={{ margin: "10px 0", fontSize: 18, color: "#616161" }}>
+    <FlexRow
+      style={{ margin: "10px 0", fontSize: 18, color: "#616161" }}
+      key={description}
+    >
       <div style={{ marginTop: 7, marginRight: 4 }}>
         <Bullet />
       </div>
@@ -18,10 +21,10 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
     </FlexRow>
   );
 
-  const renderTools = tool => <Tag>{tool}</Tag>;
+  const renderTools = tool => <Tag key={tool}>{tool}</Tag>;
 
   return (
-    <CardContainer>
+    <CardContainer key={descOfWork}>
       <FlexCol>
         <FlexRow
           style={{

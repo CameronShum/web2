@@ -7,9 +7,8 @@ const Card = ({ title, img, date, desc, link }) => (
     <div style={{ width: 275, margin: "0 5px" }}>
       <CardContainer>
         <img src={img} alt={"project-icon"} />
-        <Text>{date}</Text>
+        <Text style={{ width: 100 }}>{date}</Text>
         <Text style={{ padding: "10px 0" }}>{desc}</Text>
-        {console.log(link)}
         {link && <LearnMore href={link}>See More</LearnMore>}
       </CardContainer>
     </div>
