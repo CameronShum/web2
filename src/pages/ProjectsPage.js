@@ -16,8 +16,17 @@ import left from "../images/projectsLeft.svg";
 import right from "../images/projectsRight.svg";
 
 const images = [Laptop, BumbleB, Phone, Rover, Sticker];
-
 const images2 = [Skateboard1, Skateboard2];
+
+const desktopImages = [
+  Laptop,
+  BumbleB,
+  Phone,
+  Rover,
+  Sticker,
+  Skateboard1,
+  Skateboard2
+];
 
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
@@ -30,7 +39,16 @@ const ProjectsPage = () => {
     <Container id="Projects">
       <SectionDivider sectionName={"Projects"} />
       <Title>Projects</Title>
-      <Window onClick={handleClick} images={images} current={current} />
+      <DesktopWindow>
+        <Window
+          onClick={handleClick}
+          images={desktopImages}
+          current={current}
+        />
+      </DesktopWindow>
+      <MobileWindow>
+        <Window onClick={handleClick} images={images} current={current} />
+      </MobileWindow>
       <Carousel
         items={cardInfo}
         card={Card}
@@ -39,12 +57,14 @@ const ProjectsPage = () => {
         leftIcon={left}
         rightIcon={right}
       />
-      <Window
-        onClick={handleClick}
-        images={images2}
-        current={current - 5}
-        offset={5}
-      />
+      <MobileWindow>
+        <Window
+          onClick={handleClick}
+          images={images2}
+          current={current - 5}
+          offset={5}
+        />
+      </MobileWindow>
     </Container>
   );
 };
@@ -57,6 +77,23 @@ export default ProjectsPage;
 
 const Container = styled.div`
   padding: 20px 20px;
+
+  @media (min-width: 800px) {
+    padding: 20px 200px;
+  }
+`;
+
+const DesktopWindow = styled.div`
+  display: none;
+  @media (min-width: 800px) {
+    display: block;
+  }
+`;
+
+const MobileWindow = styled.div`
+  @media (min-width: 800px) {
+    display: none;
+  }
 `;
 
 const Text = styled.p`

@@ -35,6 +35,26 @@ export const FlexRow = styled.div`
   align-items: center;
 `;
 
+export const FlexRowWidth = styled.div`
+  display: flex;
+  align-items: center;
+  @media (min-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+export const SectionContainer = styled.div`
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 800px) {
+    margin: 50px 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+`;
+
 export const SectionTitle = styled.a`
   padding-left: 10px;
 
@@ -46,6 +66,10 @@ export const SectionTitle = styled.a`
 export const TextDiv = styled.div`
   font-size: 40px;
   color: #e53935;
+
+  @media (min-width: 800px) {
+    font-size: 50px;
+  }
 `;
 
 // prettier-ignore
@@ -56,5 +80,8 @@ export const TopGradient = styled.div`
 
   img {
     width: 300px;
+    @media(min-width: 800px){
+      width: 500px;
+    }
   }
 `;

@@ -38,25 +38,35 @@ const HomeTransition = ({ style }) => {
 //
 
 const Container = styled.div`
-  width: 100%;
+  width: 180px;
   height: 100%;
   padding-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media (min-width: 800px) {
+    width: 300px;
+  }
 `;
 
 const BigText = styled.h1`
   font-weight: normal;
   font-size: 40px;
   color: #e53935;
+  @media (min-width: 800px) {
+    font-size: 50px;
+  }
 `;
 
 const SmallText = styled.p`
   font-weight: normal;
   font-size: 20px;
   color: #ef9a9a;
+
+  @media (min-width: 800px) {
+    font-size: 30px;
+  }
 `;
 
 export default HomeTransition;

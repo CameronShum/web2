@@ -93,10 +93,18 @@ const CardContainer = styled.div`
   height: auto;
   width: 290px;
   margin-top: 30px;
+
+  @media (min-width: 800px) {
+    width: 600px;
+  }
 `;
 
 const Container = styled.div`
   padding: 20px 20px;
+
+  @media (min-width: 800px) {
+    padding: 20px 200px;
+  }
 `;
 
 const FlexCol = styled.div`

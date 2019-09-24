@@ -4,11 +4,11 @@ import {
   Circle,
   ComponentContainer,
   Container,
-  FlexCol,
   FlexRow,
   SectionTitle,
   TextDiv,
-  TopGradient
+  TopGradient,
+  SectionContainer
 } from "./LandingPage.components";
 import { HomeTransition, Hello } from "../components/index";
 import gradient from "../images/coverImg.svg";
@@ -29,17 +29,15 @@ const LandingPage = () => (
       <TopGradient>
         <img src={gradient} alt="top gradient" />
       </TopGradient>
-      <ComponentContainer height="250px" align style={{ marginTop: 50 }}>
+      <ComponentContainer height="250px" align>
         <Hello />
       </ComponentContainer>
       <ComponentContainer height="250px" align justify>
         <TextDiv>Design</TextDiv>
         <TextDiv style={{ padding: "0px 10px", color: "#EF9A9A" }}>+</TextDiv>
-        <HomeTransition style={{ width: 180 }} />
+        <HomeTransition />
       </ComponentContainer>
-      <FlexCol style={{ paddingLeft: 20 }}>
-        {sections.map(RenderSections)}
-      </FlexCol>
+      <SectionContainer>{sections.map(RenderSections)}</SectionContainer>
     </Container>
   </div>
 );

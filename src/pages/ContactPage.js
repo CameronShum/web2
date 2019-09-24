@@ -60,6 +60,15 @@ const ContactContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  img {
+    margin: 0 10px;
+  }
+
+  @media (min-width: 800px) {
+    width: auto;
+    margin-left: 10px;
+  }
 `;
 
 const ContactLink = styled.a`
@@ -77,11 +86,22 @@ const ContactText = styled.p`
 
 const Container = styled.div`
   padding: 20px 20px;
+
+  @media (min-width: 800px) {
+    padding: 20px 200px;
+  }
 `;
 
 const FlexCol = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 800px) {
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Title = styled.p`
