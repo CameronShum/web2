@@ -13,6 +13,11 @@ const contactInfo = [
     type: "Instagram",
     name: "@pbandcam",
     link: "https://www.instagram.com/pbandcam/"
+  },
+  {
+    type: "LinkedIn",
+    name: "Cameron Shum",
+    link: "https://www.linkedin.com/in/cameron-shum-18a112189/"
   }
 ];
 

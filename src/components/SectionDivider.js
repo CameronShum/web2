@@ -51,6 +51,11 @@ const Circle = styled.div`
 
   opacity: ${props => (props.active ? 1 : 0.2)};
   background-color: ${props => props.color};
+  transition: 0.2s ease-in-out;
+
+  :hover {
+    opacity: 0.5;
+  }
 `;
 
 const FlexRow = styled.div`

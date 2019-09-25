@@ -5,6 +5,7 @@ import { SectionDivider } from "../components";
 import email from "../images/mail.svg";
 import github from "../images/github.svg";
 import instagram from "../images/instagram.svg";
+import linkedin from "../images/linkedin.svg";
 
 import contactInfo from "../constants/contactInfo";
 
@@ -19,6 +20,9 @@ const renderContact = ({ type, name, link }) => {
       break;
     case "Instagram":
       img = instagram;
+      break;
+    case "LinkedIn":
+      img = linkedin;
       break;
     default:
       img = null;

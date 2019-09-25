@@ -61,6 +61,11 @@ export const SectionTitle = styled.a`
   font-size: 35px;
   color: ${props => props.color};
   text-decoration: none;
+  transition: 0.2s ease-in-out;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const TextDiv = styled.div`
@@ -76,7 +81,9 @@ export const TextDiv = styled.div`
 export const TopGradient = styled.div`
   position: absolute;
   top: 0; right: 0;
+  
   background: none;
+  pointer-events: none;
 
   img {
     width: 300px;

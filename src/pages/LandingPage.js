@@ -15,12 +15,12 @@ import gradient from "../images/coverImg.svg";
 import sections from "../constants/sections";
 
 const RenderSections = ({ name, color }) => (
-  <FlexRow style={{ cursor: "pointer" }} key={name}>
-    <Circle color={color} size={50} style={{ marginTop: -10 }} />
-    <SectionTitle color={color} href={`#${name}`}>
-      {name}
-    </SectionTitle>
-  </FlexRow>
+  <SectionTitle color={color} href={`#${name}`} key={name}>
+    <FlexRow>
+      <Circle color={color} size={50} style={{ marginTop: -10 }} />
+      <div style={{ marginLeft: 10 }}>{name}</div>
+    </FlexRow>
+  </SectionTitle>
 );
 
 const LandingPage = () => (
