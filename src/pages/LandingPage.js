@@ -18,14 +18,15 @@ const RenderSections = ({ name, color }, index) => {
   const [show, setShow] = useState(true);
   const { scrollYProgress } = useViewportScroll();
   const yRange = useTransform(scrollYProgress, value => 1 - value * 3);
+  const width = useTransform(yRange, value => value * 100);
 
   useEffect(() => yRange.onChange(v => setShow(v >= 0)));
 
   return (
     <SectionTitle color={color} href={`#${name}`} key={name}>
       <SectionDiv>
-        <Circle color={color} size={50} style={{ marginTop: -10 }} />
-        <SectionName style={{ opacity: yRange }} show={show}>
+        <Circle color={color} size={50} />
+        <SectionName style={{ opacity: yRange, width: width }} show={show}>
           {name}
         </SectionName>
       </SectionDiv>
@@ -71,6 +72,7 @@ const SectionName = styled(motion.div)`
 
 const SectionTitle = styled(motion.a)`
   padding-left: 10px;
+  margin-top: -10px;
 
   font-size: 35px;
   color: ${props => props.color};
