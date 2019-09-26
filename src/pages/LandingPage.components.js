@@ -55,19 +55,6 @@ export const SectionContainer = styled.div`
   }
 `;
 
-export const SectionTitle = styled.a`
-  padding-left: 10px;
-
-  font-size: 35px;
-  color: ${props => props.color};
-  text-decoration: none;
-  transition: 0.2s ease-in-out;
-
-  :hover {
-    transform: scale(1.1);
-  }
-`;
-
 export const TextDiv = styled.div`
   font-size: 40px;
   color: #e53935;

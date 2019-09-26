@@ -6,6 +6,7 @@ import email from "../images/mail.svg";
 import github from "../images/github.svg";
 import instagram from "../images/instagram.svg";
 import linkedin from "../images/linkedin.svg";
+import document from "../images/file-text.svg";
 
 import contactInfo from "../constants/contactInfo";
 
@@ -23,6 +24,9 @@ const renderContact = ({ type, name, link }) => {
       break;
     case "LinkedIn":
       img = linkedin;
+      break;
+    case "Document":
+      img = document;
       break;
     default:
       img = null;
@@ -60,10 +64,15 @@ const ContactContainer = styled.div`
   background: #0097a7;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.1s ease-in-out;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  :hover {
+    transform: scale(1.05);
+  }
 
   img {
     margin: 0 10px;
@@ -80,12 +89,17 @@ const ContactLink = styled.a`
   margin-bottom: 15px;
 `;
 
-const ContactText = styled.p`
+const ContactText = styled.div`
   width: 275px;
 
   border: 0px;
   font-size: 25px;
   color: white;
+
+  @media (min-width: 800px) {
+    width: auto;
+    margin-right: 15px;
+  }
 `;
 
 const Container = styled.div`
@@ -103,6 +117,7 @@ const FlexCol = styled.div`
   @media (min-width: 800px) {
     margin-top: 10px;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
   }
