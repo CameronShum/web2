@@ -4,6 +4,7 @@ import LandingPage from "./LandingPage";
 import ProjectsPage from "./ProjectsPage";
 import ExperiencePage from "./ExperiencePage";
 import ContactPage from "./ContactPage";
+import { Footer } from "../components";
 
 const App = () => (
   <Global>
@@ -11,6 +12,7 @@ const App = () => (
     <ProjectsPage />
     <ExperiencePage />
     <ContactPage />
+    <Footer />
   </Global>
 );
 

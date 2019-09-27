@@ -14,7 +14,7 @@ import { HomeTransition, Hello } from "../components/index";
 import gradient from "../images/coverImg.svg";
 import sections from "../constants/sections";
 
-const RenderSections = ({ name, color }, index) => {
+const RenderSections = ({ name, color }) => {
   const [show, setShow] = useState(true);
   const { scrollYProgress } = useViewportScroll();
   const yRange = useTransform(scrollYProgress, value => 1 - value * 3);
