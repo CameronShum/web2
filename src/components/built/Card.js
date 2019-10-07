@@ -4,7 +4,14 @@ import styled from "@emotion/styled";
 const Card = ({ title, img, date, desc, link }) => (
   <FlexCol>
     <Title>{title}</Title>
-    <div style={{ width: 275, margin: "0 5px" }}>
+    <div
+      style={{
+        width: 285,
+        margin: "0 5px",
+        display: "flex",
+        justifyContent: "center"
+      }}
+    >
       <CardContainer>
         <img src={img} alt={"project-icon"} />
         <Text style={{ width: 150, textAlign: "center" }}>{date}</Text>
@@ -47,17 +54,21 @@ const FlexCol = styled.div`
 `;
 
 const LearnMore = styled.a`
+  width: 70px;
+
+  text-align: center;
   font-size: 14px;
   color: #37474e;
 `;
 
 const Title = styled.div`
+  width: 280px;
   margin-bottom: -5px;
   font-size: 30px;
   color: #ffca28;
 
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
 `;
 
 const Text = styled.p`
