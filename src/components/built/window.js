@@ -1,35 +1,29 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-// const Shelf = () => (
-//   <div>
-//     <ShelfBar />
-//     <FlexRow justify style={{ padding: "0 20px" }}>
-//       <ShelfLegs />
-//       <ShelfLegs />
-//     </FlexRow>
-//   </div>
-// );
+const Window = ({ onClick, images, current, offset = 0, numItems }) => {
+  const maxItems = images.length + offset - numItems;
 
-const Window = ({ onClick, images, current, offset = 0 }) => {
-  const renderImages = (img, index) => (
-    <BuildImages key={img} active={current === index}>
-      <img src={img} alt={"icon"} onClick={onClick(index + offset)} />
-    </BuildImages>
-  );
+  const renderImages = (img, index) => {
+    const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
+    return (
+      <BuildImages key={img} active={current === index}>
+        <img src={img} alt={"icon"} onClick={onClick(carouselIndex)} />
+      </BuildImages>
+    );
+  };
   return (
     <Container>
       <FlexCol>
         <FlexRow justify wrap>
           {images.map(renderImages)}
         </FlexRow>
-        {/* <Shelf /> */}
       </FlexCol>
     </Container>
   );
 };
 
-//<Text>built</Text>
+//
 //  Begin Styling
 //
 

@@ -5,12 +5,12 @@ const Card = ({ title, img, date, desc, link }) => (
   <FlexCol>
     <Title>{title}</Title>
     <div
-      style={{
-        width: 285,
-        margin: "0 5px",
-        display: "flex",
-        justifyContent: "center"
-      }}
+    // style={{
+    //   width: 285,
+    //   margin: "0 5px",
+    //   display: "flex",
+    //   justifyContent: "center"
+    // }}
     >
       <CardContainer>
         <img src={img} alt={"project-icon"} />
@@ -43,6 +43,11 @@ const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  @media (min-width: 800px) {
+    width: 350px;
+    min-height: 250px;
+  }
 `;
 
 const FlexCol = styled.div`
@@ -62,16 +67,23 @@ const LearnMore = styled.a`
 `;
 
 const Title = styled.div`
-  width: 280px;
   margin-bottom: -5px;
   font-size: 30px;
   color: #ffca28;
 
   display: flex;
   justify-content: center;
+
+  @media (min-width: 800px) {
+    font-size: 40px;
+  }
 `;
 
 const Text = styled.p`
   font-size: 18px;
   color: #37474e;
+
+  @media (min-width: 800px) {
+    font-size: 22px;
+  }
 `;

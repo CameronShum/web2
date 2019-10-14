@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const CarouselBubbles = ({ current, length, setCurrent }) => {
+const CarouselBubbles = ({ current, length, setCurrent, numItems = 1 }) => {
   const generateAmount = () => {
     const arr = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i <= length - numItems; i++) {
       arr.push(i);
     }
     return arr;

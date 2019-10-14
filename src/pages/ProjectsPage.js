@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import { Card, Carousel, Window, SectionDivider } from "../components";
@@ -28,6 +28,39 @@ const desktopImages = [
   Skateboard2
 ];
 
+// Get Window dimensions
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+};
+
+const CarouselItems = () => {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (windowDimensions.width > 1500) {
+    return 3;
+  }
+  if (windowDimensions.width > 1200) {
+    return 2;
+  } else {
+    return 1;
+  }
+};
+
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
@@ -44,13 +77,20 @@ const ProjectsPage = () => {
           onClick={handleClick}
           images={desktopImages}
           current={current}
+          numItems={CarouselItems()}
         />
       </DesktopWindow>
       <MobileWindow>
-        <Window onClick={handleClick} images={images} current={current} />
+        <Window
+          onClick={handleClick}
+          images={images}
+          current={current}
+          numItems={CarouselItems()}
+        />
       </MobileWindow>
       <Carousel
         items={cardInfo}
+        numItems={CarouselItems()}
         card={Card}
         index={current}
         setCurrent={handleClick}
@@ -63,6 +103,7 @@ const ProjectsPage = () => {
           images={images2}
           current={current - 5}
           offset={5}
+          numItems={CarouselItems()}
         />
       </MobileWindow>
     </Container>
