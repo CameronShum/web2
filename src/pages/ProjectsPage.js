@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
-import { Card, Carousel, Window, SectionDivider } from "../components";
+import { Card, Carousel, Window, SectionDivider } from "components";
 
-import cardInfo from "../constants/cardInfo";
+import cardInfo from "constants/cardInfo";
 
-import BumbleB from "../images/BumbleB.svg";
-import Laptop from "../images/Laptop.svg";
-import Phone from "../images/Phone.svg";
-import Rover from "../images/Rover.svg";
-import Skateboard2 from "../images/Skateboard2.svg";
-import Skateboard1 from "../images/Skateboard1.svg";
-import Sticker from "../images/Sticker.svg";
-import left from "../images/projectsLeft.svg";
-import right from "../images/projectsRight.svg";
+import BumbleB from "images/BumbleB.svg";
+import Laptop from "images/Laptop.svg";
+import Phone from "images/Phone.svg";
+import Rover from "images/Rover.svg";
+import Skateboard2 from "images/Skateboard2.svg";
+import Skateboard1 from "images/Skateboard1.svg";
+import Sticker from "images/Sticker.svg";
+import left from "images/projectsLeft.svg";
+import right from "images/projectsRight.svg";
 
 const images = [Laptop, BumbleB, Phone, Rover, Sticker];
 const images2 = [Skateboard1, Skateboard2];

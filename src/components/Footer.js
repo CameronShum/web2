@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import heart from "../images/heart.svg";
+import heart from "images/heart.svg";
 
 const Footer = () => (
   <FooterContainer>

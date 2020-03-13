@@ -2,13 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { SectionDivider } from "../components";
 
-import email from "../images/mail.svg";
-import github from "../images/github.svg";
-import instagram from "../images/instagram.svg";
-import linkedin from "../images/linkedin.svg";
-import document from "../images/file-text.svg";
+import email from "images/mail.svg";
+import github from "images/github.svg";
+import instagram from "images/instagram.svg";
+import linkedin from "images/linkedin.svg";
+import document from "images/file-text.svg";
 
-import contactInfo from "../constants/contactInfo";
+import contactInfo from "constants/contactInfo";
 
 const renderContact = ({ type, name, link }) => {
   let img;

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { SectionDivider, Carousel } from "../components";
+import { SectionDivider, Carousel } from "components";
 
-import experience from "../constants/experience";
+import experience from "constants/experience";
 
-import jobBG from "../images/jobBG.svg";
-import left from "../images/experienceLeft.svg";
-import right from "../images/experienceRight.svg";
+import jobBG from "images/jobBG.svg";
+import left from "images/experienceLeft.svg";
+import right from "images/experienceRight.svg";
 
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
   const renderDescription = description => (

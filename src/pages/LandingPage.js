@@ -10,9 +10,9 @@ import {
   TopGradient,
   SectionContainer
 } from "./LandingPage.components";
-import { HomeTransition, Hello } from "../components/index";
-import gradient from "../images/coverImg.svg";
-import sections from "../constants/sections";
+import { HomeTransition, Hello } from "components/index";
+import gradient from "images/coverImg.svg";
+import sections from "constants/sections";
 
 const RenderSections = ({ name, color }) => {
   const [show, setShow] = useState(true);
