@@ -3,8 +3,7 @@ import React from "react";
 const CoverImage = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
+    width="800px"
     viewBox="0 0 326.5 288.2"
   >
     <path

@@ -18,6 +18,7 @@ const Container = styled.div`
   height: 100%;
   margin-top: 50px;
   padding-left: 20px;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +29,7 @@ const Container = styled.div`
   }
 `;
 
-const HelloText = styled.p`
+const HelloText = styled.div`
   width: 100%;
   font-size: 35px;
   color: #ef9a9a;

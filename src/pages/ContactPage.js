@@ -7,7 +7,7 @@ import contactInfo from "constants/contactInfo";
 const renderContact = ({ name, link, image }) => (
   <ContactLink href={link} key={link}>
     <ContactContainer>
-      {image}
+      <IconContainer>{image}</IconContainer>
       <ContactText>{name}</ContactText>
     </ContactContainer>
   </ContactLink>
@@ -91,6 +91,12 @@ const FlexCol = styled.div`
     align-items: center;
     justify-content: center;
   }
+`;
+
+const IconContainer = styled.div`
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const Title = styled.p`

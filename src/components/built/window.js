@@ -7,8 +7,12 @@ const Window = ({ onClick, images, current, offset = 0, numItems }) => {
   const renderImages = (Image, index) => {
     const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
     return (
-      <BuildImages key={Image} active={current === index}>
-        <Image onClick={onClick(carouselIndex)} />
+      <BuildImages
+        key={Image}
+        active={current === index}
+        onClick={onClick(carouselIndex)}
+      >
+        <Image />
       </BuildImages>
     );
   };
@@ -66,12 +70,10 @@ const BuildImages = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  img {
+  svg {
     padding: 0 5px;
-    height: 80px;
     margin-bottom: -10px;
     transform: ${props => (props.active ? "scale(1.1)" : "")};
-
     :hover {
       transform: scale(1.1);
     }

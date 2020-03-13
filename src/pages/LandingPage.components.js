@@ -72,10 +72,10 @@ export const TopGradient = styled.div`
   background: none;
   pointer-events: none;
 
-  img {
+  svg{
     width: 300px;
     @media(min-width: 800px){
-      width: 500px;
+      width: 700px;
     }
   }
 `;

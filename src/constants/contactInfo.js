@@ -25,7 +25,7 @@ const contactInfo = [
   {
     name: "Resume",
     link: "https://cameronshum.com/resume",
-    image: <Icon.Email />
+    image: <Icon.Resume />
   }
 ];
 
