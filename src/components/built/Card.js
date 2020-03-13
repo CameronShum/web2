@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Card = ({ title, img, date, desc, link }) => (
+const Card = ({ title, Image, date, desc, link }) => (
   <FlexCol>
     <Title>{title}</Title>
     <div
@@ -13,7 +13,7 @@ const Card = ({ title, img, date, desc, link }) => (
     // }}
     >
       <CardContainer>
-        <img src={img} alt={"project-icon"} />
+        <Image />
         <Text style={{ width: 150, textAlign: "center" }}>{date}</Text>
         <Text style={{ padding: "10px 0" }}>{desc}</Text>
         {link && <LearnMore href={link}>See More</LearnMore>}

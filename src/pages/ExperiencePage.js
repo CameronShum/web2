@@ -4,9 +4,9 @@ import { SectionDivider, Carousel } from "components";
 
 import experience from "constants/experience";
 
-import jobBG from "images/jobBG.svg";
-import left from "images/experienceLeft.svg";
-import right from "images/experienceRight.svg";
+import JobBackground from "images/background/JobBackground";
+import Left from "images/navigation/LeftArrow";
+import Right from "images/navigation/RightArrow";
 
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
   const renderDescription = description => (
@@ -33,7 +33,9 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
             justifyContent: "center"
           }}
         >
-          <Background src={jobBG} />
+          <Background>
+            <JobBackground />
+          </Background>
           <CompanyText>{company}</CompanyText>
         </FlexRow>
         <Text style={{ textDecoration: "underline" }}>{title}</Text>
@@ -62,8 +64,8 @@ const ExperiencePage = () => {
           card={Card}
           index={current}
           setCurrent={handleClick}
-          leftIcon={left}
-          rightIcon={right}
+          LeftIcon={Left}
+          RightIcon={Right}
         />
       </FlexCol>
     </Container>
@@ -76,7 +78,7 @@ export default ExperiencePage;
 //  STYLING
 //
 
-const Background = styled.img`
+const Background = styled.div`
   position: absolute;
   z-index: -1;
 `;

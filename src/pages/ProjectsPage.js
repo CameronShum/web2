@@ -5,27 +5,28 @@ import { Card, Carousel, Window, SectionDivider } from "components";
 
 import cardInfo from "constants/cardInfo";
 
-import BumbleB from "images/BumbleB.svg";
-import Laptop from "images/Laptop.svg";
-import Phone from "images/Phone.svg";
-import Rover from "images/Rover.svg";
-import Skateboard2 from "images/Skateboard2.svg";
-import Skateboard1 from "images/Skateboard1.svg";
-import Sticker from "images/Sticker.svg";
-import left from "images/projectsLeft.svg";
-import right from "images/projectsRight.svg";
+import * as Icons from "images/projects";
 
-const images = [Laptop, BumbleB, Phone, Rover, Sticker];
-const images2 = [Skateboard1, Skateboard2];
+import Left from "images/navigation/LeftArrow";
+import Right from "images/navigation/RightArrow";
+
+const images = [
+  Icons.Laptop,
+  Icons.BumbleB,
+  Icons.Phone,
+  Icons.Rover,
+  Icons.Sticker
+];
+const images2 = [Icons.Skateboard1, Icons.Skateboard2];
 
 const desktopImages = [
-  Laptop,
-  BumbleB,
-  Phone,
-  Rover,
-  Sticker,
-  Skateboard1,
-  Skateboard2
+  Icons.Laptop,
+  Icons.BumbleB,
+  Icons.Phone,
+  Icons.Rover,
+  Icons.Sticker,
+  Icons.Skateboard1,
+  Icons.Skateboard2
 ];
 
 // Get Window dimensions
@@ -94,8 +95,8 @@ const ProjectsPage = () => {
         card={Card}
         index={current}
         setCurrent={handleClick}
-        leftIcon={left}
-        rightIcon={right}
+        LeftIcon={Left}
+        RightIcon={Right}
       />
       <MobileWindow>
         <Window

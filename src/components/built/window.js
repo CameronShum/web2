@@ -4,11 +4,11 @@ import styled from "@emotion/styled";
 const Window = ({ onClick, images, current, offset = 0, numItems }) => {
   const maxItems = images.length + offset - numItems;
 
-  const renderImages = (img, index) => {
+  const renderImages = (Image, index) => {
     const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
     return (
-      <BuildImages key={img} active={current === index}>
-        <img src={img} alt={"icon"} onClick={onClick(carouselIndex)} />
+      <BuildImages key={Image} active={current === index}>
+        <Image onClick={onClick(carouselIndex)} />
       </BuildImages>
     );
   };

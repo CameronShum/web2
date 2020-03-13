@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import heart from "images/heart.svg";
+import { Heart } from "images/navigation";
 
 const Footer = () => (
   <FooterContainer>
     <Text width={70}>Built with </Text>
     <a href="https://github.com/cameronshum/web2">
-      <img src={heart} alt="love" style={{ margin: "0 5px " }} />
+      <Heart style={{ margin: "0 5px " }} />
     </a>
     <Text width={125}>by Cameron Shum</Text>
   </FooterContainer>

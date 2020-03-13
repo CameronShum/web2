@@ -1,29 +1,31 @@
+import React from "react";
+import * as Icon from "images/contact";
+
 const contactInfo = [
   {
-    type: "Email",
     name: "hello@cameronshum.com",
-    link: "mailto:hello@cameronshum.com"
+    link: "mailto:hello@cameronshum.com",
+    image: <Icon.Email />
   },
   {
-    type: "Github",
     name: "cameronshum",
-    link: "https://github.com/cameronshum"
+    link: "https://github.com/cameronshum",
+    image: <Icon.Github />
   },
   {
-    type: "Instagram",
     name: "@pbandcam",
-    link: "https://www.instagram.com/pbandcam/"
+    link: "https://www.instagram.com/pbandcam/",
+    image: <Icon.Instagram />
   },
   {
-    type: "LinkedIn",
     name: "Cameron Shum",
-    link: "https://www.linkedin.com/in/cameron-shum-18a112189/"
+    link: "https://www.linkedin.com/in/cameron-shum-18a112189/",
+    image: <Icon.LinkedIn />
   },
   {
-    type: "Document",
     name: "Resume",
-    link:
-      "https://drive.google.com/file/d/1YPZ805oWTjCyvdM-BWW6E-MlP6ggRedh/view"
+    link: "https://cameronshum.com/resume",
+    image: <Icon.Email />
   }
 ];
 

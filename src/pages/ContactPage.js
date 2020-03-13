@@ -2,46 +2,16 @@ import React from "react";
 import styled from "@emotion/styled";
 import { SectionDivider } from "../components";
 
-import email from "images/mail.svg";
-import github from "images/github.svg";
-import instagram from "images/instagram.svg";
-import linkedin from "images/linkedin.svg";
-import document from "images/file-text.svg";
-
 import contactInfo from "constants/contactInfo";
 
-const renderContact = ({ type, name, link }) => {
-  let img;
-  switch (type) {
-    case "Email":
-      img = email;
-      break;
-    case "Github":
-      img = github;
-      break;
-    case "Instagram":
-      img = instagram;
-      break;
-    case "LinkedIn":
-      img = linkedin;
-      break;
-    case "Document":
-      img = document;
-      break;
-    default:
-      img = null;
-      break;
-  }
-
-  return (
-    <ContactLink href={link} key={link}>
-      <ContactContainer>
-        {img && <img src={img} alt={type} style={{ flex: 1 }} />}
-        <ContactText>{name}</ContactText>
-      </ContactContainer>
-    </ContactLink>
-  );
-};
+const renderContact = ({ name, link, image }) => (
+  <ContactLink href={link} key={link}>
+    <ContactContainer>
+      {image}
+      <ContactText>{name}</ContactText>
+    </ContactContainer>
+  </ContactLink>
+);
 
 const ContactPage = () => (
   <Container id={"Contact"}>

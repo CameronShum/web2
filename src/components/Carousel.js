@@ -18,25 +18,22 @@ const Carousel = ({
   card,
   index,
   setCurrent,
-  leftIcon,
-  rightIcon,
+  LeftIcon,
+  RightIcon,
   ...styles
 }) => (
   <FlexCol style={{ marginBottom: 20 }}>
     <CarouselContainer styles={styles}>
-      <ArrowIcon
-        src={leftIcon}
-        alt="left-icon"
-        onClick={setCurrent(index - 1)}
-        hide={index === 0}
-      />
+      <ArrowIcon onClick={setCurrent(index - 1)} hide={index === 0}>
+        <LeftIcon />
+      </ArrowIcon>
       {RenderCards(card, items, index, numItems)}
       <ArrowIcon
-        src={rightIcon}
-        alt="right-icon"
         onClick={setCurrent(index + 1)}
         hide={index === items.length - numItems}
-      />
+      >
+        <RightIcon />
+      </ArrowIcon>
     </CarouselContainer>
     <CarouselBubbles
       current={index}
@@ -53,7 +50,7 @@ export default Carousel;
 //  STYLES
 //
 
-const ArrowIcon = styled.img`
+const ArrowIcon = styled.div`
   height: 24px;
   width: 24px;
   visibility: ${props => (props.hide ? "hidden" : "visible")};

@@ -11,7 +11,7 @@ import {
   SectionContainer
 } from "./LandingPage.components";
 import { HomeTransition, Hello } from "components/index";
-import gradient from "images/coverImg.svg";
+import CoverImage from "images/background/CoverImage";
 import sections from "constants/sections";
 
 const RenderSections = ({ name, color }) => {
@@ -38,7 +38,7 @@ const LandingPage = () => (
   <div style={{ backgroundColor: "#FFF8E1" }}>
     <Container>
       <TopGradient>
-        <img src={gradient} alt="top gradient" />
+        <CoverImage />
       </TopGradient>
       <ComponentContainer height="250px" align>
         <Hello />
