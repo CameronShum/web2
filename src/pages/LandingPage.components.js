@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Circle = styled.div`
   width: ${(props) => props.size}px;
@@ -13,8 +13,8 @@ export const ComponentContainer = styled.div`
   height: auto;
 
   display: flex;
-  align-items: ${(props) => (props.align ? "center" : "flex-start")};
-  justify-content: ${(props) => (props.justify ? "center" : "flex-start")};
+  align-items: ${(props) => (props.align ? 'center' : 'flex-start')};
+  justify-content: ${(props) => (props.justify ? 'center' : 'flex-start')};
 `;
 
 // prettier-ignore

@@ -1,4 +1,4 @@
-import HomeTransition from "./HomeTransition";
-import Hello from "./Hello";
+import HomeTransition from './HomeTransition';
+import Hello from './Hello';
 
 export { HomeTransition, Hello };

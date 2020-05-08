@@ -5,7 +5,7 @@
   "repository": "https://github.com/cameronshum/web2",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn lint && react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src/** --fix",
     "test": "react-scripts test",
@@ -47,6 +47,7 @@
     "svg-inline-loader": "^0.8.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
