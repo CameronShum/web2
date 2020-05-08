@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 
+import { HomeTransition, Hello } from "components/index";
+import CoverImage from "images/background/CoverImage";
+import sections from "constants/sections";
 import {
   Circle,
   ComponentContainer,
   Container,
   TextDiv,
   TopGradient,
-  SectionContainer
+  SectionContainer,
 } from "./LandingPage.components";
-import { HomeTransition, Hello } from "components/index";
-import CoverImage from "images/background/CoverImage";
-import sections from "constants/sections";
 
 const RenderSections = ({ name, color }) => {
   const [show, setShow] = useState(true);
   const { scrollYProgress } = useViewportScroll();
-  const yRange = useTransform(scrollYProgress, value => 1 - value * 3);
-  const width = useTransform(yRange, value => value * 100);
+  const yRange = useTransform(scrollYProgress, (value) => 1 - value * 3);
+  const width = useTransform(yRange, (value) => value * 100);
 
-  useEffect(() => yRange.onChange(v => setShow(v >= 0)));
+  useEffect(() => yRange.onChange((v) => setShow(v >= 0)));
 
   return (
     <SectionTitle color={color} href={`#${name}`} key={name}>
@@ -32,6 +33,11 @@ const RenderSections = ({ name, color }) => {
       </SectionDiv>
     </SectionTitle>
   );
+};
+
+RenderSections.propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 const LandingPage = () => (
@@ -67,7 +73,7 @@ const SectionDiv = styled(motion.div)`
 const SectionName = styled(motion.div)`
   margin-left: 10px;
   transition: 0.2s ease-in-out;
-  display: ${props => (props.show ? "block" : "none")};
+  display: ${(props) => (props.show ? "block" : "none")};
 `;
 
 const SectionTitle = styled(motion.a)`
@@ -75,7 +81,7 @@ const SectionTitle = styled(motion.a)`
   margin-top: -10px;
 
   font-size: 35px;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   text-decoration: none;
   transition: 0.2s ease-in-out;
 

@@ -15,7 +15,7 @@ const images = [
   Icons.BumbleB,
   Icons.Phone,
   Icons.Rover,
-  Icons.Sticker
+  Icons.Sticker,
 ];
 const images2 = [Icons.Skateboard1, Icons.Skateboard2];
 
@@ -26,7 +26,7 @@ const desktopImages = [
   Icons.Rover,
   Icons.Sticker,
   Icons.Skateboard1,
-  Icons.Skateboard2
+  Icons.Skateboard2,
 ];
 
 // Get Window dimensions
@@ -34,7 +34,7 @@ const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 };
 
@@ -65,13 +65,13 @@ const CarouselItems = () => {
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
-  const handleClick = num => () => {
+  const handleClick = (num) => () => {
     setCurrent(num);
   };
 
   return (
     <Container id="Projects">
-      <SectionDivider sectionName={"Projects"} />
+      <SectionDivider sectionName="Projects" />
       <Title>Projects</Title>
       <DesktopWindow>
         <Window

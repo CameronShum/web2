@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
-const Window = ({ onClick, images, current, offset = 0, numItems }) => {
+const Window = ({ onClick, images, current, offset, numItems }) => {
   const maxItems = images.length + offset - numItems;
 
   const renderImages = (Image, index) => {
@@ -25,6 +26,18 @@ const Window = ({ onClick, images, current, offset = 0, numItems }) => {
       </FlexCol>
     </Container>
   );
+};
+
+Window.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  images: PropTypes.arrayOf(PropTypes.element).isRequired,
+  current: PropTypes.number.isRequired,
+  offset: PropTypes.number,
+  numItems: PropTypes.number.isRequired,
+};
+
+Window.defaultProps = {
+  offset: 0,
 };
 
 //
@@ -73,7 +86,7 @@ const BuildImages = styled.div`
   svg {
     padding: 0 5px;
     margin-bottom: -10px;
-    transform: ${props => (props.active ? "scale(1.1)" : "")};
+    transform: ${(props) => (props.active ? "scale(1.1)" : "")};
     :hover {
       transform: scale(1.1);
     }
@@ -82,8 +95,8 @@ const BuildImages = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
-  justify-content: ${props => (props.justify ? "space-between" : "")};
-  flex-wrap: ${props => (props.wrap ? "wrap" : "")};
+  justify-content: ${(props) => (props.justify ? "space-between" : "")};
+  flex-wrap: ${(props) => (props.wrap ? "wrap" : "")};
 `;
 
 const FlexCol = styled.div`

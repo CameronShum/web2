@@ -29,6 +29,6 @@ const FooterContainer = styled.div`
 `;
 
 const Text = styled.div`
-  width: ${props => props.width}px;
+  width: ${(props) => props.width}px;
   text-align: center;
 `;

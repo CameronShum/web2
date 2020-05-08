@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { SectionDivider, Carousel } from "components";
 
@@ -9,7 +10,7 @@ import Left from "images/navigation/LeftArrow";
 import Right from "images/navigation/RightArrow";
 
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
-  const renderDescription = description => (
+  const renderDescription = (description) => (
     <FlexRow
       style={{ margin: "10px 0", fontSize: 18, color: "#616161" }}
       key={description}
@@ -21,7 +22,7 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
     </FlexRow>
   );
 
-  const renderTools = tool => <Tag key={tool}>{tool}</Tag>;
+  const renderTools = (tool) => <Tag key={tool}>{tool}</Tag>;
 
   return (
     <CardContainer key={descOfWork}>
@@ -30,7 +31,7 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
           style={{
             marginBottom: 30,
             alignitems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <Background>
@@ -48,15 +49,22 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
   );
 };
 
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  descOfWork: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toolsUsed: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 const ExperiencePage = () => {
   const [current, setCurrent] = useState(0);
 
-  const handleClick = num => () => {
+  const handleClick = (num) => () => {
     setCurrent(num);
   };
   return (
     <Container id="Experience">
-      <SectionDivider sectionName={"Experience"} />
+      <SectionDivider sectionName="Experience" />
       <Title>Experience</Title>
       <FlexCol>
         <Carousel

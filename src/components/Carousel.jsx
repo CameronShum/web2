@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import CarouselBubbles from "./CarouselBubbles";
 
@@ -44,6 +45,20 @@ const Carousel = ({
   </FlexCol>
 );
 
+Carousel.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  numItems: PropTypes.number,
+  card: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  setCurrent: PropTypes.func.isRequired,
+  LeftIcon: PropTypes.element.isRequired,
+  RightIcon: PropTypes.element.isRequired,
+};
+
+Carousel.defaultProps = {
+  numItems: 1,
+};
+
 export default Carousel;
 
 //
@@ -53,7 +68,7 @@ export default Carousel;
 const ArrowIcon = styled.div`
   height: 24px;
   width: 24px;
-  visibility: ${props => (props.hide ? "hidden" : "visible")};
+  visibility: ${(props) => (props.hide ? "hidden" : "visible")};
   cursor: pointer;
 `;
 

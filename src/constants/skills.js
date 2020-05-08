@@ -1,4 +1,4 @@
-export const items = [
+const skills = [
   "Javascript.",
   "Front-end.",
   "Redux.",
@@ -6,5 +6,7 @@ export const items = [
   "Figma.",
   "Hardware.",
   "Mechanics.",
-  "Software."
+  "Software.",
 ];
+
+export default skills;

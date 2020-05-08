@@ -1,20 +1,20 @@
 import styled from "@emotion/styled";
 
 export const Circle = styled.div`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   border-radius: 100%;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
 `;
 
 export const ComponentContainer = styled.div`
   width: 100%;
-  min-height: ${props => props.height};
+  min-height: ${(props) => props.height};
   height: auto;
 
   display: flex;
-  align-items: ${props => (props.align ? "center" : "flex-start")};
-  justify-content: ${props => (props.justify ? "center" : "flex-start")};
+  align-items: ${(props) => (props.align ? "center" : "flex-start")};
+  justify-content: ${(props) => (props.justify ? "center" : "flex-start")};
 `;
 
 // prettier-ignore

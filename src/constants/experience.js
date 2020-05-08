@@ -7,7 +7,7 @@ const experience = [
       "Architected a Golang client to serve Open Exchange Rates API and reduced costs from $97 to $12 per month",
       "Established the structure for all the pages, and many front-end components",
       "Created front-end components in Storybook in React",
-      "Mentored other developers of industry standard development practices"
+      "Mentored other developers of industry standard development practices",
     ],
     toolsUsed: [
       "Javascript",
@@ -16,9 +16,9 @@ const experience = [
       "Go",
       "Gatsby",
       "Netlify",
-      "Storybook"
-    ]
-  }
+      "Storybook",
+    ],
+  },
 ];
 
 export default experience;

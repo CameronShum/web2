@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import { SectionDivider } from "../components";
-
 import contactInfo from "constants/contactInfo";
+import { SectionDivider } from "../components";
 
 const renderContact = ({ name, link, image }) => (
   <ContactLink href={link} key={link}>
@@ -13,9 +13,15 @@ const renderContact = ({ name, link, image }) => (
   </ContactLink>
 );
 
+renderContact.propTypes = {
+  name: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  image: PropTypes.element.isRequired,
+};
+
 const ContactPage = () => (
-  <Container id={"Contact"}>
-    <SectionDivider sectionName={"Contact"} />
+  <Container id="Contact">
+    <SectionDivider sectionName="Contact" />
     <Title>Contact</Title>
     <FlexCol>{contactInfo.map(renderContact)}</FlexCol>
   </Container>

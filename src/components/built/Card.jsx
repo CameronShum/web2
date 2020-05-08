@@ -1,17 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
 const Card = ({ title, Image, date, desc, link }) => (
   <FlexCol>
     <Title>{title}</Title>
-    <div
-    // style={{
-    //   width: 285,
-    //   margin: "0 5px",
-    //   display: "flex",
-    //   justifyContent: "center"
-    // }}
-    >
+    <div>
       <CardContainer>
         <Image />
         <Text style={{ width: 150, textAlign: "center" }}>{date}</Text>
@@ -21,6 +15,18 @@ const Card = ({ title, Image, date, desc, link }) => (
     </div>
   </FlexCol>
 );
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  Image: PropTypes.element.isRequired,
+  date: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  link: PropTypes.string,
+};
+
+Card.defaultProps = {
+  link: "",
+};
 
 export default Card;
 

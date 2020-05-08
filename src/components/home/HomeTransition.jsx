@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Typist from "react-typist";
-import { items } from "constants/skills";
+import skills from "constants/skills";
 
 const mod = (x, n) => ((x % n) + n) % n;
 
-const HomeTransition = ({ style }) => {
+const HomeTransition = () => {
   const [current, setCurrent] = useState(0);
-  const currentRelative = offset => mod(current + offset, items.length);
+  const currentRelative = (offset) => mod(current + offset, skills.length);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -16,19 +16,21 @@ const HomeTransition = ({ style }) => {
     return () => clearTimeout(timeout);
   }, [current]);
 
-  const renderText = string => (
+  const renderText = (string) => (
     <Typist avgTypingDelay={40} key={string}>
       {string}
-      <Typist.Backspace count={items[currentRelative(1)].length} delay={1000} />
+      <Typist.Backspace
+        count={skills[currentRelative(1)].length}
+        delay={1000}
+      />
     </Typist>
   );
 
-  // TODO: add a rotation like transition between items
   return (
-    <Container style={style}>
-      <SmallText>{items[currentRelative(0)]}</SmallText>
-      <BigText>{renderText(items[currentRelative(1)])}</BigText>
-      <SmallText>{items[currentRelative(2)]}</SmallText>
+    <Container>
+      <SmallText>{skills[currentRelative(0)]}</SmallText>
+      <BigText>{renderText(skills[currentRelative(1)])}</BigText>
+      <SmallText>{skills[currentRelative(2)]}</SmallText>
     </Container>
   );
 };

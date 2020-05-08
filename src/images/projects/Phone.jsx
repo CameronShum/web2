@@ -17,7 +17,7 @@ const Phone = () => (
         rx="4"
         fill="#546E7A"
         stroke="#37474F"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <mask
         id="mask0"
@@ -36,7 +36,7 @@ const Phone = () => (
           rx="3.5"
           fill="#546E7A"
           stroke="#263238"
-          stroke-width="3"
+          strokeWidth="3"
         />
       </mask>
       <g mask="url(#mask0)">
@@ -75,9 +75,9 @@ const Phone = () => (
         width="38"
         height="68"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

@@ -11,5 +11,5 @@ export {
   HomeTransition,
   Hello,
   Window,
-  SectionDivider
+  SectionDivider,
 };
