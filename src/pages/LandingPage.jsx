@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 import { HomeTransition, Hello } from 'components/index';
 import CoverImage from 'images/background/CoverImage';
@@ -16,20 +15,11 @@ import {
 } from './LandingPage.components';
 
 const RenderSections = ({ name, color }) => {
-  const [show, setShow] = useState(true);
-  const { scrollYProgress } = useViewportScroll();
-  const yRange = useTransform(scrollYProgress, (value) => 1 - value * 3);
-  const width = useTransform(yRange, (value) => value * 100);
-
-  useEffect(() => yRange.onChange((v) => setShow(v >= 0)));
-
   return (
     <SectionTitle color={color} href={`#${name}`} key={name}>
       <SectionDiv>
         <Circle color={color} size={50} />
-        <SectionName style={{ opacity: yRange, width: width }} show={show}>
-          {name}
-        </SectionName>
+        <SectionName>{name}</SectionName>
       </SectionDiv>
     </SectionTitle>
   );
@@ -65,18 +55,17 @@ export default LandingPage;
 //  STYLES
 //
 
-const SectionDiv = styled(motion.div)`
+const SectionDiv = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const SectionName = styled(motion.div)`
+const SectionName = styled.div`
   margin-left: 10px;
   transition: 0.2s ease-in-out;
-  display: ${(props) => (props.show ? 'block' : 'none')};
 `;
 
-const SectionTitle = styled(motion.a)`
+const SectionTitle = styled.a`
   padding-left: 10px;
   margin-top: -10px;
 
