@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 const Window = ({ onClick, images, current, offset, numItems }) => {
   const maxItems = images.length + offset - numItems;
@@ -86,7 +86,7 @@ const BuildImages = styled.div`
   svg {
     padding: 0 5px;
     margin-bottom: -10px;
-    transform: ${(props) => (props.active ? "scale(1.1)" : "")};
+    transform: ${(props) => (props.active ? 'scale(1.1)' : '')};
     :hover {
       transform: scale(1.1);
     }
@@ -95,8 +95,8 @@ const BuildImages = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
-  justify-content: ${(props) => (props.justify ? "space-between" : "")};
-  flex-wrap: ${(props) => (props.wrap ? "wrap" : "")};
+  justify-content: ${(props) => (props.justify ? 'space-between' : '')};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : '')};
 `;
 
 const FlexCol = styled.div`

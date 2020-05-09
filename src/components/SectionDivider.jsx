@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import sections from "constants/sections";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import sections from 'constants/sections';
 
 const FindSection = (sectionName) => {
   for (let i = 0; i < sections.length; i++) {

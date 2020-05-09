@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 const CarouselBubbles = ({ current, length, setCurrent, numItems }) => {
   const generateAmount = () => {
@@ -47,7 +47,7 @@ const Bubble = styled.div`
   border-radius: 100%;
   cursor: pointer;
 
-  background: ${(props) => (props.active ? "white" : "#C5CED1")};
+  background: ${(props) => (props.active ? 'white' : '#C5CED1')};
 `;
 
 const Container = styled.div`

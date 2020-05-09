@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import contactInfo from "constants/contactInfo";
-import { SectionDivider } from "../components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import contactInfo from 'constants/contactInfo';
+import { SectionDivider } from '../components';
 
 const renderContact = ({ name, link, image }) => (
   <ContactLink href={link} key={link}>

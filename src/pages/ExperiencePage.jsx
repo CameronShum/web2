@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import { SectionDivider, Carousel } from "components";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { SectionDivider, Carousel } from 'components';
 
-import experience from "constants/experience";
+import experience from 'constants/experience';
 
-import JobBackground from "images/background/JobBackground";
-import Left from "images/navigation/LeftArrow";
-import Right from "images/navigation/RightArrow";
+import JobBackground from 'images/background/JobBackground';
+import Left from 'images/navigation/LeftArrow';
+import Right from 'images/navigation/RightArrow';
 
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
   const renderDescription = (description) => (
     <FlexRow
-      style={{ margin: "10px 0", fontSize: 18, color: "#616161" }}
+      style={{ margin: '10px 0', fontSize: 18, color: '#616161' }}
       key={description}
     >
       <div style={{ marginTop: 7, marginRight: 4 }}>
@@ -30,8 +30,8 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
         <FlexRow
           style={{
             marginBottom: 30,
-            alignitems: "center",
-            justifyContent: "center",
+            alignitems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Background>
@@ -39,9 +39,9 @@ const Card = ({ title, company, descOfWork, toolsUsed }) => {
           </Background>
           <CompanyText>{company}</CompanyText>
         </FlexRow>
-        <Text style={{ textDecoration: "underline" }}>{title}</Text>
+        <Text style={{ textDecoration: 'underline' }}>{title}</Text>
         <FlexCol>{descOfWork.map(renderDescription)}</FlexCol>
-        <FlexRow style={{ flexWrap: "wrap", marginTop: 15 }}>
+        <FlexRow style={{ flexWrap: 'wrap', marginTop: 15 }}>
           {toolsUsed.map(renderTools)}
         </FlexRow>
       </FlexCol>

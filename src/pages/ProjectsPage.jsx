@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import styled from "@emotion/styled";
+import React, { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
 
-import { Card, Carousel, Window, SectionDivider } from "components";
+import { Card, Carousel, Window, SectionDivider } from 'components';
 
-import cardInfo from "constants/cardInfo";
+import cardInfo from 'constants/cardInfo';
 
-import * as Icons from "images/projects";
+import * as Icons from 'images/projects';
 
-import Left from "images/navigation/LeftArrow";
-import Right from "images/navigation/RightArrow";
+import Left from 'images/navigation/LeftArrow';
+import Right from 'images/navigation/RightArrow';
 
 const images = [
   Icons.Laptop,
@@ -48,8 +48,8 @@ const CarouselItems = () => {
       setWindowDimensions(getWindowDimensions());
     }
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (windowDimensions.width > 1500) {

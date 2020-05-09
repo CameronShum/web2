@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-import { Heart } from "images/navigation";
+import { Heart } from 'images/navigation';
 
 const Footer = () => (
   <FooterContainer>
     <Text width={70}>Built with </Text>
     <a href="https://github.com/cameronshum/web2">
-      <Heart style={{ margin: "0 5px " }} />
+      <Heart style={{ margin: '0 5px ' }} />
     </a>
     <Text width={125}>by Cameron Shum</Text>
   </FooterContainer>

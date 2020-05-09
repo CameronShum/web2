@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 const Card = ({ title, Image, date, desc, link }) => (
   <FlexCol>
@@ -8,8 +8,8 @@ const Card = ({ title, Image, date, desc, link }) => (
     <div>
       <CardContainer>
         <Image />
-        <Text style={{ width: 150, textAlign: "center" }}>{date}</Text>
-        <Text style={{ padding: "10px 0" }}>{desc}</Text>
+        <Text style={{ width: 150, textAlign: 'center' }}>{date}</Text>
+        <Text style={{ padding: '10px 0' }}>{desc}</Text>
         {link && <LearnMore href={link}>See More</LearnMore>}
       </CardContainer>
     </div>
@@ -25,7 +25,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  link: "",
+  link: '',
 };
 
 export default Card;

@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import CarouselBubbles from "./CarouselBubbles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import CarouselBubbles from './CarouselBubbles';
 
 const RenderCards = (card, items, index, numItems) => {
   let cards = [];
   for (let i = 0; i < numItems; i++) {
     cards.push(
-      <div style={{ padding: "0 10px" }}>{card(items[index + i])}</div>
+      <div style={{ padding: '0 10px' }}>{card(items[index + i])}</div>
     );
   }
   return cards;
@@ -68,7 +68,7 @@ export default Carousel;
 const ArrowIcon = styled.div`
   height: 24px;
   width: 24px;
-  visibility: ${(props) => (props.hide ? "hidden" : "visible")};
+  visibility: ${(props) => (props.hide ? 'hidden' : 'visible')};
   cursor: pointer;
 `;
 
