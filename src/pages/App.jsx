@@ -5,9 +5,11 @@ import LandingPage from './LandingPage';
 import ProjectsPage from './ProjectsPage';
 import ExperiencePage from './ExperiencePage';
 import ContactPage from './ContactPage';
+import GlobalStyles from './GlobalStyles';
 
 const App = () => (
   <Global>
+    <GlobalStyles />
     <LandingPage />
     <ProjectsPage />
     <ExperiencePage />

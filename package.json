@@ -43,13 +43,13 @@
     "react-dom": "^16.8.6",
     "react-inlinesvg": "^1.1.6",
     "react-scripts": "3.0.1",
-    "react-typist": "^2.0.5"
+    "react-typist": "^2.0.5",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
-    "babel-eslint": "^10.1.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
