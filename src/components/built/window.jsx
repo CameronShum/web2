@@ -81,14 +81,14 @@ const BuildImages = styled.div`
   cursor: pointer;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   svg {
     padding: 0 5px;
     margin-bottom: -10px;
-    transform: ${(props) => (props.active ? 'scale(1.1)' : '')};
+    transform: ${(props) => (props.active ? 'scale(1.2)' : 'scale(1.1)')};
     :hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
   }
 `;
