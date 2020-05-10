@@ -3,28 +3,32 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "eslint:recommended"],
+  extends: ['plugin:react/recommended', 'airbnb', 'eslint:recommended'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
-  parser: "babel-eslint",
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    quotes: ["error", "single"],
-    semi: ["error", "always"],
+    quotes: [
+      'error',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
+    semi: ['error', 'always'],
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        moduleDirectory: ["node_modules", "src/"],
+        moduleDirectory: ['node_modules', 'src/'],
       },
     },
   },
