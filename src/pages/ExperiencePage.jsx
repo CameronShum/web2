@@ -72,8 +72,8 @@ const ExperiencePage = () => {
           card={Card}
           index={current}
           setCurrent={handleClick}
-          LeftIcon={Left}
-          RightIcon={Right}
+          LeftIcon={StyledLeft}
+          RightIcon={StyledRight}
         />
       </FlexCol>
     </Container>
@@ -109,6 +109,11 @@ const CardContainer = styled.div`
   }
 `;
 
+const CompanyText = styled.p`
+  font-size: 50px;
+  color: #7e57c2;
+`;
+
 const Container = styled.div`
   padding: 20px 20px;
 
@@ -126,9 +131,12 @@ const FlexRow = styled.div`
   display: flex;
 `;
 
-const CompanyText = styled.p`
-  font-size: 50px;
-  color: #7e57c2;
+const StyledLeft = styled(Left)`
+  stroke: #7c4dff;
+`;
+
+const StyledRight = styled(Right)`
+  stroke: #7c4dff;
 `;
 
 const Tag = styled.div`
