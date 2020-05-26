@@ -5,10 +5,10 @@ import { Heart } from 'images/navigation';
 
 const Footer = () => (
   <FooterContainer>
-    <Text width={70}>Built with </Text>
-    <a href="https://github.com/cameronshum/web2">
-      <Heart style={{ margin: '0 5px ' }} />
-    </a>
+    <Text width={70}>Built with</Text>
+    <HeartContainer href="https://github.com/cameronshum/web2">
+      <Heart />
+    </HeartContainer>
     <Text width={125}>by Cameron Shum</Text>
   </FooterContainer>
 );
@@ -26,6 +26,10 @@ const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const HeartContainer = styled.a`
+  margin-right: 5px;
 `;
 
 const Text = styled.div`
