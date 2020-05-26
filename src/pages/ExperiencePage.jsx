@@ -9,6 +9,10 @@ import JobBackground from 'images/background/JobBackground';
 import Left from 'images/navigation/LeftArrow';
 import Right from 'images/navigation/RightArrow';
 
+// Reverse items to display most recent first
+
+const EXPERIENCE_ITEMS = experience.reverse();
+
 const Card = ({ title, company, descOfWork, toolsUsed }) => {
   const renderDescription = (description) => (
     <FlexRow
@@ -68,7 +72,7 @@ const ExperiencePage = () => {
       <Title>Experience</Title>
       <FlexCol>
         <Carousel
-          items={experience}
+          items={EXPERIENCE_ITEMS}
           card={Card}
           index={current}
           setCurrent={handleClick}
@@ -101,7 +105,7 @@ const Bullet = styled.div`
 const CardContainer = styled.div`
   min-height: 400px;
   height: auto;
-  width: 290px;
+  width: 275px;
   margin-top: 30px;
 
   @media (min-width: 800px) {
