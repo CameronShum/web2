@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
 const Hello = () => (
   <Container>
-    <HelloText>Hello, I'm</HelloText>
+    <HelloText>Hello, I&apos;m</HelloText>
     <Name>Cameron</Name>
     <Name>Shum.</Name>
   </Container>

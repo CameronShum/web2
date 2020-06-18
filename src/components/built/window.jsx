@@ -78,7 +78,7 @@ const BuildImages = styled.div`
   border-bottom: 15px solid #a1887f;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
   z-index: 1;
-  cursor: pointer;
+  cursor: ${(props) => !props.active && 'pointer'};
 
   display: flex;
   align-items: flex-end;
@@ -86,6 +86,7 @@ const BuildImages = styled.div`
   svg {
     padding: 0 5px;
     margin-bottom: -10px;
+
     transform: ${(props) => (props.active ? 'scale(1.2)' : 'scale(1.1)')};
     :hover {
       transform: scale(1.2);

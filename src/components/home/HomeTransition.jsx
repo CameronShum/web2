@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import styled from "@emotion/styled";
-import Typist from "react-typist";
-import skills from "constants/skills";
+import React, { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
+import Typist from 'react-typist';
+import skills from 'constants/skills';
 
 const mod = (x, n) => ((x % n) + n) % n;
 

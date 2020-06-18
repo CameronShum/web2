@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { Card, Carousel, Window, SectionDivider } from 'components';
@@ -65,12 +65,15 @@ const CarouselItems = () => {
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
+  const projectsRef = useRef(null);
+
   const handleClick = (num) => () => {
     setCurrent(num);
+    window.scrollTo(0, projectsRef.current.offsetTop);
   };
 
   return (
-    <Container id="Projects">
+    <Container id="Projects" ref={projectsRef}>
       <SectionDivider sectionName="Projects" />
       <Title>Projects</Title>
       <DesktopWindow>
