@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 import { Card, Carousel, Window, SectionDivider } from 'components';
 

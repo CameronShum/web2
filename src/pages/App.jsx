@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Footer } from 'components';
 import LandingPage from './LandingPage';
 import ProjectsPage from './ProjectsPage';
