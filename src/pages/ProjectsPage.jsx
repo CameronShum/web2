@@ -69,7 +69,6 @@ const ProjectsPage = () => {
 
   const handleClick = (num) => () => {
     setCurrent(num);
-    window.scrollTo(0, projectsRef.current.offsetTop);
   };
 
   return (

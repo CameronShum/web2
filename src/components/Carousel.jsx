@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CarouselBubbles from './CarouselBubbles';
 
+// All carousel items must contain a title field (maybe necessary to convert title => key)
 const RenderCards = (card, items, index, numItems) => {
   let cards = [];
   for (let i = 0; i < numItems; i++) {
     cards.push(
-      <div style={{ padding: '0 10px' }}>{card(items[index + i])}</div>
+      <div style={{ padding: '0 10px' }} key={items[index + i].title}>
+        {card(items[index + i])}
+      </div>
     );
   }
   return cards;
