@@ -4,6 +4,7 @@ import { FirebaseProvider, Footer } from 'components';
 import LandingPage from './LandingPage';
 import ProjectsPage from './ProjectsPage';
 import ExperiencePage from './ExperiencePage';
+import TravelsPage from './TravelsPage';
 import ContactPage from './ContactPage';
 import GlobalStyles from './GlobalStyles';
 
@@ -15,6 +16,7 @@ const App = () => (
         <LandingPage />
         <ProjectsPage />
         <ExperiencePage />
+        <TravelsPage db={db} />
         <ContactPage />
         <Footer />
       </Global>

@@ -6,7 +6,7 @@ import firebaseConfig from 'constants/firebase';
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.database().ref('data');
+const db = firebase.database().ref('root');
 
 const FirebaseProvider = ({ children }) => <>{children(db)}</>;
 
