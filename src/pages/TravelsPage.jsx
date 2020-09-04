@@ -35,20 +35,33 @@ const TravelsPage = ({ db }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const highlightMap = (map, countries) => {
+    // Source: https://docs.mapbox.com/mapbox-gl-js/example/geojson-layer-in-stack/
+    var layers = map.getStyle().layers;
+    var firstSymbolId;
+    for (var i = 0; i < layers.length; i++) {
+      if (layers[i].type === 'symbol') {
+        firstSymbolId = layers[i].id;
+        break;
+      }
+    }
+
     map.on('load', () => {
-      map.addLayer({
-        id: 'countries',
-        source: {
-          type: 'vector',
-          url: 'mapbox://camshum.0f58vqqm',
+      map.addLayer(
+        {
+          id: 'countries',
+          source: {
+            type: 'vector',
+            url: 'mapbox://camshum.0f58vqqm',
+          },
+          'source-layer': 'ne_10m_admin_0_countries-ak1gzi',
+          type: 'fill',
+          paint: {
+            'fill-color': '#F44336',
+            'fill-opacity': 0.4,
+          },
         },
-        'source-layer': 'ne_10m_admin_0_countries-ak1gzi',
-        type: 'fill',
-        paint: {
-          'fill-color': '#F44336',
-          'fill-opacity': 0.4,
-        },
-      });
+        firstSymbolId
+      );
 
       map.setFilter('countries', ['in', 'ADM0_A3_IS'].concat(countries));
     });
