@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
@@ -9,12 +9,10 @@ import { SectionDivider } from 'components';
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const TravelsPage = ({ db }) => {
-  const [travels, setTravels] = useState({});
   const mapContainerRef = useRef(null);
   const places = db.child('travel/places');
 
   useEffect(() => {
-    places.once('value').then((snapshot) => setTravels(snapshot.val()));
     const map = new mapbox.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
@@ -22,8 +20,39 @@ const TravelsPage = ({ db }) => {
       zoom: 1,
     });
 
+    async function loadCountries() {
+      const travels = (await places.once('value')).val();
+      highlightMap(map, Object.keys(travels));
+    }
+
+    loadCountries();
+
+    // Disable rotation
+    map.dragRotate.disable();
+    map.touchZoomRotate.disableRotation();
+
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const highlightMap = (map, countries) => {
+    map.on('load', () => {
+      map.addLayer({
+        id: 'countries',
+        source: {
+          type: 'vector',
+          url: 'mapbox://camshum.0f58vqqm',
+        },
+        'source-layer': 'ne_10m_admin_0_countries-ak1gzi',
+        type: 'fill',
+        paint: {
+          'fill-color': '#F44336',
+          'fill-opacity': 0.4,
+        },
+      });
+
+      map.setFilter('countries', ['in', 'ADM0_A3_IS'].concat(countries));
+    });
+  };
 
   return (
     <Container id="Travels">
@@ -55,6 +84,7 @@ const Map = styled.div`
   width: 1200px;
 
   border-radius: 10px;
+  border: none;
 `;
 
 const MapContainer = styled.div`
