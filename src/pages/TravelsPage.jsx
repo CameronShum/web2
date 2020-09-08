@@ -6,6 +6,8 @@ import mapbox from 'mapbox-gl';
 
 import { SectionDivider } from 'components';
 
+const ZOOM_THRESHOLD = 3;
+
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const TravelsPage = ({ db }) => {
@@ -55,6 +57,10 @@ const TravelsPage = ({ db }) => {
           },
           'source-layer': 'ne_10m_admin_0_countries-ak1gzi',
           type: 'fill',
+          layout: {
+            // make layer visible by default
+            visibility: 'visible',
+          },
           paint: {
             'fill-color': '#F44336',
             'fill-opacity': 0.4,
@@ -64,6 +70,14 @@ const TravelsPage = ({ db }) => {
       );
 
       map.setFilter('countries', ['in', 'ADM0_A3_IS'].concat(countries));
+
+      map.on('zoom', () => {
+        if (map.getZoom() > ZOOM_THRESHOLD) {
+          map.setLayoutProperty('countries', 'visibility', 'none');
+        } else {
+          map.setLayoutProperty('countries', 'visibility', 'visible');
+        }
+      });
     });
   };
 
