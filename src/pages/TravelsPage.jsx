@@ -6,7 +6,7 @@ import mapbox from 'mapbox-gl';
 
 import { SectionDivider } from 'components';
 
-const ZOOM_THRESHOLD = 3;
+const ZOOM_THRESHOLD = 5;
 
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
