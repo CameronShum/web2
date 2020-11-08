@@ -7,10 +7,80 @@ import firebase from 'firebase';
 import mapbox from 'mapbox-gl';
 import { SectionDivider } from 'components';
 
-const CITY_ZOOM = 6;
-const SUBDIVISION_ZOOM = 2;
+const SUBDIVISION_ZOOM = 5;
+const CITY_ZOOM = 8;
+const MAX_ZOOM = 22;
 dotenv.config();
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+
+// TODO: Simplify this logic into single tree traversal function
+const getRegions = (countries, regions) => {
+  const regionsArr = [];
+  Object.keys(countries).map(async (id) => {
+    const { name, children } = countries[id];
+    (children || []).map((id) => {
+      if (id[0] === '1') {
+        regionsArr.push(`${regions[id].name} ${name}`);
+      }
+    });
+  });
+
+  return regionsArr;
+};
+
+const getCities = (countries, regions, places) => {
+  const cities = [];
+  Object.keys(countries).map(async (id) => {
+    const { name, children } = countries[id];
+    (children || []).map((id) => {
+      if (id[0] === '1') {
+        const regionName = regions[id].name;
+        const regionChildren = regions[id].children;
+        (regionChildren || []).map((id) => {
+          cities.push(`${places[id].name} ${regionName} ${name}`);
+        });
+      } else if (id[0] === '2') {
+        cities.push(`${places[id].name} ${name}`);
+      }
+    });
+  });
+
+  return cities;
+};
+
+const getGeojson = async (searchArr) => {
+  const geojson = await Promise.all(
+    searchArr.map(async (value) => {
+      const res = await axios.get(
+        'https://nominatim.openstreetmap.org/search.php',
+        {
+          params: {
+            q: value,
+            format: 'geojson',
+            polygon_geojson: 1,
+            polygon_threshold: 0.004,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        let index = 0;
+        let feature = res.data.features[index];
+
+        while (feature && feature.properties.category !== 'boundary') {
+          index += 1;
+          feature = res.data.features[index];
+        }
+
+        return {
+          name: value,
+          geojson: feature.geometry,
+        };
+      }
+    })
+  );
+  return geojson;
+};
 
 const TravelsPage = ({ db }) => {
   const [loading, setLoading] = useState(false);
@@ -32,51 +102,25 @@ const TravelsPage = ({ db }) => {
       const places = locations.place;
 
       setLoading(true);
-      const countryGeojson = await Promise.all(
-        Object.keys(countries).map(async (id) => {
-          const res = await axios.get(
-            'https://nominatim.openstreetmap.org/search.php',
-            {
-              params: {
-                q: countries[id].name,
-                format: 'geojson',
-                polygon_geojson: 1,
-                polygon_threshold: 0.004,
-              },
-            }
-          );
-
-          if (res.status === 200) {
-            return {
-              name: countries[id].name,
-              geojson: res.data.features[0].geometry,
-            };
-          }
-        })
+      const countryGeojson = await getGeojson(
+        Object.keys(countries).map((id) => countries[id].name)
       );
-
       countryGeojson.forEach((data) =>
-        addLocation(map, data.name, data.geojson)
+        addLocation(map, data.name, SUBDIVISION_ZOOM, data.geojson)
       );
 
-      setLoading(false);
+      const regionGeojson = await getGeojson(getRegions(countries, regions));
+      regionGeojson.forEach((data) =>
+        addLocation(map, data.name, CITY_ZOOM, data.geojson)
+      );
 
-      // map.on('zoom', () => {
-      //   const zoom = map.getZoom();
-      //   if (zoom > CITY_ZOOM) {
-      //     map.setLayoutProperty('city', 'visibility', 'visible');
-      //     map.setLayoutProperty('subdivision', 'visibility', 'none');
-      //     map.setLayoutProperty('country', 'visibility', 'none');
-      //   } else if (zoom > SUBDIVISION_ZOOM) {
-      //     map.setLayoutProperty('city', 'visibility', 'none');
-      //     map.setLayoutProperty('subdivision', 'visibility', 'visible');
-      //     map.setLayoutProperty('country', 'visibility', 'none');
-      //   } else {
-      //     map.setLayoutProperty('city', 'visibility', 'none');
-      //     map.setLayoutProperty('subdivision', 'visibility', 'none');
-      //     map.setLayoutProperty('country', 'visibility', 'visible');
-      //   }
-      // });
+      const citiesGeojson = await getGeojson(
+        getCities(countries, regions, places)
+      );
+      citiesGeojson.forEach((data) =>
+        addLocation(map, data.name, MAX_ZOOM, data.geojson)
+      );
+      setLoading(false);
     }
 
     loadOverlay();
@@ -88,7 +132,7 @@ const TravelsPage = ({ db }) => {
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const addLocation = (map, type, geometry) => {
+  const addLocation = (map, sourceId, zoomType, geometry) => {
     const layers = map.getStyle().layers;
     let firstSymbolId = '';
     for (let i = 0; i < layers.length; i++) {
@@ -98,7 +142,7 @@ const TravelsPage = ({ db }) => {
       }
     }
 
-    map.addSource(type, {
+    map.addSource(sourceId, {
       type: 'geojson',
       data: {
         type: 'Feature',
@@ -108,17 +152,26 @@ const TravelsPage = ({ db }) => {
 
     map.addLayer(
       {
-        id: type,
+        id: sourceId,
         type: 'fill',
-        source: type,
+        source: sourceId,
         layout: {},
         paint: {
           'fill-color': '#F44336',
-          'fill-opacity': 0.4,
+          'fill-opacity': 0.2,
         },
       },
       firstSymbolId
     );
+
+    map.on('zoom', () => {
+      const zoom = map.getZoom();
+      if (zoom > zoomType) {
+        map.setLayoutProperty(sourceId, 'visibility', 'none');
+      } else {
+        map.setLayoutProperty(sourceId, 'visibility', 'visible');
+      }
+    });
   };
 
   return (
@@ -157,13 +210,14 @@ const Loading = styled.div`
 `;
 
 const LoadingContainer = styled.div`
+  width: 100%;
   opacity: ${(props) => (props.isLoading ? '0.7' : '1')};
   pointer-events: ${(props) => props.isLoading && 'none'};
 `;
 
 const Map = styled.div`
   height: 600px;
-  width: 1200px;
+  width: 100%;
 
   border-radius: 10px;
   border: none;
