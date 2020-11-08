@@ -1,18 +1,20 @@
 import React, { useEffect, useRef } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
+import dotenv from 'dotenv';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import mapbox from 'mapbox-gl';
-
 import { SectionDivider } from 'components';
 
-const ZOOM_THRESHOLD = 5;
-
+const CITY_ZOOM = 6;
+const SUBDIVISION_ZOOM = 2;
+dotenv.config();
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const TravelsPage = ({ db }) => {
   const mapContainerRef = useRef(null);
-  const places = db.child('travel/places');
+  const dbLocations = db.child('travel/locations');
 
   useEffect(() => {
     const map = new mapbox.Map({
@@ -22,12 +24,58 @@ const TravelsPage = ({ db }) => {
       zoom: 1,
     });
 
-    async function loadCountries() {
-      const travels = (await places.once('value')).val();
-      highlightMap(map, Object.keys(travels));
+    async function loadOverlay() {
+      const locations = (await dbLocations.once('value')).val();
+      const countries = locations.country;
+      const regions = locations.region;
+      const places = locations.place;
+
+      const countryGeojson = await Promise.all(
+        Object.keys(countries).map(async (id) => {
+          const res = await axios.get(
+            'https://nominatim.openstreetmap.org/search.php',
+            {
+              params: {
+                q: countries[id].name,
+                format: 'geojson',
+                polygon_geojson: 1,
+                polygon_threshold: 0.004,
+              },
+            }
+          );
+
+          if (res.status === 200) {
+            return {
+              name: countries[id].name,
+              geojson: res.data.features[0].geometry,
+            };
+          }
+        })
+      );
+
+      countryGeojson.forEach((data) =>
+        addLocation(map, data.name, data.geojson)
+      );
+
+      // map.on('zoom', () => {
+      //   const zoom = map.getZoom();
+      //   if (zoom > CITY_ZOOM) {
+      //     map.setLayoutProperty('city', 'visibility', 'visible');
+      //     map.setLayoutProperty('subdivision', 'visibility', 'none');
+      //     map.setLayoutProperty('country', 'visibility', 'none');
+      //   } else if (zoom > SUBDIVISION_ZOOM) {
+      //     map.setLayoutProperty('city', 'visibility', 'none');
+      //     map.setLayoutProperty('subdivision', 'visibility', 'visible');
+      //     map.setLayoutProperty('country', 'visibility', 'none');
+      //   } else {
+      //     map.setLayoutProperty('city', 'visibility', 'none');
+      //     map.setLayoutProperty('subdivision', 'visibility', 'none');
+      //     map.setLayoutProperty('country', 'visibility', 'visible');
+      //   }
+      // });
     }
 
-    loadCountries();
+    loadOverlay();
 
     // Disable rotation
     map.dragRotate.disable();
@@ -36,49 +84,37 @@ const TravelsPage = ({ db }) => {
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const highlightMap = (map, countries) => {
-    // Source: https://docs.mapbox.com/mapbox-gl-js/example/geojson-layer-in-stack/
-    var layers = map.getStyle().layers;
-    var firstSymbolId;
-    for (var i = 0; i < layers.length; i++) {
+  const addLocation = (map, type, geometry) => {
+    const layers = map.getStyle().layers;
+    let firstSymbolId = '';
+    for (let i = 0; i < layers.length; i++) {
       if (layers[i].type === 'symbol') {
         firstSymbolId = layers[i].id;
         break;
       }
     }
 
-    map.on('load', () => {
-      map.addLayer(
-        {
-          id: 'countries',
-          source: {
-            type: 'vector',
-            url: 'mapbox://camshum.0f58vqqm',
-          },
-          'source-layer': 'ne_10m_admin_0_countries-ak1gzi',
-          type: 'fill',
-          layout: {
-            // make layer visible by default
-            visibility: 'visible',
-          },
-          paint: {
-            'fill-color': '#F44336',
-            'fill-opacity': 0.4,
-          },
-        },
-        firstSymbolId
-      );
-
-      map.setFilter('countries', ['in', 'ADM0_A3_IS'].concat(countries));
-
-      map.on('zoom', () => {
-        if (map.getZoom() > ZOOM_THRESHOLD) {
-          map.setLayoutProperty('countries', 'visibility', 'none');
-        } else {
-          map.setLayoutProperty('countries', 'visibility', 'visible');
-        }
-      });
+    map.addSource(type, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry: geometry,
+      },
     });
+
+    map.addLayer(
+      {
+        id: type,
+        type: 'fill',
+        source: type,
+        layout: {},
+        paint: {
+          'fill-color': '#F44336',
+          'fill-opacity': 0.4,
+        },
+      },
+      firstSymbolId
+    );
   };
 
   return (
