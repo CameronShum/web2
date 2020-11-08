@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import dotenv from 'dotenv';
@@ -13,6 +13,7 @@ dotenv.config();
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const TravelsPage = ({ db }) => {
+  const [loading, setLoading] = useState(false);
   const mapContainerRef = useRef(null);
   const dbLocations = db.child('travel/locations');
 
@@ -30,6 +31,7 @@ const TravelsPage = ({ db }) => {
       const regions = locations.region;
       const places = locations.place;
 
+      setLoading(true);
       const countryGeojson = await Promise.all(
         Object.keys(countries).map(async (id) => {
           const res = await axios.get(
@@ -56,6 +58,8 @@ const TravelsPage = ({ db }) => {
       countryGeojson.forEach((data) =>
         addLocation(map, data.name, data.geojson)
       );
+
+      setLoading(false);
 
       // map.on('zoom', () => {
       //   const zoom = map.getZoom();
@@ -121,8 +125,11 @@ const TravelsPage = ({ db }) => {
     <Container id="Travels">
       <SectionDivider sectionName="Travels" />
       <Title>Travels</Title>
-      <MapContainer>
-        <Map ref={mapContainerRef} />
+      <MapContainer isLoading={loading}>
+        {loading && <Loading>Loading...</Loading>}
+        <LoadingContainer isLoading={loading}>
+          <Map ref={mapContainerRef} />
+        </LoadingContainer>
       </MapContainer>
     </Container>
   );
@@ -142,6 +149,18 @@ const Container = styled.div`
   }
 `;
 
+const Loading = styled.div`
+  position: absolute;
+  z-index: 2;
+
+  font-size: 30px;
+`;
+
+const LoadingContainer = styled.div`
+  opacity: ${(props) => (props.isLoading ? '0.7' : '1')};
+  pointer-events: ${(props) => props.isLoading && 'none'};
+`;
+
 const Map = styled.div`
   height: 600px;
   width: 1200px;
@@ -151,7 +170,10 @@ const Map = styled.div`
 `;
 
 const MapContainer = styled.div`
+  position: relative;
   width: 100%;
+
+  cursor: ${(props) => props.isLoading && 'progress'};
 
   display: flex;
   align-items: center;
