@@ -12,6 +12,48 @@ const MAX_ZOOM = 22;
 const useMap = (mapContainerRef, dbLocations) => {
   const [loading, setLoading] = useState(false);
 
+  const addLocation = (map, sourceId, zoomType, geometry) => {
+    const { layers } = map.getStyle();
+    let firstSymbolId = '';
+    for (let i = 0; i < layers.length; i++) {
+      if (layers[i].type === 'symbol') {
+        firstSymbolId = layers[i].id;
+        break;
+      }
+    }
+
+    map.addSource(sourceId, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry,
+      },
+    });
+
+    map.addLayer(
+      {
+        id: sourceId,
+        type: 'fill',
+        source: sourceId,
+        layout: {},
+        paint: {
+          'fill-color': '#F44336',
+          'fill-opacity': 0.2,
+        },
+      },
+      firstSymbolId
+    );
+
+    map.on('zoom', () => {
+      const zoom = map.getZoom();
+      if (zoom > zoomType) {
+        map.setLayoutProperty(sourceId, 'visibility', 'none');
+      } else {
+        map.setLayoutProperty(sourceId, 'visibility', 'visible');
+      }
+    });
+  };
+
   useEffect(() => {
     const map = new mapbox.Map({
       container: mapContainerRef.current,
@@ -55,48 +97,6 @@ const useMap = (mapContainerRef, dbLocations) => {
 
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const addLocation = (map, sourceId, zoomType, geometry) => {
-    const layers = map.getStyle().layers;
-    let firstSymbolId = '';
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol') {
-        firstSymbolId = layers[i].id;
-        break;
-      }
-    }
-
-    map.addSource(sourceId, {
-      type: 'geojson',
-      data: {
-        type: 'Feature',
-        geometry: geometry,
-      },
-    });
-
-    map.addLayer(
-      {
-        id: sourceId,
-        type: 'fill',
-        source: sourceId,
-        layout: {},
-        paint: {
-          'fill-color': '#F44336',
-          'fill-opacity': 0.2,
-        },
-      },
-      firstSymbolId
-    );
-
-    map.on('zoom', () => {
-      const zoom = map.getZoom();
-      if (zoom > zoomType) {
-        map.setLayoutProperty(sourceId, 'visibility', 'none');
-      } else {
-        map.setLayoutProperty(sourceId, 'visibility', 'visible');
-      }
-    });
-  };
 
   return loading;
 };
