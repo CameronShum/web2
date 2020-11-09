@@ -10,7 +10,7 @@ const RenderCards = (card, items, index, numItems) => {
     cards.push(
       <div style={{ padding: '0 10px' }} key={items[index + i].title}>
         {card(items[index + i])}
-      </div>
+      </div>,
     );
   }
   return cards;

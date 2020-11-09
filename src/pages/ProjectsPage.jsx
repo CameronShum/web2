@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import { Card, Carousel, Window, SectionDivider } from 'components';
+import {
+  Card, Carousel, Window, SectionDivider,
+} from 'components';
 
 import cardInfo from 'constants/cardInfo';
 
@@ -40,7 +42,7 @@ const getWindowDimensions = () => {
 
 const CarouselItems = () => {
   const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
+    getWindowDimensions(),
   );
 
   useEffect(() => {

@@ -41,7 +41,7 @@ const useMap = (mapContainerRef, dbLocations) => {
           'fill-opacity': 0.2,
         },
       },
-      firstSymbolId
+      firstSymbolId,
     );
 
     map.on('zoom', () => {
@@ -69,22 +69,20 @@ const useMap = (mapContainerRef, dbLocations) => {
       const regions = locations.region;
       const places = locations.place;
 
-      Object.keys(countries).forEach((id) =>
-        addLocation(
-          map,
-          countries[id].name,
-          SUBDIVISION_ZOOM,
-          countries[id].geojson
-        )
-      );
+      Object.keys(countries).forEach((id) => addLocation(
+        map,
+        countries[id].name,
+        SUBDIVISION_ZOOM,
+        countries[id].geojson,
+      ));
       setLoading(false);
 
-      Object.keys(regions).forEach((id) =>
-        addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson)
+      Object.keys(regions).forEach(
+        (id) => addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson),
       );
 
-      Object.keys(places).forEach((id) =>
-        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson)
+      Object.keys(places).forEach(
+        (id) => addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson),
       );
       setLoading(false);
     }

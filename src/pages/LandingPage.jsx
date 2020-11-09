@@ -22,7 +22,9 @@ const item = {
 };
 
 const LandingPage = () => {
-  const renderSections = ({ name, color, secondaryColor, Icon }) => {
+  const renderSections = ({
+    name, color, secondaryColor, Icon,
+  }) => {
     const handleClick = (e) => {
       e.preventDefault();
       // window.location = `#${name}`;

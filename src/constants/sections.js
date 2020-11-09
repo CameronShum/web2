@@ -1,4 +1,6 @@
-import { shelfIcon, htmlIcon, planeIcon, phoneIcon } from 'images/sections';
+import {
+  shelfIcon, htmlIcon, planeIcon, phoneIcon,
+} from 'images/sections';
 
 const sections = [
   {
