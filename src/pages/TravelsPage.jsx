@@ -24,7 +24,6 @@ const getRegions = (countries, regions) => {
       }
     });
   });
-
   return regionsArr;
 };
 
@@ -43,44 +42,53 @@ const getCities = (countries, regions, places) => {
         cities.push(`${places[id].name} ${name}`);
       }
     });
+
+    if ((children || []).length === 0) {
+      cities.push(name);
+    }
   });
 
   return cities;
 };
 
-const getGeojson = async (searchArr) => {
-  const geojson = await Promise.all(
-    searchArr.map(async (value) => {
-      const res = await axios.get(
-        'https://nominatim.openstreetmap.org/search.php',
-        {
-          params: {
-            q: value,
-            format: 'geojson',
-            polygon_geojson: 1,
-            polygon_threshold: 0.004,
-          },
-        }
-      );
+// Use for search in the future
 
-      if (res.status === 200) {
-        let index = 0;
-        let feature = res.data.features[index];
+// const getGeojson = async (searchArr) => {
+//   const geojson = await Promise.all(
+//     searchArr.map(async (value) => {
+//       const res = await axios.get(
+//         'https://nominatim.openstreetmap.org/search',
+//         {
+//           params: {
+//             q: value,
+//             format: 'geojson',
+//             polygon_geojson: 1,
+//             polygon_threshold: 0.004,
+//             limit: 1
+//           },
+//         }
+//       );
 
-        while (feature && feature.properties.category !== 'boundary') {
-          index += 1;
-          feature = res.data.features[index];
-        }
+//       if (res.status === 200) {
+//         let index = 0;
+//         let feature = res.data.features[index];
 
-        return {
-          name: value,
-          geojson: feature.geometry,
-        };
-      }
-    })
-  );
-  return geojson;
-};
+//         while (feature && feature.properties.category !== 'boundary') {
+//           index += 1;
+//           feature = res.data.features[index];
+//         }
+
+//         return {
+//           name: value,
+//           geojson: feature.geometry,
+//         };
+//       } else {
+//         return;
+//       }
+//     })
+//   );
+//   return geojson;
+// };
 
 const TravelsPage = ({ db }) => {
   const [loading, setLoading] = useState(false);
@@ -96,29 +104,28 @@ const TravelsPage = ({ db }) => {
     });
 
     async function loadOverlay() {
+      setLoading(true);
       const locations = (await dbLocations.once('value')).val();
       const countries = locations.country;
       const regions = locations.region;
       const places = locations.place;
 
-      setLoading(true);
-      const countryGeojson = await getGeojson(
-        Object.keys(countries).map((id) => countries[id].name)
+      Object.keys(countries).forEach((id) =>
+        addLocation(
+          map,
+          countries[id].name,
+          SUBDIVISION_ZOOM,
+          countries[id].geojson
+        )
       );
-      countryGeojson.forEach((data) =>
-        addLocation(map, data.name, SUBDIVISION_ZOOM, data.geojson)
+      setLoading(false);
+
+      Object.keys(regions).forEach((id) =>
+        addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson)
       );
 
-      const regionGeojson = await getGeojson(getRegions(countries, regions));
-      regionGeojson.forEach((data) =>
-        addLocation(map, data.name, CITY_ZOOM, data.geojson)
-      );
-
-      const citiesGeojson = await getGeojson(
-        getCities(countries, regions, places)
-      );
-      citiesGeojson.forEach((data) =>
-        addLocation(map, data.name, MAX_ZOOM, data.geojson)
+      Object.keys(places).forEach((id) =>
+        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson)
       );
       setLoading(false);
     }
