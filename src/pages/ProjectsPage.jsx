@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import { Card, Carousel, Window, SectionDivider } from 'components';
+import {
+  Card, Carousel, Window, SectionDivider,
+} from 'components';
 
 import cardInfo from 'constants/cardInfo';
 
@@ -40,7 +41,7 @@ const getWindowDimensions = () => {
 
 const CarouselItems = () => {
   const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
+    getWindowDimensions(),
   );
 
   useEffect(() => {
@@ -57,22 +58,19 @@ const CarouselItems = () => {
   }
   if (windowDimensions.width > 1200) {
     return 2;
-  } else {
-    return 1;
   }
+  return 1;
 };
 
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
-
-  const projectsRef = useRef(null);
 
   const handleClick = (num) => () => {
     setCurrent(num);
   };
 
   return (
-    <Container id="Projects" ref={projectsRef}>
+    <Container id="Projects">
       <SectionDivider sectionName="Projects" />
       <Title>Projects</Title>
       <DesktopWindow>

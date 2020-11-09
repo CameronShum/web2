@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Window = ({ onClick, images, current, offset, numItems }) => {
+const Window = ({
+  onClick, images, current, offset, numItems,
+}) => {
   const maxItems = images.length + offset - numItems;
 
   const renderImages = (Image, index) => {

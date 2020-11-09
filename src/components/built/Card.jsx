@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Card = ({ title, Image, date, desc, link }) => (
+const Card = ({
+  title, Image, date, desc, link,
+}) => (
   <FlexCol>
     <Title>{title}</Title>
     <div>

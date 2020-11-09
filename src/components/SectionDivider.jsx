@@ -10,6 +10,7 @@ const FindSection = (sectionName) => {
       return color;
     }
   }
+  return null;
 };
 
 const SectionDivider = ({ sectionName }) => {
