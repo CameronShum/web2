@@ -24,6 +24,8 @@ module.exports = {
       { avoidEscape: true, allowTemplateLiterals: true },
     ],
     semi: ['error', 'always'],
+    indent: ['error', 2],
+    'object-curly-spacing': ['error', 'always'],
   },
   settings: {
     'import/resolver': {
