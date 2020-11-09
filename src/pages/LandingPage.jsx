@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import proptypes from 'prop-types';
 import { motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
@@ -21,16 +22,24 @@ const item = {
   hover: { scale: 0.98 },
 };
 
-const LandingPage = () => {
+const LandingPage = ({
+  projectsRef, experienceRef, travelsRef, contactRef,
+}) => {
   const renderSections = ({
     name, color, secondaryColor, Icon,
   }) => {
+    const mappings = {
+      Projects: projectsRef,
+      Experience: experienceRef,
+      Travels: travelsRef,
+      Contact: contactRef,
+    };
+
     const handleClick = (e) => {
       e.preventDefault();
       // window.location = `#${name}`;
       window.scrollTo({
-        top: 1000,
-        left: 0,
+        top: mappings[name].current.offsetTop,
         behavior: 'smooth',
       });
     };
@@ -62,6 +71,10 @@ const LandingPage = () => {
       <Jumper
         animate={{ y: [0, 15] }}
         transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
+        onClick={() => window.scrollTo({
+          top: projectsRef.current.offsetTop,
+          behavior: 'smooth',
+        })}
       >
         <div>
           <RightArrow />
@@ -69,6 +82,13 @@ const LandingPage = () => {
       </Jumper>
     </Container>
   );
+};
+
+LandingPage.propTypes = {
+  projectsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
+  experienceRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
+  travelsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
+  contactRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default LandingPage;

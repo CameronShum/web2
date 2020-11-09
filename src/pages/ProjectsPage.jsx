@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import proptypes from 'prop-types';
 import {
   Card, Carousel, Window, SectionDivider,
 } from 'components';
@@ -63,10 +63,8 @@ const CarouselItems = () => {
   return 1;
 };
 
-const ProjectsPage = () => {
+const ProjectsPage = ({ projectsRef }) => {
   const [current, setCurrent] = useState(0);
-
-  const projectsRef = useRef(null);
 
   const handleClick = (num) => () => {
     setCurrent(num);
@@ -112,6 +110,10 @@ const ProjectsPage = () => {
       </MobileWindow>
     </Container>
   );
+};
+
+ProjectsPage.propTypes = {
+  projectsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default ProjectsPage;

@@ -5,13 +5,13 @@ import firebase from 'firebase';
 import { SectionDivider } from 'components';
 import useMap from 'hooks/useMap';
 
-const TravelsPage = ({ db }) => {
+const TravelsPage = ({ db, travelsRef }) => {
   const mapContainerRef = useRef(null);
   const dbLocations = db.child('travel/locations');
   const loading = useMap(mapContainerRef, dbLocations);
 
   return (
-    <Container id="Travels">
+    <Container id="Travels" ref={travelsRef}>
       <SectionDivider sectionName="Travels" />
       <Title>Travels</Title>
       <MapContainer isLoading={loading}>
@@ -26,6 +26,7 @@ const TravelsPage = ({ db }) => {
 
 TravelsPage.propTypes = {
   db: PropTypes.instanceOf(firebase.database()).isRequired,
+  travelsRef: PropTypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default TravelsPage;
