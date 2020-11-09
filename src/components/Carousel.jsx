@@ -5,7 +5,7 @@ import CarouselBubbles from './CarouselBubbles';
 
 // All carousel items must contain a title field (maybe necessary to convert title => key)
 const RenderCards = (card, items, index, numItems) => {
-  let cards = [];
+  const cards = [];
   for (let i = 0; i < numItems; i++) {
     cards.push(
       <div style={{ padding: '0 10px' }} key={items[index + i].title}>

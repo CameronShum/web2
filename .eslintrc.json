@@ -17,7 +17,8 @@
   },
   "plugins": ["react"],
   "rules": {
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-use-before-define": ["error", { "variables": false }]
   },
   "settings": {
     "import/resolver": {

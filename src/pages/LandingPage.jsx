@@ -23,7 +23,15 @@ const item = {
 
 const LandingPage = () => {
   const renderSections = ({ name, color, secondaryColor, Icon }) => {
-    const onClick = () => {};
+    const handleClick = (e) => {
+      e.preventDefault();
+      // window.location = `#${name}`;
+      window.scrollTo({
+        top: 1000,
+        left: 0,
+        behavior: 'smooth',
+      });
+    };
 
     return (
       <SectionButton
@@ -32,6 +40,7 @@ const LandingPage = () => {
         secondary={secondaryColor}
         whileHover="hover"
         variants={item}
+        onClick={handleClick}
       >
         <Icon />
         <SectionTitle>{name}</SectionTitle>
