@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import proptypes from 'prop-types';
 import { motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
@@ -22,42 +21,22 @@ const item = {
   hover: { scale: 0.98 },
 };
 
-const LandingPage = ({
-  projectsRef, experienceRef, travelsRef, contactRef,
-}) => {
+const LandingPage = () => {
   const renderSections = ({
     name, color, secondaryColor, Icon,
-  }) => {
-    const mappings = {
-      Projects: projectsRef,
-      Experience: experienceRef,
-      Travels: travelsRef,
-      Contact: contactRef,
-    };
-
-    const handleClick = (e) => {
-      e.preventDefault();
-      // window.location = `#${name}`;
-      window.scrollTo({
-        top: mappings[name].current.offsetTop,
-        behavior: 'smooth',
-      });
-    };
-
-    return (
+  }) => (
+    <a href={`#${name}`} key={name}>
       <SectionButton
-        key={name}
         color={color}
         secondary={secondaryColor}
         whileHover="hover"
         variants={item}
-        onClick={handleClick}
       >
         <Icon />
         <SectionTitle>{name}</SectionTitle>
       </SectionButton>
-    );
-  };
+    </a>
+  );
 
   return (
     <Container>
@@ -71,10 +50,7 @@ const LandingPage = ({
       <Jumper
         animate={{ y: [0, 15] }}
         transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
-        onClick={() => window.scrollTo({
-          top: projectsRef.current.offsetTop,
-          behavior: 'smooth',
-        })}
+        href="#Projects"
       >
         <div>
           <RightArrow />
@@ -82,13 +58,6 @@ const LandingPage = ({
       </Jumper>
     </Container>
   );
-};
-
-LandingPage.propTypes = {
-  projectsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
-  experienceRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
-  travelsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
-  contactRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default LandingPage;
@@ -110,7 +79,7 @@ const Descriptors = styled.div`
   font-size: 20px;
 `;
 
-const Jumper = styled(motion.div)`
+const Jumper = styled(motion.a)`
   position: absolute;
   bottom: 20px;
   margin: auto;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import proptypes from 'prop-types';
 import {
   Card, Carousel, Window, SectionDivider,
 } from 'components';
@@ -63,7 +62,7 @@ const CarouselItems = () => {
   return 1;
 };
 
-const ProjectsPage = ({ projectsRef }) => {
+const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
   const handleClick = (num) => () => {
@@ -71,7 +70,7 @@ const ProjectsPage = ({ projectsRef }) => {
   };
 
   return (
-    <Container id="Projects" ref={projectsRef}>
+    <Container id="Projects">
       <SectionDivider sectionName="Projects" />
       <Title>Projects</Title>
       <DesktopWindow>
@@ -110,10 +109,6 @@ const ProjectsPage = ({ projectsRef }) => {
       </MobileWindow>
     </Container>
   );
-};
-
-ProjectsPage.propTypes = {
-  projectsRef: proptypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default ProjectsPage;

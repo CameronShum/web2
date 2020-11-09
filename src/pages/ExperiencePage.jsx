@@ -62,14 +62,14 @@ Card.propTypes = {
   toolsUsed: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-const ExperiencePage = ({ experienceRef }) => {
+const ExperiencePage = () => {
   const [current, setCurrent] = useState(0);
 
   const handleClick = (num) => () => {
     setCurrent(num);
   };
   return (
-    <Container id="Experience" ref={experienceRef}>
+    <Container id="Experience">
       <SectionDivider sectionName="Experience" />
       <Title>Experience</Title>
       <FlexCol>
@@ -84,10 +84,6 @@ const ExperiencePage = ({ experienceRef }) => {
       </FlexCol>
     </Container>
   );
-};
-
-ExperiencePage.propTypes = {
-  experienceRef: PropTypes.instanceOf(React.MutableRefObject).isRequired,
 };
 
 export default ExperiencePage;

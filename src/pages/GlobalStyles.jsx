@@ -14,6 +14,15 @@ const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* prettier-ignore */
   h1,h2,h3,h4,h5,h6,p {
     margin: 0;

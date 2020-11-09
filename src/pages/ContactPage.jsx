@@ -19,17 +19,13 @@ renderContact.propTypes = {
   image: PropTypes.element.isRequired,
 };
 
-const ContactPage = ({ contactRef }) => (
-  <Container id="Contact" ref={contactRef}>
+const ContactPage = () => (
+  <Container id="Contact">
     <SectionDivider sectionName="Contact" />
     <Title>Contact</Title>
     <FlexCol>{contactInfo.map(renderContact)}</FlexCol>
   </Container>
 );
-
-ContactPage.propTypes = {
-  contactRef: PropTypes.instanceOf(React.MutableRefObject).isRequired,
-};
 
 export default ContactPage;
 
