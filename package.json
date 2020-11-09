@@ -5,9 +5,9 @@
   "repository": "https://github.com/cameronshum/web2",
   "private": true,
   "scripts": {
-    "start": "yarn lint && react-scripts start",
-    "build": "react-scripts build",
-    "lint": "eslint src/** --fix",
+    "start": "react-scripts start",
+    "build": "yarn lint && react-scripts build",
+    "lint": "eslint . --ext .js,.jsx",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
