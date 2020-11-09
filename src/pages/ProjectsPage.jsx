@@ -57,9 +57,8 @@ const CarouselItems = () => {
   }
   if (windowDimensions.width > 1200) {
     return 2;
-  } else {
-    return 1;
   }
+  return 1;
 };
 
 const ProjectsPage = () => {
