@@ -16,8 +16,8 @@ const useMap = (mapContainerRef, dbLocations) => {
     const map = new mapbox.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
-      center: [0, 20],
-      zoom: 1,
+      center: [0, 40],
+      zoom: 1.5,
     });
 
     async function loadOverlay() {
