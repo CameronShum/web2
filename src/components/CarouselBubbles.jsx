@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const CarouselBubbles = ({ current, length, setCurrent, numItems }) => {
+const CarouselBubbles = ({
+  current, length, setCurrent, numItems,
+}) => {
   const generateAmount = () => {
     const arr = [];
     for (let i = 0; i <= length - numItems; i++) {

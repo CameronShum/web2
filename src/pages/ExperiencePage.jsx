@@ -13,7 +13,9 @@ import Right from 'images/navigation/RightArrow';
 
 const EXPERIENCE_ITEMS = experience.reverse();
 
-const Card = ({ title, company, descOfWork, toolsUsed }) => {
+const Card = ({
+  title, company, descOfWork, toolsUsed,
+}) => {
   const renderDescription = (description) => (
     <FlexRow
       style={{ margin: '10px 0', fontSize: 18, color: '#616161' }}
