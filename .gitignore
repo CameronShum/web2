@@ -2,14 +2,12 @@
 .cache/
 public/
 
-
-##
 ## Node
-##
 node_modules/
 .next/
 /dist/
 /coverage
+build/
 
 # System files:
 .DS_Store
@@ -25,9 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
-##
 ## MISC
-##
 logs
 *.log
 
