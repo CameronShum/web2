@@ -1,23 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
 
 const container = {
-  hidden: { opacity: 0, y: 100 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      staggerChildren: 0.5,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.3 } },
+  hidden: { transition: { staggerChildren: 0.3 } },
 };
 
 const item = {
+  visible: { opacity: 1, y: 0 },
   hidden: { opacity: 0, y: 100 },
-  show: { opacity: 1, y: 0 },
   hover: { scale: 0.98 },
 };
 
@@ -25,17 +19,20 @@ const LandingPage = () => {
   const renderSections = ({
     name, color, secondaryColor, Icon,
   }) => (
-    <a href={`#${name}`} key={name}>
+    <motion.a
+      href={`#${name}`}
+      key={name}
+      whileHover="hover"
+      variants={item}
+    >
       <SectionButton
         color={color}
         secondary={secondaryColor}
-        whileHover="hover"
-        variants={item}
       >
         <Icon />
         <SectionTitle>{name}</SectionTitle>
       </SectionButton>
-    </a>
+    </motion.a>
   );
 
   return (
@@ -44,8 +41,10 @@ const LandingPage = () => {
         <Name>Cameron Shum</Name>
         <Descriptors>Design. Front-end. Back-end.</Descriptors>
       </NameContainer>
-      <SectionContainer variants={container} initial="hidden" animate="show">
-        {sections.map(renderSections)}
+      <SectionContainer variants={container} initial="hidden" animate="visible">
+        <AnimatePresence>
+          {sections.map(renderSections)}
+        </AnimatePresence>
       </SectionContainer>
       <Jumper
         animate={{ y: [0, 15] }}
@@ -96,6 +95,9 @@ const Jumper = styled(motion.a)`
 
   > div {
     transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -109,7 +111,7 @@ const NameContainer = styled.div`
   left: 40px;
 `;
 
-const SectionButton = styled(motion.div)`
+const SectionButton = styled.div`
   width: 250px;
   height: 80px;
   margin: 10px;
