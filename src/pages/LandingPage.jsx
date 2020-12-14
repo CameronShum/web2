@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
 
@@ -42,9 +42,7 @@ const LandingPage = () => {
         <Descriptors>Design. Front-end. Back-end.</Descriptors>
       </NameContainer>
       <SectionContainer variants={container} initial="hidden" animate="visible">
-        <AnimatePresence>
-          {sections.map(renderSections)}
-        </AnimatePresence>
+        {sections.map(renderSections)}
       </SectionContainer>
       <Jumper
         animate={{ y: [0, 15] }}

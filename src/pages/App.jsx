@@ -23,7 +23,7 @@ const App = () => (
         <LandingPage />
         <ProjectsPage />
         <ExperiencePage />
-        <React.Suspense fallback={<h1>Still Loading…</h1>}>
+        <React.Suspense fallback={<h1>Loading…</h1>}>
           <TravelsPage db={db} />
         </React.Suspense>
         <ContactPage />
