@@ -4,9 +4,16 @@ import { FirebaseProvider, Footer } from 'components';
 import LandingPage from './LandingPage';
 import ProjectsPage from './ProjectsPage';
 import ExperiencePage from './ExperiencePage';
-import TravelsPage from './TravelsPage';
 import ContactPage from './ContactPage';
 import GlobalStyles from './GlobalStyles';
+
+const sectionNumber = 4;
+
+const TravelsPage = React.lazy(
+  () => new Promise(
+    (resolve) => setTimeout(resolve, sectionNumber * 300),
+  ).then(() => import('./TravelsPage')),
+);
 
 const App = () => (
   <FirebaseProvider>
@@ -16,7 +23,9 @@ const App = () => (
         <LandingPage />
         <ProjectsPage />
         <ExperiencePage />
-        <TravelsPage db={db} />
+        <React.Suspense fallback={<h1>Loading…</h1>}>
+          <TravelsPage db={db} />
+        </React.Suspense>
         <ContactPage />
         <Footer />
       </Global>
