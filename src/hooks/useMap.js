@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import mapbox from 'mapbox-gl';
 
 dotenv.config();
@@ -77,13 +77,11 @@ const useMap = (mapContainerRef, dbLocations) => {
       ));
       setLoading(false);
 
-      Object.keys(regions).forEach(
-        (id) => addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson),
-      );
+      Object.keys(regions).forEach((id) =>
+         addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson));
 
-      Object.keys(places).forEach(
-        (id) => addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson),
-      );
+      Object.keys(places).forEach((id) => 
+        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson));
       setLoading(false);
     }
 

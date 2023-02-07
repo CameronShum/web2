@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
 import { SectionDivider } from 'components';
 import useMap from 'hooks/useMap';
 
@@ -25,7 +24,7 @@ const TravelsPage = ({ db }) => {
 };
 
 TravelsPage.propTypes = {
-  db: PropTypes.instanceOf(firebase.database()).isRequired,
+  db: PropTypes.shape.isRequired,
 };
 
 export default TravelsPage;

@@ -21,7 +21,6 @@ const Phone = () => (
       />
       <mask
         id="mask0"
-        mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x="4"
         y="0"

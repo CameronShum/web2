@@ -49,7 +49,7 @@ const Carousel = ({
 );
 
 Carousel.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape).isRequired,
   numItems: PropTypes.number,
   card: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
