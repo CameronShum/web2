@@ -59,6 +59,7 @@ coverage
 .DS_Store
 .DS_Store?
 *.swp
+.env
 
 # Windows:
 Thumbs.db

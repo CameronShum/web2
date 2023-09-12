@@ -1,15 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Card = ({
-  title, Image, date, desc, link,
-}) => (
+export interface CardProps {
+  title: string;
+  Image: React.FunctionComponent;
+  date: string;
+  desc: string;
+  link?: string;
+}
+
+const Card = ({ title, Image, date, desc, link }: CardProps) => (
   <FlexCol>
     <Title>{title}</Title>
     <div>
       <CardContainer>
         <Image />
+        {/* TODO: change components to be discrete */}
         <Text style={{ width: 150, textAlign: 'center' }}>{date}</Text>
         <Text style={{ padding: '10px 0' }}>{desc}</Text>
         {link && <LearnMore href={link}>See More</LearnMore>}
@@ -17,18 +23,6 @@ const Card = ({
     </div>
   </FlexCol>
 );
-
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  Image: PropTypes.element.isRequired,
-  date: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  link: PropTypes.string,
-};
-
-Card.defaultProps = {
-  link: '',
-};
 
 export default Card;
 

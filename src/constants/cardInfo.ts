@@ -5,8 +5,7 @@ const cardInfo = [
     title: 'Code',
     Image: Icon.Laptop,
     date: 'Jan. 19 - Now',
-    desc:
-      'A collection of code, from Python text parsers to front-end web apps to backend servers.',
+    desc: 'A collection of code, from Python text parsers to front-end web apps to backend servers.',
     link: 'https://github.com/cameronshum',
   },
   {
@@ -27,8 +26,7 @@ const cardInfo = [
     title: 'Lunar Rover design',
     Image: Icon.Rover,
     date: 'Jan. 19',
-    desc:
-      'A design for a lunar rover to survive the harsh conditions of the moon',
+    desc: 'A design for a lunar rover to survive the harsh conditions of the moon',
     // link: "./rover"
   },
   {
@@ -49,8 +47,7 @@ const cardInfo = [
     title: 'Electric Skateboard v2',
     Image: Icon.Skateboard2,
     date: 'May 19 - Now',
-    desc:
-      'A second electric skateboard, built to perform better than version 1',
+    desc: 'A second electric skateboard, built to perform better than version 1',
     // link: "./skateboard/v2"
   },
 ];

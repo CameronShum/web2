@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "yarn lint && react-scripts build",
-    "lint": "eslint ./src --ext .js,.jsx --fix",
+    "build": "bun lint && react-scripts build",
+    "lint": "eslint ./src --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -26,13 +26,7 @@
       "last 1 safari version"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
-  },
   "dependencies": {
-    "@babel/polyfill": "^7.8.7",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "firebase": "^7.18.0",
@@ -41,25 +35,28 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-inlinesvg": "^1.1.6",
-    "react-scripts": "3.0.1",
-    "react-typist": "^2.0.5",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^2.5.1",
-    "husky": "^2.4.0",
-    "rollup": "^1.15.3",
-    "rollup-plugin-alias": "^1.5.2",
-    "rollup-plugin-commonjs": "^10.0.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.0.2"
+    "@types/geojson": "^7946.0.10",
+    "@types/mapbox-gl": "^2.7.13",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@types/styled-components": "^5.1.27",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "bun-types": "^1.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react-perf": "^3.3.1",
+    "prettier": "^3.0.3",
+    "react-scripts": "3.0.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }

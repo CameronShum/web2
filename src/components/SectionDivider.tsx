@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import sections from 'constants/sections';
 
-const FindSection = (sectionName) => {
+const FindSection = (sectionName: string) => {
   for (let i = 0; i < sections.length; i++) {
     const { name, color } = sections[i];
     if (sectionName === name) {
       return color;
     }
   }
-  return null;
+  return '#FFFFFF';
 };
 
-const SectionDivider = ({ sectionName }) => {
+const SectionDivider = ({ sectionName }: { sectionName: string }) => {
   const color = FindSection(sectionName);
 
-  const renderCircle = (circle) => (
-    <a href={`#${circle.name}`} key={circle.name}>
-      <Circle color={circle.color} active={circle.name === sectionName} />
+  const renderCircle = ({ name, color }: { name: string; color: string }) => (
+    <a href={`#${name}`} key={name}>
+      <Circle color={color} active={name === sectionName} />
     </a>
   );
 
@@ -37,11 +37,7 @@ SectionDivider.propTypes = {
 
 export default SectionDivider;
 
-//
-// STYLING
-//
-
-const Bar = styled.div`
+const Bar = styled.div<{ color: string }>`
   width: 50px;
   height: 3px;
 
@@ -49,7 +45,7 @@ const Bar = styled.div`
   opacity: 0.5;
 `;
 
-const Circle = styled.div`
+const Circle = styled.div<{ active: boolean }>`
   height: 20px;
   width: 20px;
   margin: 0 3px;

@@ -17,18 +17,18 @@ const item = {
 
 const LandingPage = () => {
   const renderSections = ({
-    name, color, secondaryColor, Icon,
+    name,
+    color,
+    secondaryColor,
+    Icon,
+  }: {
+    name: string;
+    color: string;
+    secondaryColor: string;
+    Icon: React.ComponentType;
   }) => (
-    <motion.a
-      href={`#${name}`}
-      key={name}
-      whileHover="hover"
-      variants={item}
-    >
-      <SectionButton
-        color={color}
-        secondary={secondaryColor}
-      >
+    <motion.a href={`#${name}`} key={name} whileHover="hover" variants={item}>
+      <SectionButton color={color} secondary={secondaryColor}>
         <Icon />
         <SectionTitle>{name}</SectionTitle>
       </SectionButton>
@@ -39,14 +39,14 @@ const LandingPage = () => {
     <Container>
       <NameContainer>
         <Name>Cameron Shum</Name>
-        <Descriptors>Design. Front-end. Back-end.</Descriptors>
+        <Descriptors>Front-end. Design. Back-end.</Descriptors>
       </NameContainer>
       <SectionContainer variants={container} initial="hidden" animate="visible">
         {sections.map(renderSections)}
       </SectionContainer>
       <Jumper
-        animate={{ y: [0, 15] }}
-        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
+        animate={{ y: [0, 15] }} // TODO: obj in component
+        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }} // TODO: obj in component
         href="#Projects"
       >
         <div>
@@ -109,7 +109,7 @@ const NameContainer = styled.div`
   left: 40px;
 `;
 
-const SectionButton = styled.div`
+const SectionButton = styled.div<{ secondary: string }>`
   width: 250px;
   height: 80px;
   margin: 10px;

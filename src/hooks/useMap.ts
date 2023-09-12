@@ -1,18 +1,33 @@
+import React from 'react';
+import firebase from 'firebase';
 import { useState, useEffect } from 'react';
 import * as dotenv from 'dotenv';
 import mapbox from 'mapbox-gl';
 
 dotenv.config();
-mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
 const SUBDIVISION_ZOOM = 5;
 const CITY_ZOOM = 8;
 const MAX_ZOOM = 22;
 
-const useMap = (mapContainerRef, dbLocations) => {
+interface MultiPolygon {
+  type: 'MultiPolygon';
+  coordinates: GeoJson;
+}
+
+const useMap = (
+  mapContainerRef: React.RefObject<HTMLDivElement>,
+  dbLocations: firebase.database.Reference,
+) => {
   const [loading, setLoading] = useState(false);
 
-  const addLocation = (map, sourceId, zoomType, geometry) => {
+  const addLocation = (
+    map: mapbox.Map,
+    sourceId: string,
+    zoomType: number,
+    geometry: MultiPolygon,
+  ) => {
     const { layers } = map.getStyle();
     let firstSymbolId = '';
     for (let i = 0; i < layers.length; i++) {
@@ -27,6 +42,7 @@ const useMap = (mapContainerRef, dbLocations) => {
       data: {
         type: 'Feature',
         geometry,
+        properties: null,
       },
     });
 
@@ -56,7 +72,7 @@ const useMap = (mapContainerRef, dbLocations) => {
 
   useEffect(() => {
     const map = new mapbox.Map({
-      container: mapContainerRef.current,
+      container: mapContainerRef.current as HTMLDivElement,
       style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
       center: [0, 40],
       zoom: 1.5,
@@ -69,19 +85,23 @@ const useMap = (mapContainerRef, dbLocations) => {
       const regions = locations.region;
       const places = locations.place;
 
-      Object.keys(countries).forEach((id) => addLocation(
-        map,
-        countries[id].name,
-        SUBDIVISION_ZOOM,
-        countries[id].geojson,
-      ));
+      Object.keys(countries).forEach((id) => {
+        addLocation(
+          map,
+          countries[id].name,
+          SUBDIVISION_ZOOM,
+          countries[id].geojson,
+        );
+      });
       setLoading(false);
 
-      Object.keys(regions).forEach((id) =>
-         addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson));
+      Object.keys(regions).forEach((id) => {
+        addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson);
+      });
 
-      Object.keys(places).forEach((id) => 
-        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson));
+      Object.keys(places).forEach((id) => {
+        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson);
+      });
       setLoading(false);
     }
 
@@ -92,7 +112,7 @@ const useMap = (mapContainerRef, dbLocations) => {
     map.touchZoomRotate.disableRotation();
 
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return loading;
 };

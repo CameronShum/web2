@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { SectionDivider, Carousel } from 'components';
 
@@ -11,12 +10,18 @@ import Right from 'images/navigation/RightArrow';
 
 // Reverse items to display most recent first
 
-const EXPERIENCE_ITEMS = experience.reverse();
+const EXPERIENCE_ITEMS = experience.toReversed();
 
-const Card = ({
-  title, company, descOfWork, toolsUsed,
-}) => {
-  const renderDescription = (description) => (
+interface CardProps {
+  title: string;
+  company: string;
+  descOfWork: string[];
+  toolsUsed: string[];
+}
+
+// TODO: style object
+const Card = ({ title, company, descOfWork, toolsUsed }: CardProps) => {
+  const renderDescription = (description: string) => (
     <FlexRow
       style={{ margin: '10px 0', fontSize: 18, color: '#616161' }}
       key={description}
@@ -28,10 +33,10 @@ const Card = ({
     </FlexRow>
   );
 
-  const renderTools = (tool) => <Tag key={tool}>{tool}</Tag>;
+  const renderTools = (tool: string) => <Tag key={tool}>{tool}</Tag>;
 
   return (
-    <CardContainer key={descOfWork}>
+    <CardContainer key={title + company}>
       <FlexCol>
         <FlexRow
           style={{
@@ -55,19 +60,15 @@ const Card = ({
   );
 };
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  company: PropTypes.string.isRequired,
-  descOfWork: PropTypes.arrayOf(PropTypes.string).isRequired,
-  toolsUsed: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
-
 const ExperiencePage = () => {
   const [current, setCurrent] = useState(0);
 
-  const handleClick = (num) => () => {
-    setCurrent(num);
-  };
+  const handleClick = useCallback(
+    (num: number) => () => {
+      setCurrent(num);
+    },
+    [],
+  );
   return (
     <Container id="Experience">
       <SectionDivider sectionName="Experience" />
@@ -87,10 +88,6 @@ const ExperiencePage = () => {
 };
 
 export default ExperiencePage;
-
-//
-//  STYLING
-//
 
 const Background = styled.div`
   position: absolute;

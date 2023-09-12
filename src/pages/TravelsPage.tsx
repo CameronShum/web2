@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import firebase from 'firebase';
+
 import { SectionDivider } from 'components';
 import useMap from 'hooks/useMap';
 
-const TravelsPage = ({ db }) => {
-  const mapContainerRef = useRef(null);
+const TravelsPage = ({ db }: { db: firebase.database.Reference }) => {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const dbLocations = db.child('travel/locations');
   const loading = useMap(mapContainerRef, dbLocations);
 
@@ -21,10 +22,6 @@ const TravelsPage = ({ db }) => {
       </MapContainer>
     </Container>
   );
-};
-
-TravelsPage.propTypes = {
-  db: PropTypes.shape.isRequired,
 };
 
 export default TravelsPage;
@@ -44,7 +41,7 @@ const Loading = styled.div`
   font-size: 30px;
 `;
 
-const LoadingContainer = styled.div`
+const LoadingContainer = styled.div<{ isLoading: boolean }>`
   width: 100%;
   opacity: ${(props) => (props.isLoading ? '0.7' : '1')};
   pointer-events: ${(props) => props.isLoading && 'none'};
@@ -58,7 +55,7 @@ const Map = styled.div`
   border: none;
 `;
 
-const MapContainer = styled.div`
+const MapContainer = styled.div<{ isLoading: boolean }>`
   position: relative;
   width: 100%;
 

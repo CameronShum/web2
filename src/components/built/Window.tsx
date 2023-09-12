@@ -1,50 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+interface WindowProps {
+  onClick: (index: number) => () => void;
+  images: React.FunctionComponent[];
+  current: number;
+  offset?: number;
+  numItems: number;
+}
+
 const Window = ({
-  onClick, images, current, offset, numItems,
-}) => {
+  onClick,
+  images,
+  current,
+  offset = 0,
+  numItems,
+}: WindowProps) => {
   const maxItems = images.length + offset - numItems;
 
-  const renderImages = (Image, index) => {
+  const renderImages = (Image: React.FunctionComponent, index: number) => {
     const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
     return (
-      <BuildImages
-        key={Image}
-        active={current === index}
-        onClick={onClick(carouselIndex)}
-      >
+      // TODO: Memoize function
+      // TODO: Rename build images
+      <BuildImages active={current === index} onClick={onClick(carouselIndex)}>
         <Image />
       </BuildImages>
     );
   };
+
   return (
     <Container>
       <FlexCol>
-        <FlexRow justify wrap>
-          {images.map(renderImages)}
-        </FlexRow>
+        <FlexRow>{images.map(renderImages)}</FlexRow>
       </FlexCol>
     </Container>
   );
 };
-
-Window.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  images: PropTypes.arrayOf(PropTypes.element).isRequired,
-  current: PropTypes.number.isRequired,
-  offset: PropTypes.number,
-  numItems: PropTypes.number.isRequired,
-};
-
-Window.defaultProps = {
-  offset: 0,
-};
-
-//
-//  Begin Styling
-//
 
 const Container = styled.div`
   height: auto;
@@ -74,7 +66,7 @@ const Container = styled.div`
 //   background: #8d6e63;
 // `;
 
-const BuildImages = styled.div`
+const BuildImages = styled.div<{ active: boolean }>`
   flex: 1;
   margin: 0 -4px 60px 0;
   border-bottom: 15px solid #a1887f;
@@ -98,8 +90,8 @@ const BuildImages = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
-  justify-content: ${(props) => (props.justify ? 'space-between' : '')};
-  flex-wrap: ${(props) => (props.wrap ? 'wrap' : '')};
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const FlexCol = styled.div`

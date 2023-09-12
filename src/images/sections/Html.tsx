@@ -1,6 +1,6 @@
 import React from 'react';
 
-const htmlIcon = () => (
+const HtmlIcon = () => (
   <svg
     width="30"
     height="32"
@@ -43,4 +43,4 @@ const htmlIcon = () => (
   </svg>
 );
 
-export default htmlIcon;
+export default HtmlIcon;

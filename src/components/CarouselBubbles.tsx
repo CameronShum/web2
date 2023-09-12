@@ -1,10 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+interface CarouselBubblesProp {
+  current: number;
+  length: number;
+  setCurrent: (newCurr: number) => () => void;
+  numItems: number;
+}
+
 const CarouselBubbles = ({
-  current, length, setCurrent, numItems,
-}) => {
+  current,
+  length,
+  setCurrent,
+  numItems,
+}: CarouselBubblesProp) => {
   const generateAmount = () => {
     const arr = [];
     for (let i = 0; i <= length - numItems; i++) {
@@ -13,9 +22,10 @@ const CarouselBubbles = ({
     return arr;
   };
 
-  const renderBubble = (index) => (
+  const renderBubble = (index: number) => (
     <Bubble
       active={current === index}
+      // TODO: Memoize function
       onClick={setCurrent(index)}
       key={index}
     />
@@ -24,24 +34,9 @@ const CarouselBubbles = ({
   return <Container>{generateAmount().map(renderBubble)}</Container>;
 };
 
-CarouselBubbles.propTypes = {
-  numItems: PropTypes.number,
-  current: PropTypes.number.isRequired,
-  setCurrent: PropTypes.func.isRequired,
-  length: PropTypes.number.isRequired,
-};
-
-CarouselBubbles.defaultProps = {
-  numItems: 1,
-};
-
 export default CarouselBubbles;
 
-//
-//  Begin Styling
-//
-
-const Bubble = styled.div`
+const Bubble = styled.div<{ active: boolean }>`
   width: ${(props) => (props.active ? 13 : 10)}px;
   height: ${(props) => (props.active ? 13 : 10)}px;
   margin: 0 5px;

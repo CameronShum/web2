@@ -1,32 +1,30 @@
-import {
-  shelfIcon, htmlIcon, planeIcon, phoneIcon,
-} from 'images/sections';
+import { ShelfIcon, HtmlIcon, PlaneIcon, PhoneIcon } from 'images/sections';
 
 const sections = [
   {
     name: 'Projects',
     color: '#FFB300',
     secondaryColor: '#FFF8E3',
-    Icon: shelfIcon,
+    Icon: ShelfIcon,
   },
   {
     name: 'Experience',
     color: '#7C4DFF',
     secondaryColor: '#EEE7F5',
-    Icon: htmlIcon,
+    Icon: HtmlIcon,
   },
   {
     name: 'Travels',
     color: '#039BE5',
     secondaryColor: '#DFF5FD',
-    Icon: planeIcon,
+    Icon: PlaneIcon,
   },
   {
     name: 'Contact',
     color: '#00BFA5',
     secondaryColor: '#DEF2F1',
-    Icon: phoneIcon,
+    Icon: PhoneIcon,
   },
-];
+] as const;
 
 export default sections;

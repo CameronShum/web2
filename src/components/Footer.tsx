@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Heart } from 'images/navigation';
 
+// TODO: Remove width
 const Footer = () => (
   <FooterContainer>
     <Text width={70}>Built with</Text>
@@ -14,10 +14,6 @@ const Footer = () => (
 );
 
 export default Footer;
-
-//
-//  STYLES
-//
 
 const FooterContainer = styled.div`
   height: 40px;

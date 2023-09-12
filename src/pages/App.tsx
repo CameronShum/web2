@@ -1,24 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 import { FirebaseProvider, Footer } from 'components';
+import firebase from 'firebase';
 import LandingPage from './LandingPage';
 import ProjectsPage from './ProjectsPage';
 import ExperiencePage from './ExperiencePage';
 import ContactPage from './ContactPage';
 import GlobalStyles from './GlobalStyles';
-
-const sectionNumber = 4;
-
-const TravelsPage = React.lazy(
-  () => new Promise(
-    (resolve) => setTimeout(resolve, sectionNumber * 300),
-  ).then(() => import('./TravelsPage')),
-);
+import TravelsPage from './TravelsPage';
 
 const App = () => (
   <FirebaseProvider>
-    {(db) => (
-      <Global>
+    {(db: firebase.database.Reference) => (
+      <>
         <GlobalStyles />
         <LandingPage />
         <ProjectsPage />
@@ -28,17 +21,9 @@ const App = () => (
         </React.Suspense>
         <ContactPage />
         <Footer />
-      </Global>
+      </>
     )}
   </FirebaseProvider>
 );
 
 export default App;
-
-//
-// STYLES
-//
-
-const Global = styled.div`
-  font-family: 'Reem Kufi';
-`;

@@ -7,6 +7,6 @@ const skills = [
   'Hardware.',
   'Mechanics.',
   'Software.',
-];
+] as const;
 
 export default skills;

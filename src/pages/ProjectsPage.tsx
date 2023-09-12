@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import {
-  Card, Carousel, Window, SectionDivider,
-} from 'components';
+import { Card, Carousel, Window, SectionDivider } from 'components';
 
 import cardInfo from 'constants/cardInfo';
-
 import * as Icons from 'images/projects';
-
 import Left from 'images/navigation/LeftArrow';
 import Right from 'images/navigation/RightArrow';
 
@@ -65,9 +64,12 @@ const CarouselItems = () => {
 const ProjectsPage = () => {
   const [current, setCurrent] = useState(0);
 
-  const handleClick = (num) => () => {
-    setCurrent(num);
-  };
+  const handleClick = useCallback(
+    (num: number) => () => {
+      setCurrent(num);
+    },
+    [],
+  );
 
   return (
     <Container id="Projects">
@@ -112,10 +114,6 @@ const ProjectsPage = () => {
 };
 
 export default ProjectsPage;
-
-//
-//  STYLING
-//
 
 const Container = styled.div`
   padding: 20px 20px;
