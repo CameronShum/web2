@@ -4,20 +4,19 @@ import { Heart } from 'images/navigation';
 
 const Footer = () => (
   <FooterContainer>
-    <Text width={70}>Built with</Text>
+    <Text>Built with</Text>
     <HeartContainer href="https://github.com/cameronshum/web2">
       <Heart />
     </HeartContainer>
-    <Text width={125}>by Cameron Shum</Text>
+    <Text>by Cameron Shum</Text>
   </FooterContainer>
 );
 
 export default Footer;
 
 const FooterContainer = styled.div`
-  height: 40px;
   margin: 40px 0 20px 0;
-  color: #bdbdbd;
+  color: #a1a1a1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +26,6 @@ const HeartContainer = styled.a`
   margin-right: 5px;
 `;
 
-const Text = styled.div<{ width: number }>`
-  width: ${(props) => props.width}px;
+const Text = styled.div`
   text-align: center;
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
-import firebase from 'firebase';
 import { useState, useEffect } from 'react';
 import mapbox from 'mapbox-gl';
 import { Geometry } from 'geojson';
+import { ProcessedDatabase } from 'components/firebase/FirebaseProvider';
 
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
@@ -12,7 +12,7 @@ const MAX_ZOOM = 22;
 
 const useMap = (
   mapContainerRef: React.RefObject<HTMLDivElement>,
-  dbLocations: firebase.database.Reference,
+  database?: ProcessedDatabase,
 ) => {
   const [loading, setLoading] = useState(false);
 
@@ -22,37 +22,39 @@ const useMap = (
     zoomType: number,
     geometry: Geometry,
   ) => {
-    const { layers } = map.getStyle();
-    let firstSymbolId = '';
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol') {
-        firstSymbolId = layers[i].id;
-        break;
+    map.on('load', () => {
+      const { layers } = map.getStyle();
+      let firstSymbolId = '';
+      for (let i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+        }
       }
-    }
 
-    map.addSource(sourceId, {
-      type: 'geojson',
-      data: {
-        type: 'Feature',
-        geometry,
-        properties: null,
-      },
-    });
-
-    map.addLayer(
-      {
-        id: sourceId,
-        type: 'fill',
-        source: sourceId,
-        layout: {},
-        paint: {
-          'fill-color': '#F44336',
-          'fill-opacity': 0.2,
+      map.addSource(sourceId, {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          geometry,
+          properties: null,
         },
-      },
-      firstSymbolId,
-    );
+      });
+
+      map.addLayer(
+        {
+          id: sourceId,
+          type: 'fill',
+          source: sourceId,
+          layout: {},
+          paint: {
+            'fill-color': '#F44336',
+            'fill-opacity': 0.2,
+          },
+        },
+        firstSymbolId,
+      );
+    });
 
     map.on('zoom', () => {
       const zoom = map.getZoom();
@@ -65,19 +67,17 @@ const useMap = (
   };
 
   useEffect(() => {
-    const map = new mapbox.Map({
-      container: mapContainerRef.current as HTMLDivElement,
-      style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
-      center: [0, 40],
-      zoom: 1.5,
-    });
+    if (database !== undefined) {
+      const map = new mapbox.Map({
+        container: mapContainerRef.current as HTMLDivElement,
+        style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
+        center: [0, 40],
+        zoom: 1.5,
+      });
 
-    async function loadOverlay() {
-      setLoading(true);
-      const locations = (await dbLocations.once('value')).val();
-      const countries = locations.country;
-      const regions = locations.region;
-      const places = locations.place;
+      const countries = database.country;
+      const regions = database.region;
+      const places = database.place;
 
       Object.keys(countries).forEach((id) => {
         addLocation(
@@ -87,7 +87,6 @@ const useMap = (
           countries[id].geojson,
         );
       });
-      setLoading(false);
 
       Object.keys(regions).forEach((id) => {
         addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson);
@@ -97,16 +96,14 @@ const useMap = (
         addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson);
       });
       setLoading(false);
+
+      // Disable rotation
+      map.dragRotate.disable();
+      map.touchZoomRotate.disableRotation();
+
+      return () => map.remove();
     }
-
-    loadOverlay();
-
-    // Disable rotation
-    map.dragRotate.disable();
-    map.touchZoomRotate.disableRotation();
-
-    return () => map.remove();
-  }, []);
+  }, [database]);
 
   return loading;
 };

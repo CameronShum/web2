@@ -1,24 +1,26 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import firebase from 'firebase';
 
 import { SectionDivider } from 'components';
+import { ProcessedDatabase } from 'components/firebase/FirebaseProvider';
 import useMap from 'hooks/useMap';
 
-const TravelsPage = ({ db }: { db: firebase.database.Reference }) => {
+const TravelsPage = ({ db }: { db?: ProcessedDatabase }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const dbLocations = db.child('travel/locations');
-  const loading = useMap(mapContainerRef, dbLocations);
+  const loading = useMap(mapContainerRef, db);
 
   return (
     <Container id="Travels">
       <SectionDivider sectionName="Travels" />
       <Title>Travels</Title>
       <MapContainer isLoading={loading}>
-        {loading && <Loading>Loading...</Loading>}
-        <LoadingContainer isLoading={loading}>
-          <Map ref={mapContainerRef} />
-        </LoadingContainer>
+        {loading ? (
+          <Loading>Loading...</Loading>
+        ) : (
+          <LoadingContainer isLoading={loading}>
+            <Map ref={mapContainerRef} />
+          </LoadingContainer>
+        )}
       </MapContainer>
     </Container>
   );
