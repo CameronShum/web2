@@ -7,7 +7,7 @@ interface titleProp {
 }
 
 // All carousel items must contain a title field (maybe necessary to convert title => key)
-const RenderCards = <T extends titleProp>(
+const renderCards = <T extends titleProp>(
   card: (props: T) => React.JSX.Element,
   items: T[],
   index: number,
@@ -16,10 +16,9 @@ const RenderCards = <T extends titleProp>(
   const cards = [];
   for (let i = 0; i < numItems; i++) {
     cards.push(
-      // TODO: style obj
-      <div style={{ padding: '0 10px' }} key={items[index + i].title}>
+      <CardContainer key={items[index + i].title}>
         {card(items[index + i])}
-      </div>,
+      </CardContainer>,
     );
   }
   return cards;
@@ -43,29 +42,27 @@ const Carousel = <T extends titleProp>({
   setCurrent,
   LeftIcon,
   RightIcon,
-  ...styles
 }: CarouselProps<T>) => (
-  <FlexCol style={{ marginBottom: 20 }}>
-    {/*TODO: style obj */}
-    <CarouselContainer styles={styles}>
+  <CarouselContainer>
+    <CarouselScrollContainer>
       <ArrowIcon onClick={setCurrent(index - 1)} hide={index === 0}>
         <LeftIcon />
       </ArrowIcon>
-      {RenderCards(card, items, index, numItems)}
+      {renderCards(card, items, index, numItems)}
       <ArrowIcon
         onClick={setCurrent(index + 1)}
         hide={index === items.length - numItems}
       >
         <RightIcon />
       </ArrowIcon>
-    </CarouselContainer>
+    </CarouselScrollContainer>
     <CarouselBubbles
       current={index}
       length={items.length}
       setCurrent={setCurrent}
       numItems={numItems}
     />
-  </FlexCol>
+  </CarouselContainer>
 );
 
 export default Carousel;
@@ -77,7 +74,11 @@ const ArrowIcon = styled.div<{ hide: boolean }>`
   cursor: pointer;
 `;
 
-const CarouselContainer = styled.div`
+const CardContainer = styled.div`
+  padding: 0 10px;
+`;
+
+const CarouselScrollContainer = styled.div`
   margin: auto;
 
   display: flex;
@@ -85,7 +86,8 @@ const CarouselContainer = styled.div`
   justify-content: space-between;
 `;
 
-const FlexCol = styled.div`
+const CarouselContainer = styled.div`
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

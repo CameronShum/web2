@@ -19,43 +19,26 @@ interface CardProps {
   toolsUsed: string[];
 }
 
-// TODO: style object
 const Card = ({ title, company, descOfWork, toolsUsed }: CardProps) => {
   const renderDescription = (description: string) => (
-    <FlexRow
-      style={{ margin: '10px 0', fontSize: 18, color: '#616161' }}
-      key={description}
-    >
-      <div style={{ marginTop: 7, marginRight: 4 }}>
-        <Bullet />
-      </div>
-      {description}
-    </FlexRow>
+    <DescriptionContainer key={description}>
+      • {description}
+    </DescriptionContainer>
   );
 
   const renderTools = (tool: string) => <Tag key={tool}>{tool}</Tag>;
 
   return (
     <CardContainer key={title + company}>
-      <FlexCol>
-        <FlexRow
-          style={{
-            marginBottom: 30,
-            alignitems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Background>
-            <JobBackground />
-          </Background>
-          <CompanyText>{company}</CompanyText>
-        </FlexRow>
-        <Text style={{ textDecoration: 'underline' }}>{title}</Text>
-        <FlexCol>{descOfWork.map(renderDescription)}</FlexCol>
-        <FlexRow style={{ flexWrap: 'wrap', marginTop: 15 }}>
-          {toolsUsed.map(renderTools)}
-        </FlexRow>
-      </FlexCol>
+      <CardHeader>
+        <Background>
+          <JobBackground />
+        </Background>
+        <CompanyText>{company}</CompanyText>
+      </CardHeader>
+      <ExperienceTitle>{title}</ExperienceTitle>
+      <FlexCol>{descOfWork.map(renderDescription)}</FlexCol>
+      <TagContainer>{toolsUsed.map(renderTools)}</TagContainer>
     </CardContainer>
   );
 };
@@ -94,22 +77,26 @@ const Background = styled.div`
   z-index: -1;
 `;
 
-const Bullet = styled.div`
-  min-height: 5px;
-  min-width: 5px;
-  border-radius: 100%;
-  background: #757575;
-`;
-
 const CardContainer = styled.div`
   min-height: 400px;
   height: auto;
   width: 275px;
   margin-top: 30px;
 
+  display: flex;
+  flex-direction: column;
+
   @media (min-width: 800px) {
     width: 600px;
   }
+`;
+
+const CardHeader = styled.div`
+  margin-bottom: 30;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const CompanyText = styled.p`
@@ -125,13 +112,22 @@ const Container = styled.div`
   }
 `;
 
+const DescriptionContainer = styled.div`
+  margin: 10px 0;
+  display: flex;
+
+  font-size: 18;
+  color: #616161;
+`;
+
+const ExperienceTitle = styled.div`
+  font-size: 25px;
+  text-decoration: underline;
+`;
+
 const FlexCol = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const FlexRow = styled.div`
-  display: flex;
 `;
 
 const StyledLeft = styled(Left)`
@@ -151,8 +147,10 @@ const Tag = styled.div`
   color: white;
 `;
 
-const Text = styled.p`
-  font-size: 25px;
+const TagContainer = styled.div`
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const Title = styled.p`

@@ -59,7 +59,12 @@ coverage
 .DS_Store
 .DS_Store?
 *.swp
-.env
 
 # Windows:
 Thumbs.db
+
+# Misc files:
+.env
+.git
+.vscode
+node_modules

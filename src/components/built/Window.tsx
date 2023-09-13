@@ -22,7 +22,6 @@ const Window = ({
     const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
     return (
       // TODO: Memoize function
-      // TODO: Rename build images
       <BuildImages active={current === index} onClick={onClick(carouselIndex)}>
         <Image />
       </BuildImages>

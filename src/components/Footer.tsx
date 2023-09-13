@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Heart } from 'images/navigation';
 
-// TODO: Remove width
 const Footer = () => (
   <FooterContainer>
     <Text width={70}>Built with</Text>
@@ -28,7 +27,7 @@ const HeartContainer = styled.a`
   margin-right: 5px;
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ width: number }>`
   width: ${(props) => props.width}px;
   text-align: center;
 `;

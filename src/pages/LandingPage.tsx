@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { motion } from 'framer-motion';
+import { TargetAndTransition, Transition, motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
 
@@ -14,6 +14,14 @@ const item = {
   hidden: { opacity: 0, y: 100 },
   hover: { scale: 0.98 },
 };
+
+const animate = { y: [0, 15] } as TargetAndTransition;
+
+const transition = {
+  repeat: Infinity,
+  repeatType: 'reverse',
+  duration: 1.5,
+} as Transition;
 
 const LandingPage = () => {
   const renderSections = ({
@@ -44,11 +52,7 @@ const LandingPage = () => {
       <SectionContainer variants={container} initial="hidden" animate="visible">
         {sections.map(renderSections)}
       </SectionContainer>
-      <Jumper
-        animate={{ y: [0, 15] }} // TODO: obj in component
-        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }} // TODO: obj in component
-        href="#Projects"
-      >
+      <Jumper animate={animate} transition={transition} href="#Projects">
         <div>
           <RightArrow />
         </div>

@@ -10,27 +10,28 @@ export interface CardProps {
 }
 
 const Card = ({ title, Image, date, desc, link }: CardProps) => (
-  <FlexCol>
+  <CardContainer>
     <Title>{title}</Title>
-    <div>
-      <CardContainer>
-        <Image />
-        {/* TODO: change components to be discrete */}
-        <Text style={{ width: 150, textAlign: 'center' }}>{date}</Text>
-        <Text style={{ padding: '10px 0' }}>{desc}</Text>
-        {link && <LearnMore href={link}>See More</LearnMore>}
-      </CardContainer>
-    </div>
-  </FlexCol>
+    <CardContent>
+      <Image />
+      <DateText>{date}</DateText>
+      <DescText>{desc}</DescText>
+      {link && <LearnMore href={link}>See More</LearnMore>}
+    </CardContent>
+  </CardContainer>
 );
 
 export default Card;
 
-//
-//  STYLES
-//
-
 const CardContainer = styled.div`
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CardContent = styled.div`
   min-height: 200px;
   height: auto;
   width: 275px;
@@ -52,12 +53,25 @@ const CardContainer = styled.div`
   }
 `;
 
-const FlexCol = styled.div`
-  margin-top: 30px;
+const DateText = styled.p`
+  width: 150px;
+  font-size: 18px;
+  color: #37474e;
+  text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @media (min-width: 800px) {
+    font-size: 22px;
+  }
+`;
+
+const DescText = styled.p`
+  font-size: 18px;
+  color: #37474e;
+  padding: 10px 0;
+
+  @media (min-width: 800px) {
+    font-size: 22px;
+  }
 `;
 
 const LearnMore = styled.a`
@@ -78,14 +92,5 @@ const Title = styled.div`
 
   @media (min-width: 800px) {
     font-size: 40px;
-  }
-`;
-
-const Text = styled.p`
-  font-size: 18px;
-  color: #37474e;
-
-  @media (min-width: 800px) {
-    font-size: 22px;
   }
 `;

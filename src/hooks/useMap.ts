@@ -1,20 +1,14 @@
 import React from 'react';
 import firebase from 'firebase';
 import { useState, useEffect } from 'react';
-import * as dotenv from 'dotenv';
 import mapbox from 'mapbox-gl';
+import { Geometry } from 'geojson';
 
-dotenv.config();
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
 const SUBDIVISION_ZOOM = 5;
 const CITY_ZOOM = 8;
 const MAX_ZOOM = 22;
-
-interface MultiPolygon {
-  type: 'MultiPolygon';
-  coordinates: GeoJson;
-}
 
 const useMap = (
   mapContainerRef: React.RefObject<HTMLDivElement>,
@@ -26,7 +20,7 @@ const useMap = (
     map: mapbox.Map,
     sourceId: string,
     zoomType: number,
-    geometry: MultiPolygon,
+    geometry: Geometry,
   ) => {
     const { layers } = map.getStyle();
     let firstSymbolId = '';
