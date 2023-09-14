@@ -8,6 +8,7 @@ import GlobalStyles from './GlobalStyles';
 import TravelsPage from './TravelsPage';
 import { ProcessedDatabase } from 'components/firebase/FirebaseProvider';
 
+// TODO: Add routes? ie spotify? blog? custom website builder?
 const App = () => (
   <FirebaseProvider>
     {(db?: ProcessedDatabase) => (

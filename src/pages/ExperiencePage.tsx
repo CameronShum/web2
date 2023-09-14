@@ -47,6 +47,8 @@ const Card = ({ title, company, descOfWork, toolsUsed }: CardProps) => {
   );
 };
 
+// TODO: Create summary card in D3 that uses tags + frequency to color an image
+// TODO: Generate random polygons using algorithm: generate random number of points from 1-20, randomly place them on a 30x60px grid, join each of them together, randomly round each corner
 const ExperiencePage = () => {
   const [current, setCurrent] = useState(0);
 
