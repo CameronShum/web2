@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 interface CarouselBubblesProp {
@@ -14,21 +14,23 @@ const CarouselBubbles = ({
   setCurrent,
   numItems,
 }: CarouselBubblesProp) => {
-  const generateAmount = () => {
+  const generateAmount = useCallback(() => {
     const arr = [];
     for (let i = 0; i <= length - numItems; i++) {
       arr.push(i);
     }
     return arr;
-  };
+  }, [length, numItems]);
 
-  const renderBubble = (index: number) => (
-    <Bubble
-      active={current === index}
-      // TODO: Memoize function
-      onClick={setCurrent(index)}
-      key={index}
-    />
+  const renderBubble = useCallback(
+    (index: number) => (
+      <Bubble
+        $active={current === index}
+        onClick={setCurrent(index)}
+        key={index}
+      />
+    ),
+    [current, setCurrent],
   );
 
   return <Container>{generateAmount().map(renderBubble)}</Container>;
@@ -36,15 +38,15 @@ const CarouselBubbles = ({
 
 export default CarouselBubbles;
 
-const Bubble = styled.div<{ active: boolean }>`
-  width: ${(props) => (props.active ? 13 : 10)}px;
-  height: ${(props) => (props.active ? 13 : 10)}px;
+const Bubble = styled.div<{ $active: boolean }>`
+  width: ${(props) => (props.$active ? 13 : 10)}px;
+  height: ${(props) => (props.$active ? 13 : 10)}px;
   margin: 0 5px;
 
   border-radius: 100%;
   cursor: pointer;
 
-  background: ${(props) => (props.active ? 'white' : '#C5CED1')};
+  background: ${(props) => (props.$active ? 'white' : '#C5CED1')};
 `;
 
 const Container = styled.div`

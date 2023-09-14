@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components/macro';
 import { TargetAndTransition, Transition, motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
@@ -24,23 +24,26 @@ const transition = {
 } as Transition;
 
 const LandingPage = () => {
-  const renderSections = ({
-    name,
-    color,
-    secondaryColor,
-    Icon,
-  }: {
-    name: string;
-    color: string;
-    secondaryColor: string;
-    Icon: React.ComponentType;
-  }) => (
-    <motion.a href={`#${name}`} key={name} whileHover="hover" variants={item}>
-      <SectionButton color={color} secondary={secondaryColor}>
-        <Icon />
-        <SectionTitle>{name}</SectionTitle>
-      </SectionButton>
-    </motion.a>
+  const renderSections = useCallback(
+    ({
+      name,
+      color,
+      secondaryColor,
+      Icon,
+    }: {
+      name: string;
+      color: string;
+      secondaryColor: string;
+      Icon: React.ComponentType;
+    }) => (
+      <motion.a href={`#${name}`} key={name} whileHover="hover" variants={item}>
+        <SectionButton $color={color} $secondary={secondaryColor}>
+          <Icon />
+          <SectionTitle>{name}</SectionTitle>
+        </SectionButton>
+      </motion.a>
+    ),
+    [],
   );
 
   return (
@@ -113,7 +116,7 @@ const NameContainer = styled.div`
   left: 40px;
 `;
 
-const SectionButton = styled.div<{ secondary: string }>`
+const SectionButton = styled.div<{ $color: string; $secondary: string }>`
   width: 250px;
   height: 80px;
   margin: 10px;
@@ -123,7 +126,7 @@ const SectionButton = styled.div<{ secondary: string }>`
 
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  background-color: ${(props) => props.secondary};
+  background-color: ${(props) => props.$secondary};
   transition: 0.1s ease-in-out;
   cursor: pointer;
   font-size: 20pt;
@@ -132,7 +135,7 @@ const SectionButton = styled.div<{ secondary: string }>`
   align-items: center;
 
   :hover {
-    color: ${(props) => props.color};
+    color: ${(props) => props.$color};
     box-shadow: none;
   }
 `;

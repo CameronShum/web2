@@ -10,15 +10,17 @@ export interface CardProps {
 }
 
 const Card = ({ title, Image, date, desc, link }: CardProps) => (
-  <CardContainer>
-    <Title>{title}</Title>
-    <CardContent>
-      <Image />
-      <DateText>{date}</DateText>
-      <DescText>{desc}</DescText>
-      {link && <LearnMore href={link}>See More</LearnMore>}
-    </CardContent>
-  </CardContainer>
+  <a href={link}>
+    <CardContainer>
+      <Title>{title}</Title>
+      <CardContent>
+        <Image />
+        <DateText>{date}</DateText>
+        <DescText>{desc}</DescText>
+        {link && <LearnMore>See More</LearnMore>}
+      </CardContent>
+    </CardContainer>
+  </a>
 );
 
 export default Card;
@@ -74,9 +76,7 @@ const DescText = styled.p`
   }
 `;
 
-const LearnMore = styled.a`
-  width: 70px;
-
+const LearnMore = styled.text`
   text-align: center;
   font-size: 14px;
   color: #37474e;

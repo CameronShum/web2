@@ -13,11 +13,11 @@ const TravelsPage = ({ db }: { db?: ProcessedDatabase }) => {
     <Container id="Travels">
       <SectionDivider sectionName="Travels" />
       <Title>Travels</Title>
-      <MapContainer isLoading={loading}>
+      <MapContainer $isLoading={loading}>
         {loading ? (
           <Loading>Loading...</Loading>
         ) : (
-          <LoadingContainer isLoading={loading}>
+          <LoadingContainer $isLoading={loading}>
             <Map ref={mapContainerRef} />
           </LoadingContainer>
         )}
@@ -43,10 +43,10 @@ const Loading = styled.div`
   font-size: 30px;
 `;
 
-const LoadingContainer = styled.div<{ isLoading: boolean }>`
+const LoadingContainer = styled.div<{ $isLoading: boolean }>`
   width: 100%;
-  opacity: ${(props) => (props.isLoading ? '0.7' : '1')};
-  pointer-events: ${(props) => props.isLoading && 'none'};
+  opacity: ${(props) => (props.$isLoading ? '0.7' : '1')};
+  pointer-events: ${(props) => props.$isLoading && 'none'};
 `;
 
 const Map = styled.div`
@@ -57,11 +57,11 @@ const Map = styled.div`
   border: none;
 `;
 
-const MapContainer = styled.div<{ isLoading: boolean }>`
+const MapContainer = styled.div<{ $isLoading: boolean }>`
   position: relative;
   width: 100%;
 
-  cursor: ${(props) => props.isLoading && 'progress'};
+  cursor: ${(props) => props.$isLoading && 'progress'};
 
   display: flex;
   align-items: center;

@@ -5,8 +5,6 @@ import { SectionDivider, Carousel } from 'components';
 import experience from 'constants/experience';
 
 import JobBackground from 'images/background/JobBackground';
-import Left from 'images/navigation/LeftArrow';
-import Right from 'images/navigation/RightArrow';
 
 // Reverse items to display most recent first
 
@@ -20,13 +18,19 @@ interface CardProps {
 }
 
 const Card = ({ title, company, descOfWork, toolsUsed }: CardProps) => {
-  const renderDescription = (description: string) => (
-    <DescriptionContainer key={description}>
-      • {description}
-    </DescriptionContainer>
+  const renderDescription = useCallback(
+    (description: string) => (
+      <DescriptionContainer key={description}>
+        • {description}
+      </DescriptionContainer>
+    ),
+    [],
   );
 
-  const renderTools = (tool: string) => <Tag key={tool}>{tool}</Tag>;
+  const renderTools = useCallback(
+    (tool: string) => <Tag key={tool}>{tool}</Tag>,
+    [],
+  );
 
   return (
     <CardContainer key={title + company}>
@@ -62,8 +66,6 @@ const ExperiencePage = () => {
           card={Card}
           index={current}
           setCurrent={handleClick}
-          LeftIcon={StyledLeft}
-          RightIcon={StyledRight}
         />
       </FlexCol>
     </Container>
@@ -128,14 +130,6 @@ const ExperienceTitle = styled.div`
 const FlexCol = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const StyledLeft = styled(Left)`
-  stroke: #7c4dff;
-`;
-
-const StyledRight = styled(Right)`
-  stroke: #7c4dff;
 `;
 
 const Tag = styled.div`

@@ -21,8 +21,7 @@ const Window = ({
   const renderImages = (Image: React.FunctionComponent, index: number) => {
     const carouselIndex = index + offset > maxItems ? maxItems : index + offset;
     return (
-      // TODO: Memoize function
-      <BuildImages active={current === index} onClick={onClick(carouselIndex)}>
+      <BuildImages $active={current === index} onClick={onClick(carouselIndex)}>
         <Image />
       </BuildImages>
     );
@@ -65,13 +64,13 @@ const Container = styled.div`
 //   background: #8d6e63;
 // `;
 
-const BuildImages = styled.div<{ active: boolean }>`
+const BuildImages = styled.div<{ $active: boolean }>`
   flex: 1;
   margin: 0 -4px 60px 0;
   border-bottom: 15px solid #a1887f;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.5);
   z-index: 1;
-  cursor: ${(props) => !props.active && 'pointer'};
+  cursor: ${(props) => !props.$active && 'pointer'};
 
   display: flex;
   align-items: flex-end;
@@ -80,7 +79,7 @@ const BuildImages = styled.div<{ active: boolean }>`
     padding: 0 5px;
     margin-bottom: -10px;
 
-    transform: ${(props) => (props.active ? 'scale(1.2)' : 'scale(1.1)')};
+    transform: ${(props) => (props.$active ? 'scale(1.2)' : 'scale(1.1)')};
     :hover {
       transform: scale(1.2);
     }

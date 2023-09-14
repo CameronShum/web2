@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CarouselBubbles from './CarouselBubbles';
+import { LeftArrow, RightArrow } from 'images/navigation';
 
 interface titleProp {
   title: string;
@@ -30,30 +31,27 @@ interface CarouselProps<T> {
   card: (prop: T) => React.JSX.Element;
   index: number;
   setCurrent: (num: number) => () => void;
-  LeftIcon: React.ComponentType;
-  RightIcon: React.ComponentType;
 }
 
+// TODO: refactor carousel to take an optional index that overrides the internal index
 const Carousel = <T extends titleProp>({
   items,
   numItems = 1,
   card,
   index,
   setCurrent,
-  LeftIcon,
-  RightIcon,
 }: CarouselProps<T>) => (
   <CarouselContainer>
     <CarouselScrollContainer>
-      <ArrowIcon onClick={setCurrent(index - 1)} hide={index === 0}>
-        <LeftIcon />
+      <ArrowIcon onClick={setCurrent(index - 1)} $hide={index === 0}>
+        <LeftArrow />
       </ArrowIcon>
       {renderCards(card, items, index, numItems)}
       <ArrowIcon
         onClick={setCurrent(index + 1)}
-        hide={index === items.length - numItems}
+        $hide={index === items.length - numItems}
       >
-        <RightIcon />
+        <RightArrow />
       </ArrowIcon>
     </CarouselScrollContainer>
     <CarouselBubbles
@@ -67,10 +65,10 @@ const Carousel = <T extends titleProp>({
 
 export default Carousel;
 
-const ArrowIcon = styled.div<{ hide: boolean }>`
+const ArrowIcon = styled.div<{ $hide: boolean }>`
   height: 24px;
   width: 24px;
-  visibility: ${(props) => (props.hide ? 'hidden' : 'visible')};
+  visibility: ${(props) => (props.$hide ? 'hidden' : 'visible')};
   cursor: pointer;
 `;
 

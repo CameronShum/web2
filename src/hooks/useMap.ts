@@ -103,7 +103,7 @@ const useMap = (
 
       return () => map.remove();
     }
-  }, [database]);
+  }, [database, mapContainerRef]);
 
   return loading;
 };
