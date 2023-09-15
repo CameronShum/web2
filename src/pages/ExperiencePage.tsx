@@ -154,5 +154,4 @@ const TagContainer = styled.div`
 const Title = styled.p`
   font-size: 60px;
   color: #7c4dff;
-  margin-left: 10px;
 `;

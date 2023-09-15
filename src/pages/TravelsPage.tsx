@@ -22,11 +22,20 @@ const TravelsPage = ({ db }: { db?: ProcessedDatabase }) => {
           </LoadingContainer>
         )}
       </MapContainer>
+      <Caption>Red regions are places I have visited. Try zooming in!</Caption>
     </Container>
   );
 };
 
 export default TravelsPage;
+
+const Caption = styled.div`
+  width: 100%;
+  color: #a1a1a1;
+
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.div`
   padding: 20px 20px;
@@ -71,5 +80,4 @@ const MapContainer = styled.div<{ $isLoading: boolean }>`
 const Title = styled.p`
   font-size: 60px;
   color: #039be5;
-  margin-left: 10px;
 `;

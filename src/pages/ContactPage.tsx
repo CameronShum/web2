@@ -109,5 +109,4 @@ const IconContainer = styled.div`
 const Title = styled.p`
   font-size: 60px;
   color: #00bfa5;
-  margin-left: 10px;
 `;

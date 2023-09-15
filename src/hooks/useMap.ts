@@ -6,8 +6,8 @@ import { ProcessedDatabase } from 'components/firebase/FirebaseProvider';
 
 mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
-const SUBDIVISION_ZOOM = 5;
-const CITY_ZOOM = 8;
+const COUNTRY_ZOOM = 4;
+const REGION_ZOOM = 6;
 const MAX_ZOOM = 22;
 
 const useMap = (
@@ -83,13 +83,13 @@ const useMap = (
         addLocation(
           map,
           countries[id].name,
-          SUBDIVISION_ZOOM,
+          COUNTRY_ZOOM,
           countries[id].geojson,
         );
       });
 
       Object.keys(regions).forEach((id) => {
-        addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson);
+        addLocation(map, regions[id].name, REGION_ZOOM, regions[id].geojson);
       });
 
       Object.keys(places).forEach((id) => {

@@ -139,5 +139,4 @@ const Text = styled.p`
 
 const Title = styled(Text)`
   font-size: 60px;
-  margin-left: 10px;
 `;
