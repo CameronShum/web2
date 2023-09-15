@@ -41,7 +41,7 @@
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.17",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.11",
     "@babel/preset-env": "^7.22.15",
     "@types/mapbox-gl": "^2.7.13",
     "@types/react": "^18.2.21",
