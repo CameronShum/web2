@@ -4,6 +4,4 @@ import SectionDivider from './SectionDivider';
 import Carousel from './Carousel';
 import Footer from './Footer';
 
-export {
-  Carousel, Card, FirebaseProvider, Footer, Window, SectionDivider,
-};
+export { Carousel, Card, FirebaseProvider, Footer, Window, SectionDivider };

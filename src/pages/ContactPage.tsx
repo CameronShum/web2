@@ -1,23 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import contactInfo from 'constants/contactInfo';
-import { SectionDivider } from '../components';
+import { SectionDivider } from 'components';
 
-const renderContact = ({ name, link, image }) => (
+interface renderContactProps {
+  name: string;
+  link: string;
+  Image: React.ComponentType;
+}
+
+const renderContact = ({ name, link, Image }: renderContactProps) => (
   <ContactLink href={link} key={link}>
     <ContactContainer>
-      <IconContainer>{image}</IconContainer>
+      <IconContainer>
+        <Image />
+      </IconContainer>
       <ContactText>{name}</ContactText>
     </ContactContainer>
   </ContactLink>
 );
-
-renderContact.propTypes = {
-  name: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  image: PropTypes.element.isRequired,
-};
 
 const ContactPage = () => (
   <Container id="Contact">
@@ -108,5 +109,4 @@ const IconContainer = styled.div`
 const Title = styled.p`
   font-size: 60px;
   color: #00bfa5;
-  margin-left: 10px;
 `;

@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import { motion } from 'framer-motion';
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { TargetAndTransition, Transition, motion } from 'framer-motion';
 import RightArrow from 'images/navigation/RightArrow';
 import sections from 'constants/sections';
 
@@ -15,40 +15,47 @@ const item = {
   hover: { scale: 0.98 },
 };
 
+const animate = { y: [0, 15] } as TargetAndTransition;
+
+const transition = {
+  repeat: Infinity,
+  repeatType: 'reverse',
+  duration: 1.5,
+} as Transition;
+
 const LandingPage = () => {
-  const renderSections = ({
-    name, color, secondaryColor, Icon,
-  }) => (
-    <motion.a
-      href={`#${name}`}
-      key={name}
-      whileHover="hover"
-      variants={item}
-    >
-      <SectionButton
-        color={color}
-        secondary={secondaryColor}
-      >
-        <Icon />
-        <SectionTitle>{name}</SectionTitle>
-      </SectionButton>
-    </motion.a>
+  const renderSections = useCallback(
+    ({
+      name,
+      color,
+      secondaryColor,
+      Icon,
+    }: {
+      name: string;
+      color: string;
+      secondaryColor: string;
+      Icon: React.ComponentType;
+    }) => (
+      <motion.a href={`#${name}`} key={name} whileHover="hover" variants={item}>
+        <SectionButton $color={color} $secondary={secondaryColor}>
+          <Icon />
+          <SectionTitle>{name}</SectionTitle>
+        </SectionButton>
+      </motion.a>
+    ),
+    [],
   );
 
   return (
     <Container>
       <NameContainer>
         <Name>Cameron Shum</Name>
-        <Descriptors>Design. Front-end. Back-end.</Descriptors>
+        <Descriptors>Front-end. Design. Back-end.</Descriptors>
       </NameContainer>
       <SectionContainer variants={container} initial="hidden" animate="visible">
         {sections.map(renderSections)}
       </SectionContainer>
-      <Jumper
-        animate={{ y: [0, 15] }}
-        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
-        href="#Projects"
-      >
+      <Jumper animate={animate} transition={transition} href="#Projects">
         <div>
           <RightArrow />
         </div>
@@ -109,7 +116,7 @@ const NameContainer = styled.div`
   left: 40px;
 `;
 
-const SectionButton = styled.div`
+const SectionButton = styled.div<{ $color: string; $secondary: string }>`
   width: 250px;
   height: 80px;
   margin: 10px;
@@ -119,7 +126,7 @@ const SectionButton = styled.div`
 
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  background-color: ${(props) => props.secondary};
+  background-color: ${(props) => props.$secondary};
   transition: 0.1s ease-in-out;
   cursor: pointer;
   font-size: 20pt;
@@ -128,7 +135,7 @@ const SectionButton = styled.div`
   align-items: center;
 
   :hover {
-    color: ${(props) => props.color};
+    color: ${(props) => props.$color};
     box-shadow: none;
   }
 `;

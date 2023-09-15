@@ -62,3 +62,9 @@ coverage
 
 # Windows:
 Thumbs.db
+
+# Misc files:
+.env
+.git
+.vscode
+node_modules

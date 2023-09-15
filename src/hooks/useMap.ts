@@ -1,48 +1,60 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
-import * as dotenv from 'dotenv';
 import mapbox from 'mapbox-gl';
+import { Geometry } from 'geojson';
+import { ProcessedDatabase } from 'components/firebase/FirebaseProvider';
 
-dotenv.config();
-mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+mapbox.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
-const SUBDIVISION_ZOOM = 5;
-const CITY_ZOOM = 8;
+const COUNTRY_ZOOM = 4;
+const REGION_ZOOM = 6;
 const MAX_ZOOM = 22;
 
-const useMap = (mapContainerRef, dbLocations) => {
+const useMap = (
+  mapContainerRef: React.RefObject<HTMLDivElement>,
+  database?: ProcessedDatabase,
+) => {
   const [loading, setLoading] = useState(false);
 
-  const addLocation = (map, sourceId, zoomType, geometry) => {
-    const { layers } = map.getStyle();
-    let firstSymbolId = '';
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol') {
-        firstSymbolId = layers[i].id;
-        break;
+  const addLocation = (
+    map: mapbox.Map,
+    sourceId: string,
+    zoomType: number,
+    geometry: Geometry,
+  ) => {
+    map.on('load', () => {
+      const { layers } = map.getStyle();
+      let firstSymbolId = '';
+      for (let i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+        }
       }
-    }
 
-    map.addSource(sourceId, {
-      type: 'geojson',
-      data: {
-        type: 'Feature',
-        geometry,
-      },
-    });
-
-    map.addLayer(
-      {
-        id: sourceId,
-        type: 'fill',
-        source: sourceId,
-        layout: {},
-        paint: {
-          'fill-color': '#F44336',
-          'fill-opacity': 0.2,
+      map.addSource(sourceId, {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          geometry,
+          properties: null,
         },
-      },
-      firstSymbolId,
-    );
+      });
+
+      map.addLayer(
+        {
+          id: sourceId,
+          type: 'fill',
+          source: sourceId,
+          layout: {},
+          paint: {
+            'fill-color': '#F44336',
+            'fill-opacity': 0.2,
+          },
+        },
+        firstSymbolId,
+      );
+    });
 
     map.on('zoom', () => {
       const zoom = map.getZoom();
@@ -55,44 +67,43 @@ const useMap = (mapContainerRef, dbLocations) => {
   };
 
   useEffect(() => {
-    const map = new mapbox.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
-      center: [0, 40],
-      zoom: 1.5,
-    });
+    if (database !== undefined) {
+      const map = new mapbox.Map({
+        container: mapContainerRef.current as HTMLDivElement,
+        style: 'mapbox://styles/camshum/ckelpfv9h06sh19lj50a6u7us',
+        center: [0, 40],
+        zoom: 1.5,
+      });
 
-    async function loadOverlay() {
-      setLoading(true);
-      const locations = (await dbLocations.once('value')).val();
-      const countries = locations.country;
-      const regions = locations.region;
-      const places = locations.place;
+      const countries = database.country;
+      const regions = database.region;
+      const places = database.place;
 
-      Object.keys(countries).forEach((id) => addLocation(
-        map,
-        countries[id].name,
-        SUBDIVISION_ZOOM,
-        countries[id].geojson,
-      ));
+      Object.keys(countries).forEach((id) => {
+        addLocation(
+          map,
+          countries[id].name,
+          COUNTRY_ZOOM,
+          countries[id].geojson,
+        );
+      });
+
+      Object.keys(regions).forEach((id) => {
+        addLocation(map, regions[id].name, REGION_ZOOM, regions[id].geojson);
+      });
+
+      Object.keys(places).forEach((id) => {
+        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson);
+      });
       setLoading(false);
 
-      Object.keys(regions).forEach((id) =>
-         addLocation(map, regions[id].name, CITY_ZOOM, regions[id].geojson));
+      // Disable rotation
+      map.dragRotate.disable();
+      map.touchZoomRotate.disableRotation();
 
-      Object.keys(places).forEach((id) => 
-        addLocation(map, places[id].name, MAX_ZOOM, places[id].geojson));
-      setLoading(false);
+      return () => map.remove();
     }
-
-    loadOverlay();
-
-    // Disable rotation
-    map.dragRotate.disable();
-    map.touchZoomRotate.disableRotation();
-
-    return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [database, mapContainerRef]);
 
   return loading;
 };
