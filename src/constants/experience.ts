@@ -91,7 +91,14 @@ const experience = [
       'Implemented a new approach to resizing the Splunk canvas, enabling users to increase the size in one fluid motion',
       'Lead multiple presentations to over 150 colleagues, showcasing new features of our product',
     ],
-    toolsUsed: [],
+    toolsUsed: [
+      'React',
+      'Typescript',
+      'React Testing Library',
+      'Jest',
+      'Docker',
+      'Cypress',
+    ],
   },
 ];
 

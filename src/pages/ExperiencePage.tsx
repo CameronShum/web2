@@ -34,14 +34,16 @@ const Card = ({ title, company, descOfWork, toolsUsed }: CardProps) => {
 
   return (
     <CardContainer key={title + company}>
-      <CardHeader>
-        <Background>
-          <JobBackground />
-        </Background>
-        <CompanyText>{company}</CompanyText>
-      </CardHeader>
-      <ExperienceTitle>{title}</ExperienceTitle>
-      <FlexCol>{descOfWork.map(renderDescription)}</FlexCol>
+      <div>
+        <CardHeader>
+          <Background>
+            <JobBackground />
+          </Background>
+          <CompanyText>{company}</CompanyText>
+        </CardHeader>
+        <ExperienceTitle>{title}</ExperienceTitle>
+        <FlexCol>{descOfWork.map(renderDescription)}</FlexCol>
+      </div>
       <TagContainer>{toolsUsed.map(renderTools)}</TagContainer>
     </CardContainer>
   );
@@ -82,13 +84,13 @@ const Background = styled.div`
 `;
 
 const CardContainer = styled.div`
-  min-height: 400px;
-  height: auto;
+  height: 500px;
   width: 275px;
   margin-top: 30px;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   @media (min-width: 800px) {
     width: 600px;
@@ -96,7 +98,7 @@ const CardContainer = styled.div`
 `;
 
 const CardHeader = styled.div`
-  margin-bottom: 30;
+  margin-bottom: 30px;
 
   display: flex;
   align-items: center;
