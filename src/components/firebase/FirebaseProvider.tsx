@@ -24,7 +24,7 @@ export interface ProcessedDatabase {
 const FirebaseProvider = ({
   children,
 }: {
-  children: (db?: ProcessedDatabase) => React.JSX.Element;
+  children: (db?: ProcessedDatabase) => React.ReactNode;
 }) => {
   const [database, setDatabase] = useState<ProcessedDatabase | undefined>(
     undefined,

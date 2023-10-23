@@ -9,7 +9,7 @@ interface titleProp {
 
 // All carousel items must contain a title field (maybe necessary to convert title => key)
 const renderCards = <T extends titleProp>(
-  card: (props: T) => React.JSX.Element,
+  card: (props: T) => React.ReactNode,
   items: T[],
   index: number,
   numItems: number,
@@ -28,7 +28,7 @@ const renderCards = <T extends titleProp>(
 interface CarouselProps<T> {
   items: T[];
   numItems?: number;
-  card: (prop: T) => React.JSX.Element;
+  card: (prop: T) => React.ReactNode;
   index: number;
   setCurrent: (num: number) => () => void;
 }
